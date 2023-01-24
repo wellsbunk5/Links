@@ -58,7 +58,7 @@ struct NewUserView: View {
             Spacer()
             
             Button {
-                presentationMode.wrappedValue.dismiss()
+                viewModel.loginPresentedViews.removeLast()
             } label: {
                 HStack {
                     Text("Already have an account?")
@@ -71,6 +71,8 @@ struct NewUserView: View {
             }
             .padding(.bottom, 32)
         }
+        .navigationDestination(for: String.self, destination:
+                                viewModel.navigationDestination(for:))
         .ignoresSafeArea()
     }
 }

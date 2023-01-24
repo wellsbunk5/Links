@@ -13,10 +13,13 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        Group {
-            if viewModel.userSession == nil {
+        if viewModel.userSession == nil {
+            NavigationStack(path: $viewModel.loginPresentedViews) {
                 LoginView()
-            } else {
+            }
+            
+        } else {
+            NavigationStack {
                 ZStack(alignment: .topLeading) {
                     MainTabView()
                         .navigationBarHidden(showMenu)
@@ -60,7 +63,7 @@ struct ContentView: View {
                 }
                 .onAppear {
                     showMenu = false
-                }
+            }
             }
         }
     }

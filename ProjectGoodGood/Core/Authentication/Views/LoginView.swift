@@ -56,9 +56,8 @@ struct LoginView: View {
             
             Spacer()
             
-            NavigationLink {
-                RegistrationView()
-                    .navigationBarHidden(true)
+            Button {
+                viewModel.loginPresentedViews.append("register")
             } label: {
                 HStack {
                      Text("Don't have an account")
@@ -72,6 +71,8 @@ struct LoginView: View {
             .padding(.bottom, 32)
             .foregroundColor(.blue)
         }
+        .navigationDestination(for: String.self, destination:
+                                viewModel.navigationDestination(for:))
         .ignoresSafeArea()
         .navigationBarHidden(true)
     }

@@ -17,10 +17,7 @@ struct ProjectGoodGoodApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                ContentView()
-            }
-            .environmentObject(viewModel)
+            ContentView().environmentObject(viewModel)
         }
     }
 }

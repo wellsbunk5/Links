@@ -36,7 +36,6 @@
 		BFF221BB297750060074E6DE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221BA297750060074E6DE /* ProfileView.swift */; };
 		BFF221BD297750160074E6DE /* PlayRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221BC297750160074E6DE /* PlayRoundView.swift */; };
 		BFF221C2297755130074E6DE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221C1297755130074E6DE /* LoginView.swift */; };
-		BFF221C4297755260074E6DE /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221C3297755260074E6DE /* RegistrationView.swift */; };
 		BFF221C6297756910074E6DE /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221C5297756910074E6DE /* RoundedShape.swift */; };
 		BFF221CA29775B200074E6DE /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221C929775B200074E6DE /* CustomInputField.swift */; };
 		BFF221CD29775CE90074E6DE /* AuthenticationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF221CC29775CE90074E6DE /* AuthenticationHeaderView.swift */; };
@@ -78,7 +77,6 @@
 		BFF221BA297750060074E6DE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BFF221BC297750160074E6DE /* PlayRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRoundView.swift; sourceTree = "<group>"; };
 		BFF221C1297755130074E6DE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		BFF221C3297755260074E6DE /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BFF221C5297756910074E6DE /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		BFF221C929775B200074E6DE /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		BFF221CC29775CE90074E6DE /* AuthenticationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHeaderView.swift; sourceTree = "<group>"; };
@@ -352,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				BFF221C1297755130074E6DE /* LoginView.swift */,
-				BFF221C3297755260074E6DE /* RegistrationView.swift */,
 				BF7F9E422979F5660068F38C /* AddProfilePhotoView.swift */,
 				BFE23E8A297A4A3500730601 /* NewUserView.swift */,
 			);
@@ -487,7 +484,6 @@
 				BFE23E87297A2BFB00730601 /* ExploreViewModel.swift in Sources */,
 				BFF221BD297750160074E6DE /* PlayRoundView.swift in Sources */,
 				BFF221C6297756910074E6DE /* RoundedShape.swift in Sources */,
-				BFF221C4297755260074E6DE /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

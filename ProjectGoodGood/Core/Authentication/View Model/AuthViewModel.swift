@@ -10,8 +10,9 @@ import Firebase
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
-    @Published var didAuthenticateUser = false
     @Published var currentUser: User?
+    @Published var loginPresentedViews = [String]()
+    
     private var tempUserSession: FirebaseAuth.User?
     
     private let service = UserService()
@@ -54,7 +55,7 @@ class AuthViewModel: ObservableObject {
             ]
             
             Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
-                self.didAuthenticateUser = true
+                self.loginPresentedViews.append("uploadImage")
             }
             
         }
@@ -82,6 +83,23 @@ class AuthViewModel: ObservableObject {
         
         service.fetchUser(withUid: uid) { user in
             self.currentUser = user
+        }
+    }
+    
+    func navigationDestination(for path: String) -> AnyView {
+        switch path {
+            case "register":
+                return AnyView(
+                    NewUserView()
+                )
+            case "uploadImage":
+                return AnyView(
+                    AddProfilePhotoView()
+                )
+            default:
+                return AnyView(
+                    LoginView()
+                )
         }
     }
 }
