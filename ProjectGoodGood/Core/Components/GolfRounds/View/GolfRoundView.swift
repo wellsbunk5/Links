@@ -9,11 +9,15 @@ import SwiftUI
 import Kingfisher
 
 struct GolfRoundView: View {
-    let golfRound: GolfRound
+    @ObservedObject var viewModel: GolfRoundViewModel
+    
+    init(golfRound: GolfRound) {
+        self.viewModel = GolfRoundViewModel(golfRound: golfRound)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let user = golfRound.user {
+            if let user = viewModel.golfRound.user {
                 HStack(alignment: .top, spacing: 12) {
                     KFImage(URL(string: user.profileImageUrl))
                         .resizable()
@@ -38,14 +42,17 @@ struct GolfRoundView: View {
                 }
             }
             
-            Text("\(golfRound.score)")
+            Text("\(viewModel.golfRound.score)")
             
             HStack {
                 Button {
-                    // action
+                    viewModel.golfRound.didLike ?? false ?
+                    viewModel.unlikeRound() :
+                    viewModel.likeRound()
                 } label: {
-                    Image(systemName: "heart")
+                    Image(systemName: viewModel.golfRound.didLike ?? false ? "heart.fill" : "heart")
                         .font(.subheadline)
+                        .foregroundColor(viewModel.golfRound.didLike ?? false ? .red : .gray)
                 }
                 
                 Spacer ()

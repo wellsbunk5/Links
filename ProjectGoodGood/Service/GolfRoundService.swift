@@ -44,4 +44,46 @@ struct GolfRoundService {
                 completion(rounds.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() }))
         }
     }
+    
+    func likeRound(_ round: GolfRound, completion: @escaping() -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let roundId = round.id else {return}
+        
+        let userLikesRef = Firestore.firestore().collection("users").document(uid).collection("user-likes")
+        
+        Firestore.firestore().collection("rounds").document(roundId)
+            .updateData(["likes": round.likes + 1]) { _ in
+                userLikesRef.document(roundId).setData([:]) { _ in
+                    completion()
+                }
+            }
+    }
+    
+    func unlikeRound(_ round: GolfRound, completion: @escaping() -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let roundId = round.id else {return}
+        guard round.likes > 0 else { return }
+        
+        let userLikesRef = Firestore.firestore().collection("users").document(uid).collection("user-likes")
+        
+        Firestore.firestore().collection("rounds").document(roundId)
+            .updateData(["likes": round.likes - 1]) { _ in
+                userLikesRef.document(roundId).delete { _ in
+                    completion()
+                }
+            }
+    }
+    
+    func checkIfUserLikedRound(_ round: GolfRound, completion: @escaping(Bool) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let roundId = round.id else { return }
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("user-likes")
+            .document(roundId).getDocument { snapshot, _ in
+                guard let snapshot = snapshot else { return }
+                completion(snapshot.exists)
+            }
+    }
 }
