@@ -18,7 +18,6 @@ struct UserService {
                 
                 guard let user = try? snapshot.data(as: User.self) else { return }
                 completion(user)
-                print("DEBUG: \(user.username)")
             }
     }
     
@@ -28,6 +27,59 @@ struct UserService {
                 guard let documents = snapshot?.documents else { return }
                 let users = documents.compactMap({ try? $0.data(as: User.self) })
                 completion(users)
+            }
+    }
+    
+    func followUser(_ userToFollow: User, with activeUser: User, completion: @escaping() -> Void) {
+        guard let activeUserId = activeUser.id else { return }
+        guard let usersId = userToFollow.id else {return}
+        
+        let activeUserRef = Firestore.firestore().collection("users").document(activeUserId)
+        let otherUserRef = Firestore.firestore().collection("users").document(usersId)
+        
+        activeUserRef
+            .updateData(["numFollowing": activeUser.numFollowing + 1]) { _ in
+                activeUserRef.collection("following").document(usersId).setData([:]) { _ in
+                    otherUserRef.updateData(["numFollowers": userToFollow.numFollowers + 1]) { _ in
+                        otherUserRef.collection("followers").document(activeUserId).setData([:]) { _ in
+                            completion()
+                        }
+                    }
+                }
+            }
+    }
+    
+    func unfollowUser(_ userToUnfollow: User, with activeUser: User, completion: @escaping() -> Void) {
+        guard let activeUserId = activeUser.id else { return }
+        guard let usersId = userToUnfollow.id else {return}
+        guard userToUnfollow.numFollowers > 0 else { return }
+        guard activeUser.numFollowing > 0 else { return }
+        
+        let activeUserRef = Firestore.firestore().collection("users").document(activeUserId)
+        let otherUserRef = Firestore.firestore().collection("users").document(usersId)
+        
+        activeUserRef
+            .updateData(["numFollowing": activeUser.numFollowing - 1]) { _ in
+                activeUserRef.collection("following").document(usersId).delete { _ in
+                    otherUserRef.updateData(["numFollowers": userToUnfollow.numFollowers - 1]) { _ in
+                        otherUserRef.collection("followers").document(activeUserId).delete { _ in
+                            completion()
+                        }
+                    }
+                }
+            }
+    }
+    
+    func checkIfActiveUserFollows(_ userToCheck: User, completion: @escaping(Bool) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let otherUserId = userToCheck.id else { return }
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("following")
+            .document(otherUserId).getDocument { snapshot, _ in
+                guard let snapshot = snapshot else { return }
+                completion(snapshot.exists)
             }
     }
 }

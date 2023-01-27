@@ -17,20 +17,46 @@ struct GolfRoundService {
                     "score": 72,
                     "timestamp": Timestamp(date: Date())] as [String : Any]
         
-        Firestore.firestore().collection("rounds").document()
-            .setData(data) { _ in
-                print("DEBUG: Did upload Round...")
-            }
+        let newDocRef = Firestore.firestore().collection("rounds").document()
+            
+        newDocRef.setData(data) { _ in
+            Firestore.firestore().collection("user-rounds").document(uid).collection("rounds").document(newDocRef.documentID)
+                .setData([:])
+        }
     }
     
     func fetchRounds(completion: @escaping([GolfRound]) -> Void) {
-        Firestore.firestore().collection("rounds")
-            .order(by: "timestamp", descending: true)
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        var rounds = [GolfRound]()
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("following")
             .getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
+                guard let documents = snapshot?.documents else { return }
+                
+                documents.forEach { doc in
+                    let userId = doc.documentID
+                    
+                    Firestore.firestore().collection("user-rounds").document(userId).collection("rounds")
+                        .getDocuments { snapshot, _ in
+                            guard let documents = snapshot?.documents else { return }
+                            
+                            documents.forEach { doc in
+                                let roundId = doc.documentID
+                                
+                                Firestore.firestore().collection("rounds").document(roundId)
+                                    .getDocument { snapshot, _ in
+                                        guard let round = try? snapshot?.data(as: GolfRound.self) else { return }
+                                        rounds.append(round)
+                                        
+                                        completion(rounds)
+                                    }
+                        }
+                        
+                    }
+                }
             
-            let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
-            completion(rounds)
         }
     }
     

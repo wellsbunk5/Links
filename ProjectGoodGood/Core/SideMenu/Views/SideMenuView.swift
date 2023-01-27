@@ -29,7 +29,7 @@ struct SideMenuView: View {
                             .foregroundColor(.gray)
                     }
                     
-                    UserFollowerStatsView()
+                    UserFollowerStatsView(user: user)
                         .padding(.vertical)
                 }
                 .padding(.leading)

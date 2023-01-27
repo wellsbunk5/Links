@@ -51,7 +51,9 @@ class AuthViewModel: ObservableObject {
                 "email": email,
                 "username": username.lowercased(),
                 "fullname": fullname,
-                "uid": user.uid
+                "uid": user.uid,
+                "numFollowing": 0,
+                "numFollowers": 0
             ]
             
             Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
