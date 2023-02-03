@@ -9,18 +9,32 @@ import Firebase
 
 struct GolfRoundService {
     
-    func uploadRound() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+    func postRound(_ round: GolfRound) {
+//        @DocumentID var id: String?
+//        let userId: String
+//        let courseId: String
+//        var timestamp: Timestamp
+//        var likes: Int
+//        let numHoles: Int
+//        var totalScore: Int
+//        var scores: [String : Int]
+//        var putts: [String: Int]
+//        var roundPictureUrls: [String]
         
-        let data = ["uid": uid,
+        let data = ["userId": round.userId,
+                    "courseId": round.courseId,
+                    "timestamp": Timestamp(date: Date()),
                     "likes": 0,
-                    "score": 72,
-                    "timestamp": Timestamp(date: Date())] as [String : Any]
+                    "numHoles": round.numHoles,
+                    "totalScore": round.totalScore,
+                    "scores": round.scores,
+                    "putts": round.putts,
+                    "roundPictureUrls": round.roundPictureUrls] as [String : Any]
         
         let newDocRef = Firestore.firestore().collection("rounds").document()
             
         newDocRef.setData(data) { _ in
-            Firestore.firestore().collection("user-rounds").document(uid).collection("rounds").document(newDocRef.documentID)
+            Firestore.firestore().collection("user-rounds").document(round.userId).collection("rounds").document(newDocRef.documentID)
                 .setData([:])
         }
     }

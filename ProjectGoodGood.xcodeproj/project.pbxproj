@@ -17,14 +17,18 @@
 		BF7F9E482979FE230068F38C /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E472979FE230068F38C /* ImageUploader.swift */; };
 		BF7F9E4A297A1AD70068F38C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E49297A1AD60068F38C /* UserService.swift */; };
 		BF7F9E4C297A1D4E0068F38C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E4B297A1D4E0068F38C /* User.swift */; };
+		BF95120A298C52E600230A4B /* RecordScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF951209298C52E600230A4B /* RecordScore.swift */; };
+		BF95120C298C8B4A00230A4B /* PostRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95120B298C8B4A00230A4B /* PostRoundView.swift */; };
 		BFBA5A952980A5F900D57D5E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA5A942980A5F900D57D5E /* ProfileViewModel.swift */; };
 		BFBA5A992980AD0A00D57D5E /* GolfRoundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA5A982980AD0A00D57D5E /* GolfRoundViewModel.swift */; };
+		BFBA5A9B2989BA6100D57D5E /* GolfCourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA5A9A2989BA6100D57D5E /* GolfCourseService.swift */; };
+		BFBA5A9D2989BAFE00D57D5E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA5A9C2989BAFE00D57D5E /* Course.swift */; };
 		BFE23E87297A2BFB00730601 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E86297A2BFB00730601 /* ExploreViewModel.swift */; };
 		BFE23E89297A2EFA00730601 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E88297A2EFA00730601 /* SearchBar.swift */; };
 		BFE23E8B297A4A3500730601 /* NewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E8A297A4A3500730601 /* NewUserView.swift */; };
 		BFE23E8E297B084300730601 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BFE23E8D297B084300730601 /* Kingfisher */; };
 		BFE23E90297B0CCE00730601 /* GolfRoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E8F297B0CCE00730601 /* GolfRoundService.swift */; };
-		BFE23E94297B0E9200730601 /* UploadRoundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E93297B0E9200730601 /* UploadRoundViewModel.swift */; };
+		BFE23E94297B0E9200730601 /* PlayRoundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E93297B0E9200730601 /* PlayRoundViewModel.swift */; };
 		BFE23E96297B115E00730601 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E95297B115E00730601 /* FeedViewModel.swift */; };
 		BFE23E98297B123900730601 /* GolfRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE23E97297B123900730601 /* GolfRound.swift */; };
 		BFF22198297746E70074E6DE /* ProjectGoodGoodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF22197297746E70074E6DE /* ProjectGoodGoodApp.swift */; };
@@ -60,13 +64,17 @@
 		BF7F9E472979FE230068F38C /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		BF7F9E49297A1AD60068F38C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF7F9E4B297A1D4E0068F38C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BF951209298C52E600230A4B /* RecordScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordScore.swift; sourceTree = "<group>"; };
+		BF95120B298C8B4A00230A4B /* PostRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRoundView.swift; sourceTree = "<group>"; };
 		BFBA5A942980A5F900D57D5E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BFBA5A982980AD0A00D57D5E /* GolfRoundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfRoundViewModel.swift; sourceTree = "<group>"; };
+		BFBA5A9A2989BA6100D57D5E /* GolfCourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfCourseService.swift; sourceTree = "<group>"; };
+		BFBA5A9C2989BAFE00D57D5E /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		BFE23E86297A2BFB00730601 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		BFE23E88297A2EFA00730601 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BFE23E8A297A4A3500730601 /* NewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserView.swift; sourceTree = "<group>"; };
 		BFE23E8F297B0CCE00730601 /* GolfRoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfRoundService.swift; sourceTree = "<group>"; };
-		BFE23E93297B0E9200730601 /* UploadRoundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRoundViewModel.swift; sourceTree = "<group>"; };
+		BFE23E93297B0E9200730601 /* PlayRoundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRoundViewModel.swift; sourceTree = "<group>"; };
 		BFE23E95297B115E00730601 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		BFE23E97297B123900730601 /* GolfRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfRound.swift; sourceTree = "<group>"; };
 		BFF22194297746E70074E6DE /* ProjectGoodGood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectGoodGood.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF221B0297748760074E6DE /* GolfRoundView.swift */,
+				BF951209298C52E600230A4B /* RecordScore.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF221BC297750160074E6DE /* PlayRoundView.swift */,
+				BF95120B298C8B4A00230A4B /* PostRoundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,7 +217,7 @@
 		BFE23E92297B0E7B00730601 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				BFE23E93297B0E9200730601 /* UploadRoundViewModel.swift */,
+				BFE23E93297B0E9200730601 /* PlayRoundViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -265,6 +275,7 @@
 			children = (
 				BF7F9E4B297A1D4E0068F38C /* User.swift */,
 				BFE23E97297B123900730601 /* GolfRound.swift */,
+				BFBA5A9C2989BAFE00D57D5E /* Course.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +286,7 @@
 				BF7F9E472979FE230068F38C /* ImageUploader.swift */,
 				BF7F9E49297A1AD60068F38C /* UserService.swift */,
 				BFE23E8F297B0CCE00730601 /* GolfRoundService.swift */,
+				BFBA5A9A2989BA6100D57D5E /* GolfCourseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -492,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFBA5A9B2989BA6100D57D5E /* GolfCourseService.swift in Sources */,
 				BFF221CD29775CE90074E6DE /* AuthenticationHeaderView.swift in Sources */,
 				BF7F9E362979DA8A0068F38C /* UserRowView.swift in Sources */,
 				BF7F9E3B2979DF360068F38C /* SideMenuView.swift in Sources */,
@@ -513,14 +526,17 @@
 				BF7F9E412979E0F20068F38C /* UserFollowerStatsView.swift in Sources */,
 				BFE23E8B297A4A3500730601 /* NewUserView.swift in Sources */,
 				BFF22198297746E70074E6DE /* ProjectGoodGoodApp.swift in Sources */,
+				BFBA5A9D2989BAFE00D57D5E /* Course.swift in Sources */,
 				BFF221B929774F3B0074E6DE /* ExploreView.swift in Sources */,
 				BFF221BB297750060074E6DE /* ProfileView.swift in Sources */,
 				BFE23E96297B115E00730601 /* FeedViewModel.swift in Sources */,
-				BFE23E94297B0E9200730601 /* UploadRoundViewModel.swift in Sources */,
+				BFE23E94297B0E9200730601 /* PlayRoundViewModel.swift in Sources */,
 				BFF221B429774D960074E6DE /* MainTabView.swift in Sources */,
 				BFF221DA29777B120074E6DE /* AuthViewModel.swift in Sources */,
 				BFE23E90297B0CCE00730601 /* GolfRoundService.swift in Sources */,
 				BF7F9E4C297A1D4E0068F38C /* User.swift in Sources */,
+				BF95120C298C8B4A00230A4B /* PostRoundView.swift in Sources */,
+				BF95120A298C52E600230A4B /* RecordScore.swift in Sources */,
 				BFE23E87297A2BFB00730601 /* ExploreViewModel.swift in Sources */,
 				BFF221BD297750160074E6DE /* PlayRoundView.swift in Sources */,
 				BFF221C6297756910074E6DE /* RoundedShape.swift in Sources */,

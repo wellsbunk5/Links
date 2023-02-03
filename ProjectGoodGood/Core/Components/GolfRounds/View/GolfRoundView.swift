@@ -42,7 +42,7 @@ struct GolfRoundView: View {
                 }
             }
             
-            Text("\(viewModel.golfRound.score)")
+            Text("\(viewModel.golfRound.totalScore)")
             
             HStack {
                 Button {

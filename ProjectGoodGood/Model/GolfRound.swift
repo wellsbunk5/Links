@@ -10,10 +10,15 @@ import Firebase
 
 struct GolfRound: Identifiable, Decodable {
     @DocumentID var id: String?
-    let score: Int
-    let timestamp: Timestamp
-    let uid: String
+    let userId: String
+    let courseId: String
+    var timestamp: Timestamp
     var likes: Int
+    let numHoles: Int
+    var totalScore: Int
+    var scores: [String : Int]
+    var putts: [String: Int]
+    var roundPictureUrls: [String]
     
     var user: User?
     var didLike: Bool? = false

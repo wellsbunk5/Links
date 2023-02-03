@@ -21,7 +21,7 @@ class FeedViewModel: ObservableObject {
             self.rounds = rounds
             
             for i in 0..<rounds.count {
-                let uid = rounds[i].uid
+                let uid = rounds[i].userId
                 
                 self.userService.fetchUser(withUid: uid) { user in
                     self.rounds[i].user = user
