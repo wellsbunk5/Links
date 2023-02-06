@@ -1,4 +1,3 @@
-//
 //  MainTabView.swift
 //  ProjectGoodGood
 //
@@ -22,29 +21,22 @@ struct MainTabView: View {
                         Image(systemName: "house")
                     }.tag(0)
                 
+                PlayRoundView()
+                    .onTapGesture {
+                        self.selectedIndex = 2
+                    }
+                    .tabItem {
+                        Image(systemName: "figure.golf")
+                    }.tag(1) //tag was 2changed position to put Play in the middle
+                
                 ExploreView()
                     .onTapGesture {
                         self.selectedIndex = 1
                     }
                     .tabItem {
                         Image(systemName: "magnifyingglass")
-                    }.tag(1)
+                    }.tag(2) //tag was 1 changed position to put Play in the middle
                 
-                PlayRoundView()
-                    .onTapGesture {
-                        self.selectedIndex = 2
-                    }
-                    .tabItem {
-                        Image(systemName: "play")
-                    }.tag(2)
-                
-                ProfileView(user: user)
-                    .onTapGesture {
-                        self.selectedIndex = 3
-                    }
-                    .tabItem {
-                        Image(systemName: "person")
-                    }.tag(3)
             }
         }
     }

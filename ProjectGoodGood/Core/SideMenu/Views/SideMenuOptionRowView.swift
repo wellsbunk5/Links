@@ -30,5 +30,7 @@ struct SideMenuOptionRowView: View {
 struct SideMenuOptionRowView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuOptionRowView(option: .profile)
+        SideMenuOptionRowView(option: .stats)
+        SideMenuOptionRowView(option: .friends)
     }
 }

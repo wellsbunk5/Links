@@ -38,13 +38,13 @@ struct ContentView: View {
                     
                     SideMenuView()
                         .frame(width: 300)
-                        .offset(x: showMenu ? 0 : -300, y: 0)
+                        .offset(x: showMenu ?  190 : 500, y: 0) // was 0 : -300, y: 0: changing it made it right aligned
                         .background(showMenu ? Color.white : Color.clear)
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
                         if let user = viewModel.currentUser {
                             Button {
                                 withAnimation(.easeInOut) {
