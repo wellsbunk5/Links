@@ -12,15 +12,15 @@ struct SideMenuView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     var body: some View {
         if let user = authViewModel.currentUser {
-            VStack(alignment: .leading, spacing: 32) {
-                VStack(alignment: .leading) {
+            VStack(spacing: 32) {
+                VStack() {
                     KFImage(URL(string: user.profileImageUrl))
                         .resizable()
                         .scaledToFill()
                         .clipShape(Circle())
                         .frame(width:48, height: 48)
                     
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(spacing: 4) {
                         Text(user.fullname)
                             .font(.headline)
                         
@@ -32,7 +32,7 @@ struct SideMenuView: View {
                     UserFollowerStatsView(user: user)
                         .padding(.vertical)
                 }
-                .padding(.leading)
+                .padding()
                 
                 ForEach(SideMenuViewModel.allCases, id:\.rawValue) { option in
                     if option == .profile {
@@ -41,7 +41,19 @@ struct SideMenuView: View {
                         } label: {
                             SideMenuOptionRowView(option: option)
                         }
-                    } else if option == .logout {
+                    } else if option == .stats {
+                        NavigationLink {
+                            StatsView(user: user)
+                        }label: {
+                            SideMenuOptionRowView(option: option)
+                        }
+                    } else if option == .friends {
+                        NavigationLink {
+                            FriendsView()
+                        }label: {
+                            SideMenuOptionRowView(option: option)
+                        }
+                    }else if option == .logout {
                         Button {
                             authViewModel.signOut()
                         } label: {

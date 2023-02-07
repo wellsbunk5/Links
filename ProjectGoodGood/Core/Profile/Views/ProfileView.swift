@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     @ObservedObject var profileViewModel: ProfileViewModel
@@ -18,14 +19,28 @@ struct ProfileView: View {
     
     var body: some View {
         VStack {
+            //Header
+            //* Add the user Image - mess around with no 'Profile' title
+            ZStack(){
+                Color(.systemGreen)
+                    .ignoresSafeArea()
+                Text(profileViewModel.user.fullname)
+                    .colorInvert()
+                    .bold()
+                    .font(.title)
+                
+                
+            }
+            .frame(width: 320, height: 60)
+            //for rounded corners
+            .cornerRadius(10)
             
-            Text("Profile")
             HStack {
-                Text(profileViewModel.user.username)
+                Spacer().frame(height: 10)
                 
                 if profileViewModel.user.isCurrentUser {
                     Button {
-                        // Edit action
+                        //* Edit action - just edit full name and username
                     } label: {
                         Text("Edit Profile")
                             .font(.subheadline).bold()
@@ -48,15 +63,26 @@ struct ProfileView: View {
                     }
                 }
             }
-            UserFollowerStatsView(user: profileViewModel.user)
-            Text(profileViewModel.user.fullname)
-            Text(profileViewModel.user.email)
-            Text(profileViewModel.user.id ?? "No Id")
-            Divider()
-            Text("Rounds Played")
             
+            UserFollowerStatsView(user: profileViewModel.user).frame(height: 20)
+            
+            Text(profileViewModel.user.username).frame(height: 20)
+                .font(.caption)
+                .foregroundColor(.gray)
+            Text(profileViewModel.user.email).frame(height: 20)
+            //Text(profileViewModel.user.id ?? "No Id")
+            
+            Spacer().frame(height: 20)
+            Divider()
+            Spacer().frame(height: 20)
+                //Section Header for Rounds played
+            Text("Rounds Played")
+                .bold()
+                .font(.title2)
+            
+                //User rounds: *need to add Nate's scorecard component
             ScrollView {
-                ForEach ( profileViewModel.roundsPlayed) { golfRound in
+                ForEach (profileViewModel.roundsPlayed) { golfRound in
                     GolfRoundView(golfRound: golfRound)
                         .padding()
                     
@@ -68,6 +94,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com", profileImageUrl: "blahblah", numFollowers: 0, numFollowing: 0))
+        ProfileView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com", profileImageUrl: "blahblah", numFollowers: 0, numFollowing: 0)).environmentObject(AuthViewModel())
     }
 }

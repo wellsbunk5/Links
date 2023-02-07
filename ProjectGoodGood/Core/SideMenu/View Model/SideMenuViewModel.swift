@@ -10,14 +10,14 @@ import Foundation
 enum SideMenuViewModel: Int, CaseIterable {
     case profile
     case stats
-    case following
+    case friends
     case logout
     
     var description: String {
         switch self {
         case .profile: return "Profile"
         case .stats: return "Stats"
-        case .following: return "Friends"
+        case .friends: return "Friends"
         case .logout: return "Logout"
         }
     }
@@ -26,7 +26,7 @@ enum SideMenuViewModel: Int, CaseIterable {
         switch self {
         case .profile: return "person"
         case .stats: return "list.bullet"
-        case .following: return "person"
+        case .friends: return "person"
         case .logout: return "arrow.left.square"
         }
     }
