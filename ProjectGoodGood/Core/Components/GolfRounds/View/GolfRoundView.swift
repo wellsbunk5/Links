@@ -62,26 +62,28 @@ struct GolfRoundView: View {
                 
                 VStack {
                     HStack {
-                        ForEach(viewModel.golfRound.scores.sorted(by: >), id: \.key) { key, value in
-                            Text("\(key)")
-                                .frame(width: 20)
-                                .font(.caption)
-                            
-                            Text("\(value)")
-                                .frame(width: 20, height: 20)
-                                .fontWeight(.bold)
-                                .font(.title3)
+                        ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
+                            VStack {
+                                Text("\(key)")
+                                    .frame(width: 20)
+                                    .font(.caption)
+                                
+                                Text("\(value)")
+                                    .frame(width: 20, height: 20)
+                                    .fontWeight(.bold)
+                                    .font(.title3)
+                            }
                             
                         }
                         
                         Text(String(viewModel.golfRound.totalScore))
                             .font(.title)
-                            .offset(x: 50)
+                            .offset(x: 35)
                             .foregroundColor(Color.birdyColor)
                     }
                 }
                 .offset(y: -40)
-                .offset(x: -30)
+                .offset(x: -20)
             }
             
             Text("\(viewModel.golfRound.totalScore)")
