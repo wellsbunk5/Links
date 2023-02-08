@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		363BBB0B2993222700403EE0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BBB0A2993222700403EE0 /* Colors.swift */; };
 		AE4BFD5A29916B2000E54C66 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5929916B2000E54C66 /* FriendsView.swift */; };
 		AE4BFD5C29916B4200E54C66 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */; };
 		AE4BFD5E29916B8C00E54C66 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5D29916B8C00E54C66 /* StatsView.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		363BBB0A2993222700403EE0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AE4BFD5929916B2000E54C66 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		AE4BFD5D29916B8C00E54C66 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		363BBB092993221900403EE0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				363BBB0A2993222700403EE0 /* Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BF7F9E342979DA730068F38C /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,11 +260,11 @@
 		BFF22196297746E70074E6DE /* ProjectGoodGood */ = {
 			isa = PBXGroup;
 			children = (
+				363BBB092993221900403EE0 /* Extensions */,
 				BF7F9E442979F7D30068F38C /* Utils */,
 				BFF221A8297747480074E6DE /* Core */,
 				BFF221A72977473C0074E6DE /* Service */,
 				BFF221A6297747230074E6DE /* Model */,
-				BFF221A5297747180074E6DE /* Extensions */,
 				BFF22197297746E70074E6DE /* ProjectGoodGoodApp.swift */,
 				BFF22199297746E70074E6DE /* ContentView.swift */,
 				BFF2219B297746EA0074E6DE /* Assets.xcassets */,
@@ -270,13 +280,6 @@
 				BFF2219E297746EA0074E6DE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		BFF221A5297747180074E6DE /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BFF221A6297747230074E6DE /* Model */ = {
@@ -514,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBA5A9B2989BA6100D57D5E /* GolfCourseService.swift in Sources */,
+				363BBB0B2993222700403EE0 /* Colors.swift in Sources */,
 				BFF221CD29775CE90074E6DE /* AuthenticationHeaderView.swift in Sources */,
 				BF7F9E362979DA8A0068F38C /* UserRowView.swift in Sources */,
 				BF7F9E3B2979DF360068F38C /* SideMenuView.swift in Sources */,
