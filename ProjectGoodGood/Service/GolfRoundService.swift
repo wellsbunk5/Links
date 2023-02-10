@@ -10,16 +10,6 @@ import Firebase
 struct GolfRoundService {
     
     func postRound(_ round: GolfRound) {
-//        @DocumentID var id: String?
-//        let userId: String
-//        let courseId: String
-//        var timestamp: Timestamp
-//        var likes: Int
-//        let numHoles: Int
-//        var totalScore: Int
-//        var scores: [String : Int]
-//        var putts: [String: Int]
-//        var roundPictureUrls: [String]
         
         let data = ["userId": round.userId,
                     "courseId": round.courseId,
@@ -76,12 +66,12 @@ struct GolfRoundService {
     
     func fetchRounds(forUid uid: String, completion: @escaping([GolfRound]) -> Void) {
         Firestore.firestore().collection("rounds")
-            .whereField("uid", isEqualTo: uid)
+            .whereField("userId", isEqualTo: uid)
             .getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
             let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
-                completion(rounds.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() }))
+                completion(rounds)
         }
     }
     
