@@ -51,7 +51,13 @@ struct ProfileView: View {
                 } else {
                     if let activeUser = authViewModel.currentUser {
                         Button {
-                            profileViewModel.user.doesFollow ?? false ? profileViewModel.unfollowUser(profileViewModel.user, with: activeUser) : profileViewModel.followUser(profileViewModel.user, with: activeUser)
+                            if profileViewModel.user.doesFollow ?? false {
+                                authViewModel.currentUser?.numFollowing -= 1
+                                profileViewModel.unfollowUser(profileViewModel.user, with: activeUser)
+                            } else {
+                                authViewModel.currentUser?.numFollowing += 1
+                                profileViewModel.followUser(profileViewModel.user, with: activeUser)
+                            }
                             
                         } label: {
                             Text(profileViewModel.user.doesFollow ?? false ? "Following" : "Follow")
@@ -92,8 +98,8 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com", profileImageUrl: "blahblah", numFollowers: 0, numFollowing: 0)).environmentObject(AuthViewModel())
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com", profileImageUrl: "blahblah", numFollowers: 0, numFollowing: 0)).environmentObject(AuthViewModel())
+//    }
+//}

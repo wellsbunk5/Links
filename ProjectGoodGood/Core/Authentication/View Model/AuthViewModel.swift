@@ -43,8 +43,7 @@ class AuthViewModel: ObservableObject {
             }
             
             guard let user = result?.user else { return }
-//            self.userSession = user
-//            self.fetchUser()
+
             self.tempUserSession = user
             
             let data = [
@@ -53,7 +52,18 @@ class AuthViewModel: ObservableObject {
                 "fullname": fullname,
                 "uid": user.uid,
                 "numFollowing": 0,
-                "numFollowers": 0
+                "numFollowers": 0,
+                "greensInRegulation": 0,
+                "totalPutts": 0,
+                "totalHolesPlayed": 0,
+                "roundsPlayed": 0,
+                "handicap": 0,
+                "totalEagle": 0,
+                "totalBirdie": 0,
+                "totalPar": 0,
+                "totalBoggie": 0,
+                "totalDouble": 0,
+                "totalTriple": 0
             ]
             
             Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in

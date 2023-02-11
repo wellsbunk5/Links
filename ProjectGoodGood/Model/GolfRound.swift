@@ -20,6 +20,16 @@ struct GolfRound: Identifiable, Decodable {
     var putts: [String: Int]
     var roundPictureUrls: [String]
     
+    var greensInRegulation: Int
+    var totalPutts: Int
+    var totalEagle: Int
+    var totalBirdie: Int
+    var totalPar: Int
+    var totalBogey: Int
+    var totalDouble: Int
+    var totalTriple: Int
+
+    
     var user: User?
     var didLike: Bool? = false
 }

@@ -11,33 +11,31 @@ struct MainTabView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
-        if let user = authViewModel.currentUser {
-            TabView(selection: $selectedIndex) {
-                FeedView()
-                    .onTapGesture {
-                        self.selectedIndex = 0
-                    }
-                    .tabItem {
-                        Image(systemName: "house")
-                    }.tag(0)
-                
-                PlayRoundView()
-                    .onTapGesture {
-                        self.selectedIndex = 2
-                    }
-                    .tabItem {
-                        Image(systemName: "figure.golf")
-                    }.tag(1) //tag was 2changed position to put Play in the middle
-                
-                ExploreView()
-                    .onTapGesture {
-                        self.selectedIndex = 1
-                    }
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                    }.tag(2) //tag was 1 changed position to put Play in the middle
-                
-            }
+        TabView(selection: $selectedIndex) {
+            FeedView()
+                .onTapGesture {
+                    self.selectedIndex = 0
+                }
+                .tabItem {
+                    Image(systemName: "house")
+                }.tag(0)
+            
+            PlayRoundView()
+                .onTapGesture {
+                    self.selectedIndex = 2
+                }
+                .tabItem {
+                    Image(systemName: "figure.golf")
+                }.tag(1) //tag was 2changed position to put Play in the middle
+            
+            ExploreView()
+                .onTapGesture {
+                    self.selectedIndex = 1
+                }
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                }.tag(2) //tag was 1 changed position to put Play in the middle
+            
         }
     }
 }

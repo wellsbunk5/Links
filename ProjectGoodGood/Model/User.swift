@@ -14,8 +14,21 @@ struct User: Identifiable, Decodable {
     let fullname: String
     let email: String
     let profileImageUrl: String
-    let numFollowers: Int
-    let numFollowing: Int
+    var numFollowers: Int
+    var numFollowing: Int
+    
+    var greensInRegulation: Int
+    var totalPutts: Int
+    var totalHolesPlayed: Int
+    var roundsPlayed: Int
+    var handicap: Int
+    var totalEagle: Int
+    var totalBirdie: Int
+    var totalPar: Int
+    var totalBogey: Int
+    var totalDouble: Int
+    var totalTriple: Int
+
     
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == id}
     var doesFollow: Bool? = false

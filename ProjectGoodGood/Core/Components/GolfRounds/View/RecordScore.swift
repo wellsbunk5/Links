@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecordScore: View {
     @State var score: Int = 1
+    @State var putts: Int = 0
     let holeNum: String
     let course: Course
 
@@ -17,10 +18,10 @@ struct RecordScore: View {
         VStack{
             Text("Hole \(holeNum) : Par \(course.pars[holeNum] ?? 0)")
             Stepper("Score: \(score)", value: $score, in: 1...20)
+            Stepper("Putts: \(putts)", value: $putts, in: 0...10)
             
-            if score > 0 {
-                NavigationLink("Next Hole", value: "Hole \(holeNum) \(score)")
-            }
+            NavigationLink("Next Hole", value: "Hole \(holeNum) \(score) \(putts)")
+
             
         }
     }

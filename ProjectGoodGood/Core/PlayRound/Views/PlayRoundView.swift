@@ -16,9 +16,9 @@ struct PlayRoundView: View {
                 
                 if viewModel.selectedCourse != nil {
                     Text(viewModel.selectedCourse?.nickname ?? "No Course Selected")
-                    NavigationLink("Front 9", value: "Start 1 9")
-                    NavigationLink("Back 9", value: "Start 10 18")
-                    NavigationLink("Full 18", value: "Start 1 18")
+                    NavigationLink("Front 9", value: "Start 1 9 0")
+                    NavigationLink("Back 9", value: "Start 10 18 0")
+                    NavigationLink("Full 18", value: "Start 1 18 0")
                     Button {
                         viewModel.selectedCourse = nil
                     } label: {

@@ -82,4 +82,23 @@ struct UserService {
                 completion(snapshot.exists)
             }
     }
+    
+    func updateUserStats(with round: GolfRound) {
+        if let user = round.user {
+            Firestore.firestore().collection("users").document(round.userId)
+                .updateData(
+                    ["greensInRegulation": user.greensInRegulation + round.greensInRegulation,
+                     "totalPutts": user.totalPutts + round.totalPutts,
+                     "totalHolesPlayed": user.totalHolesPlayed + round.numHoles,
+                     "roundsPlayed": user.roundsPlayed + 1,
+                     "totalEagle": user.totalEagle + round.totalEagle,
+                     "totalBirdie": user.totalBirdie + round.totalBirdie,
+                     "totalPar": user.totalPar + round.totalPar,
+                     "totalBogey": user.totalBogey + round.totalBogey,
+                     "totalDouble": user.totalDouble + round.totalDouble,
+                     "totalTriple": user.totalTriple + round.totalTriple]
+                )
+        }
+
+    }
 }

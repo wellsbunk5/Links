@@ -126,8 +126,8 @@ struct StatsView: View {
     }
 }
 
-struct StatsView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatsView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com",  profileImageUrl: "blahblah", numFollowers: 20, numFollowing: 24))
-    }
-}
+//struct StatsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StatsView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com",  profileImageUrl: "blahblah", numFollowers: 20, numFollowing: 24))
+//    }
+//}

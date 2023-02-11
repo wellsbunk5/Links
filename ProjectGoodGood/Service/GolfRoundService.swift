@@ -10,6 +10,7 @@ import Firebase
 struct GolfRoundService {
     
     func postRound(_ round: GolfRound) {
+
         
         let data = ["userId": round.userId,
                     "courseId": round.courseId,
@@ -19,6 +20,14 @@ struct GolfRoundService {
                     "totalScore": round.totalScore,
                     "scores": round.scores,
                     "putts": round.putts,
+                    "greensInRegulation": round.greensInRegulation,
+                    "totalPutts": round.totalPutts,
+                    "totalEagle": round.totalEagle,
+                    "totalBirdie": round.totalBirdie,
+                    "totalPar": round.totalPar,
+                    "totalBogey": round.totalBogey,
+                    "totalDouble": round.totalDouble,
+                    "totalTriple": round.totalTriple,
                     "roundPictureUrls": round.roundPictureUrls] as [String : Any]
         
         let newDocRef = Firestore.firestore().collection("rounds").document()
