@@ -21,7 +21,7 @@ struct StatsView: View {
             Spacer().frame(height:100)
             //Profile Header
             ZStack(){
-                Color(.systemGreen)
+                Color.birdyColor
                     .ignoresSafeArea()
                 Text("Profile Stats")
                     .colorInvert()

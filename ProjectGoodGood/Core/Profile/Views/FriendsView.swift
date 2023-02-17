@@ -17,7 +17,7 @@ struct FriendsView: View {
                 Spacer().frame(height:10)
                     //* add friends icon to the top once we get the ability to add friends to collection setup in the db
                 ZStack{
-                    Color(.systemGreen)
+                    Color.birdyColor
                         .ignoresSafeArea()
                     Text("My Friends")
                         .colorInvert()
