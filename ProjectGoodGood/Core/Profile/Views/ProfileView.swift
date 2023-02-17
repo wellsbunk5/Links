@@ -22,7 +22,7 @@ struct ProfileView: View {
             //Header
             //* Add the user Image - mess around with no 'Profile' title
             ZStack(){
-                Color(.systemGreen)
+                Color.birdyColor
                     .ignoresSafeArea()
                 Text(profileViewModel.user.fullname)
                     .colorInvert()
@@ -100,6 +100,6 @@ struct ProfileView: View {
 
 //struct ProfileView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ProfileView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com", profileImageUrl: "blahblah", numFollowers: 0, numFollowing: 0)).environmentObject(AuthViewModel())
+//        ProfileView(user: User(id:NSUUID().uuidString, username: "jdoe", fullname: "John Doe", email: "jdoe@email.com", profileImageUrl: "blahblah", numFollowers: 0, numFollowing: 0, greensInRegulation: 2, totalPutts:3, totalHolesPlayed: 7, roundsPlayed: 1 , handicap: 5, totalEagle: 3, totalBirdie: 4 , totalPar: 4, totalBogey: 2, totalDouble: 3, totalTriple: 2)).environmentObject(AuthViewModel())
 //    }
 //}
