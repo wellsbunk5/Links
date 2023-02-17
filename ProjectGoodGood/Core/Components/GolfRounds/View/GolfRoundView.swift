@@ -8,19 +8,21 @@
 import SwiftUI
 import Kingfisher
 
-//extension Color {
-//    static let birdyColor = Color(red: 0.286, green: 0.592, blue: 0.345)
-//    static let parColor = Color(red: 0.863, green: 0.643, blue: 0.278)
-//    static let bogeyColor = Color(red: 0.576, green: 0.439, blue: 0.2)
-//    
-//    static let roundColor = Color(red: 0.898, green: 0.898, blue: 0.898)
-//}
-
 struct GolfRoundView: View {
     @ObservedObject var viewModel: GolfRoundViewModel
+    @State var parsLabel = 0
     
     init(golfRound: GolfRound) {
         self.viewModel = GolfRoundViewModel(golfRound: golfRound)
+    }
+    
+    func displayPars(for courseId: String) {
+        viewModel.getPars(courseId: courseId) { pars in
+            DispatchQueue.main.async {
+                let numberOfPars = pars?["1"] ?? 0
+                parsLabel = numberOfPars
+            }
+        }
     }
     
     var body: some View {
@@ -53,6 +55,7 @@ struct GolfRoundView: View {
                 Text("18 Holes")
                     .font(.title2)
                     .frame(width: 150, height: 25, alignment: .leading)
+                Text("Number of pars is \(parsLabel)")
             }
             
             ZStack {
