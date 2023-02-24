@@ -37,27 +37,48 @@ class GolfRoundViewModel: ObservableObject {
         }
     }
     
-    func getPars(courseId: String, completion: @escaping (Dictionary<String, Int>?) -> Void) {
+    func setCourse(courseId: String) {
+        courseService.fetchCourse(withUid: courseId) {
+            course in
+            self.golfRound.course = course
+        }
+    }
+    
+//    func getPars(courseId: String, completion: @escaping (Dictionary<String, Int>?) -> Void) {
+//        courseService.fetchCourses { courses in
+//            for i in 0..<courses.count {
+//                if (courses[i].id == courseId) {
+//                    let pars = courses[i].pars
+//                    completion(pars)
+//                    return
+//                }
+//            }
+//            completion(nil)
+//        }
+//    }
+  
+    func getPars(courseId: String) -> Dictionary<String, Int>? {
         courseService.fetchCourses { courses in
             for i in 0..<courses.count {
                 if (courses[i].id == courseId) {
                     let pars = courses[i].pars
-                    completion(pars)
+                    return pars ?? ""
+                }
+            }
+        }
+    }
+    
+    
+    func getCourseName(courseId: String, completion: @escaping (String?) -> Void) {
+        courseService.fetchCourses { courses in
+            for i in 0..<courses.count {
+                if (courses[i].id == courseId) {
+                    let nickname = courses[i].nickname
+                    completion(nickname)
                     return
                 }
             }
             completion(nil)
         }
     }
-    
-//    func getCourseName(courseId: (String) -> String) {
-//        courseService.fetchCourses { courses in
-//            for i in 0..<courses.count {
-//                if (courses[i].id == courseId) {
-//                    return courses[i].nickname
-//                }
-//            }
-//
-//        }
-//    }
 }

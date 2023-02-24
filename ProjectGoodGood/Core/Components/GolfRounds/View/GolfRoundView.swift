@@ -10,19 +10,11 @@ import Kingfisher
 
 struct GolfRoundView: View {
     @ObservedObject var viewModel: GolfRoundViewModel
-    @State var parsLabel = 0
     
     init(golfRound: GolfRound) {
         self.viewModel = GolfRoundViewModel(golfRound: golfRound)
-    }
-    
-    func displayPars(for courseId: String) {
-        viewModel.getPars(courseId: courseId) { pars in
-            DispatchQueue.main.async {
-                let numberOfPars = pars?["1"] ?? 0
-                parsLabel = numberOfPars
-            }
-        }
+        
+        self.viewModel.setCourse(courseId: self.viewModel.golfRound.courseId)
     }
     
     var body: some View {
@@ -47,15 +39,16 @@ struct GolfRoundView: View {
                 .font(.headline)
                 .frame(width: 325, height: 25, alignment: .leading)
             
-            HStack {
-                Text(viewModel.golfRound.courseId)
-                    .font(.title2)
-                    .frame(width: 170, height: 25, alignment: .leading)
-                
-                Text("18 Holes")
-                    .font(.title2)
-                    .frame(width: 150, height: 25, alignment: .leading)
-                Text("Number of pars is \(parsLabel)")
+            if let course = viewModel.golfRound.course {
+                HStack {
+                    Text(course.nickname)
+                        .font(.title2)
+                        .frame(width: 170, height: 25, alignment: .leading)
+                    
+                    Text("\(viewModel.golfRound.numHoles) Holes")
+                        .font(.title2)
+                        .frame(width: 150, height: 25, alignment: .leading)
+                }
             }
             
             ZStack {

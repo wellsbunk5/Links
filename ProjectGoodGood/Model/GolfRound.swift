@@ -31,5 +31,6 @@ struct GolfRound: Identifiable, Decodable {
 
     
     var user: User?
+    var course: Course?
     var didLike: Bool? = false
 }
