@@ -11,6 +11,7 @@ import Kingfisher
 struct ContentView: View {
     @State private var showMenu = false
     @EnvironmentObject var viewModel: AuthViewModel
+    @ObservedObject var playRoundViewModel = PlayRoundViewModel()
     
     var body: some View {
         if viewModel.userSession == nil {
@@ -19,9 +20,9 @@ struct ContentView: View {
             }
             
         } else {
-            NavigationStack {
+            NavigationStack(path: $playRoundViewModel.playRoundPresentedViews) {
                 ZStack(alignment: .topLeading) {
-                    MainTabView()
+                    MainTabView(playRoundViewModel: playRoundViewModel)
                         .navigationBarHidden(showMenu)
                     
                     if showMenu {

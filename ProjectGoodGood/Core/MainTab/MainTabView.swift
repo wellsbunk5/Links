@@ -9,6 +9,7 @@ import SwiftUI
 struct MainTabView: View {
     @State private var selectedIndex = 0
     @EnvironmentObject var authViewModel: AuthViewModel
+    var playRoundViewModel: PlayRoundViewModel
         var body: some View {
            //if let user = authViewModel.currentUser {
 
@@ -21,7 +22,7 @@ struct MainTabView: View {
                         Image(systemName: "house")
                     }.tag(0)
                 
-                PlayRoundView()
+                PlayRoundView(viewModel: playRoundViewModel)
                     .onTapGesture {
                         self.selectedIndex = 2
                     }
@@ -52,6 +53,6 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        MainTabView(playRoundViewModel: PlayRoundViewModel())
     }
 }
