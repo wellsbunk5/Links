@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PlayRoundView: View {
-    @ObservedObject var viewModel = PlayRoundViewModel()
+    @ObservedObject var viewModel: PlayRoundViewModel
     
     var body: some View {
-        NavigationStack(path: $viewModel.playRoundPresentedViews) {
+//        NavigationStack(path: $viewModel.playRoundPresentedViews) {
             VStack {
                 //Course Already Selected
                 if viewModel.selectedCourse != nil {
@@ -118,12 +118,12 @@ struct PlayRoundView: View {
                 
             }
             .navigationDestination(for: String.self, destination: viewModel.navigationDestination(for:))
-        }
+//        }
     }
 }
 
 struct PlayRoundView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayRoundView()
+        PlayRoundView(viewModel: PlayRoundViewModel())
     }
 }

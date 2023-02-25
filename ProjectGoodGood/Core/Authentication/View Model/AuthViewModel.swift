@@ -61,7 +61,7 @@ class AuthViewModel: ObservableObject {
                 "totalEagle": 0,
                 "totalBirdie": 0,
                 "totalPar": 0,
-                "totalBoggie": 0,
+                "totalBogey": 0,
                 "totalDouble": 0,
                 "totalTriple": 0
             ]
