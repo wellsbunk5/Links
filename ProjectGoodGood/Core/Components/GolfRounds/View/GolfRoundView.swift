@@ -49,37 +49,94 @@ struct GolfRoundView: View {
                         .font(.title2)
                         .frame(width: 150, height: 25, alignment: .leading)
                 }
-            }
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.roundColor)
-                    .frame(width: 350, height: 200)
                 
-                VStack {
-                    HStack {
-                        ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
-                            VStack {
-                                Text("\(key)")
-                                    .frame(width: 20)
-                                    .font(.caption)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.roundColor)
+                        .frame(width: 350, height: 200)
+                    
+                    VStack {
+                        HStack {
+                            ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
+                                VStack {
+                                    Text("\(key)")
+                                        .frame(width: 20)
+                                        .font(.caption)
+                                    
+                                    if course.pars[key] == value {
+                                        Text("\(value)")
+                                            .frame(width: 20, height: 20)
+                                            .fontWeight(.bold)
+                                            .font(.title3)
+                                            .foregroundColor(Color.parColor)
+                                    }
+                                    else if course.pars[key] == value - 1 {
+                                        ZStack {
+                                            Rectangle()
+                                                .stroke(Color.bogeyColor, lineWidth: 2)
+                                                .frame(width: 22, height: 22)
+                                            
+                                            Text("\(value)")
+                                                .frame(width: 20, height: 20)
+                                                .fontWeight(.bold)
+                                                .font(.title3)
+                                                .foregroundColor(Color.bogeyColor)
+                                        }
+
+                                    }
+                                    else if course.pars[key] == value + 1 {
+                                        ZStack {
+                                            Circle()
+                                                .stroke(Color.birdyColor, lineWidth: 2)
+                                                .frame(width: 22, height: 22)
+                                            
+                                            Text("\(value)")
+                                                .frame(width: 20, height: 20)
+                                                .fontWeight(.bold)
+                                                .font(.title3)
+                                                .foregroundColor(Color.birdyColor)
+                                        }
+                                                                            }
+                                    else if course.pars[key] == value + 2 {
+                                        Text("\(value)")
+                                            .frame(width: 20, height: 20)
+                                            .fontWeight(.bold)
+                                            .font(.title3)
+                                            .foregroundColor(Color.eagleColor)
+                                    }
+                                    else if value == 1 {
+                                        Text("\(value)")
+                                            .frame(width: 20, height: 20)
+                                            .fontWeight(.bold)
+                                            .font(.title3)
+                                            .foregroundColor(Color.holeInOneColor)
+                                    }
+                                    else {
+                                        ZStack {
+                                            Rectangle()
+                                                .stroke(Color.doubleBogeyColor, lineWidth: 2)
+                                                .frame(width: 22, height: 22)
+                                            
+                                            Text("\(value)")
+                                                .frame(width: 20, height: 20)
+                                                .fontWeight(.bold)
+                                                .font(.title3)
+                                                .foregroundColor(Color.doubleBogeyColor)
+                                        }
+                                    }
+                                }
                                 
-                                Text("\(value)")
-                                    .frame(width: 20, height: 20)
-                                    .fontWeight(.bold)
-                                    .font(.title3)
                             }
                             
+                            Text(String(viewModel.golfRound.totalScore))
+                                .font(.title)
+                                .offset(x: 35)
+                                .foregroundColor(Color.birdyColor)
                         }
-                        
-                        Text(String(viewModel.golfRound.totalScore))
-                            .font(.title)
-                            .offset(x: 35)
-                            .foregroundColor(Color.birdyColor)
                     }
+                    .offset(y: -40)
+                    .offset(x: -20)
                 }
-                .offset(y: -40)
-                .offset(x: -20)
             }
             
             Text("\(viewModel.golfRound.totalScore)")

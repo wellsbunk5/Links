@@ -15,4 +15,7 @@ extension Color {
     static let lightGreyColor = Color(red: 0.9, green: 0.9, blue: 0.9)
     static let darkGreyColor = Color(red: 0.65, green: 0.65, blue: 0.65)
     static let roundColor = Color(red: 0.898, green: 0.898, blue: 0.898)
+    static let eagleColor = Color(red: 0.346, green: 0.592, blue: 0.687)
+    static let doubleBogeyColor = Color(red: 0.796, green: 0.399, blue: 0.2)
+    static let holeInOneColor = Color(red: 0.363, green: 0.866, blue: 0.866)
 }
