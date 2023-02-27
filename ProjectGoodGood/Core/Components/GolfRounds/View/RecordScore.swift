@@ -17,20 +17,6 @@ struct RecordScore: View {
     var body: some View {
         VStack(alignment: .leading){
             Spacer().frame(height:100)
-            //Back Button to no course  selected
-            VStack(alignment: .leading){
-                Button {
-                  // *make this dynamic
-                    //  viewModel.selectedCourse = nil
-                } label: {
-                    Image(systemName: "arrow.backward.circle")
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width:35, height: 35)
-                        .foregroundColor(Color.darkGreyColor)
-                }
-            }
             
             //Header with Hole number and Par stat
             ZStack{

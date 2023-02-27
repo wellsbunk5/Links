@@ -36,17 +36,7 @@ struct MainTabView: View {
                     }
                     .tabItem {
                         Image(systemName: "magnifyingglass")
-                    }.tag(2) //tag was 1 changed position to put Play in the middle
-                
-               //   Don't need in the navigation if it is present in the top
-//                ProfileView(user: user)
-//                    .onTapGesture {
-//                        self.selectedIndex = 3
-//                    }
-//                    .tabItem {
-//                        Image(systemName: "person")
-//                    }.tag(3)
-//            }
+                    }.tag(2) //tag was 1 changed position to put Play in the middle        
         }
     }
 }

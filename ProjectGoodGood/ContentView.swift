@@ -14,7 +14,7 @@ struct ContentView: View {
     @ObservedObject var playRoundViewModel = PlayRoundViewModel()
     
     var body: some View {
-        if viewModel.userSession == nil {
+        if $viewModel.userSession == nil {
             NavigationStack(path: $viewModel.loginPresentedViews) {
                 LoginView()
             }
@@ -39,8 +39,9 @@ struct ContentView: View {
                     
                     SideMenuView()
                         .frame(width: 300)
-                        .offset(x: showMenu ?  190 : 500, y: 0) // was 0 : -300, y: 0: changing it made it right aligned
                         .background(showMenu ? Color.white : Color.clear)
+                        .offset(x: showMenu ?  150 : 500, y: 0) // was 0 : -300, y: 0: changing it made it right aligned
+
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.inline)
