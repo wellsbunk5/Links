@@ -24,14 +24,16 @@ struct CustomInputField: View {
                 
                 if isSecureField {
                     SecureField(placeholderText, text: $text)
+                        .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 0.4))
                 } else {
                     TextField(placeholderText, text: $text)
+                        .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 0.4))
                 }
                 
             }
             
-            Divider()
-                .background(Color(.darkGray))
+            //Divider()
+                //.background(Color(.darkGray))
         }
     }
 }

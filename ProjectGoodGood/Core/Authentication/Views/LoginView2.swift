@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct LoginView2: View {
+    @State private var email = ""
+    @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
+    
+    
     var body: some View {
         ZStack{
             Color(hue: 0.3653846153846154, saturation: 0.5165562913907286, brightness: 0.592156862745098, opacity: 1.0)
@@ -15,7 +20,7 @@ struct LoginView2: View {
             VStack(alignment: .center, spacing: 16.0) {
                 Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
 
-                Image("LinksLogo")
+                Image("Links")
                     .resizable()
                     .frame(
                         width: 250.0,
@@ -31,7 +36,8 @@ struct LoginView2: View {
                     )
 
                 HStack(alignment: .center, spacing: 8.0) {
-                    Text("Email")
+                    CustomInputField(imageName: "envelope", placeholderText: "Email", isSecureField: false, text: $email)
+                    //Text("Email")
                         .font(.body)
                         .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 0.4))
                         .multilineTextAlignment(.leading)
@@ -69,8 +75,9 @@ struct LoginView2: View {
                             alignment: .center
                         )
                 }
-
-                Text("Password")
+                
+                CustomInputField(imageName: "lock", placeholderText: "Password", isSecureField: true, text: $password)
+                //Text("Password")
                     .font(.body)
                     .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 0.4))
                     .multilineTextAlignment(.leading)
@@ -109,43 +116,51 @@ struct LoginView2: View {
                     )
 
                 HStack(alignment: .center, spacing: 8.0) {
-                    Text("Forgot Password?")
-                        .font(.caption)
-                        .foregroundColor(Color(uiColor: .white))
-                        .multilineTextAlignment(.trailing)
-
-                        .offset(x: 75.0, y: 0.0)
+                    NavigationLink {
+                        Text("Reset password View...")
+                    } label: {
+                        Text("Forgot Password?")
+                            .font(.caption)
+                            .foregroundColor(Color(uiColor: .white))
+                            .multilineTextAlignment(.trailing)
+                        
+                            .offset(x: 75.0, y: 0.0)
+                    }
                 }
 
-                Text("Sign In")
-                    .font(.body)
-                    .foregroundColor(Color(hue: 0.3653846153846154, saturation: 0.5165562913907286, brightness: 0.592156862745098, opacity: 1.0))
-                    .multilineTextAlignment(.leading)
+                Button {
+                    viewModel.login(withEmail: email, password: password)
+                } label: {
+                    Text("Sign In")
+                        .font(.body)
+                        .foregroundColor(Color(hue: 0.3653846153846154, saturation: 0.5165562913907286, brightness: 0.592156862745098, opacity: 1.0))
+                        .multilineTextAlignment(.leading)
 
-                    .frame(width: 250.0, height: 40.0, alignment: .center)
-                    .background(
-                        ZStack {
-                            RoundedRectangle(
-                                cornerRadius: 100,
-                                style: .circular
-                            )
-                            .fill(
-                                Color(uiColor: .white)
-                            )
-                            .opacity(1.0)
+                        .frame(width: 250.0, height: 40.0, alignment: .center)
+                        .background(
+                            ZStack {
+                                RoundedRectangle(
+                                    cornerRadius: 100,
+                                    style: .circular
+                                )
+                                .fill(
+                                    Color(uiColor: .white)
+                                )
+                                .opacity(1.0)
 
-                            RoundedRectangle(
-                                cornerRadius: CGFloat(100),
-                                style: .circular
-                            )
-                            .strokeBorder(lineWidth: CGFloat(2), antialiased: true)
-                            .foregroundColor(
-                                Color(uiColor: .white)
-                            )
-                        }
-                        .compositingGroup(),
-                        alignment: .center
-                    )
+                                RoundedRectangle(
+                                    cornerRadius: CGFloat(100),
+                                    style: .circular
+                                )
+                                .strokeBorder(lineWidth: CGFloat(2), antialiased: true)
+                                .foregroundColor(
+                                    Color(uiColor: .white)
+                                )
+                            }
+                            .compositingGroup(),
+                            alignment: .center
+                        )
+                }
 
                 Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
 
@@ -157,12 +172,16 @@ struct LoginView2: View {
 
                         .offset(x: 0.0, y: 0.0)
 
-                    Text("Sign Up")
-                        .font(.subheadline)
-                        .foregroundColor(Color(uiColor: .white))
-                        .multilineTextAlignment(.leading)
+                    Button {
+                        viewModel.loginPresentedViews.append("register")
+                    } label: {
+                        Text("Sign Up")
+                            .font(.subheadline)
+                            .foregroundColor(Color(uiColor: .white))
+                            .multilineTextAlignment(.leading)
 
-                        .frame(alignment: .bottom)
+                            .frame(alignment: .bottom)
+                    }
                 }
                 .padding(
                     EdgeInsets(
@@ -174,7 +193,8 @@ struct LoginView2: View {
                 )
                 .frame(alignment: .bottom)
             }
-
+            .navigationDestination(for: String.self, destination:
+                                    viewModel.navigationDestination(for:))
         }
     }
 }

@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         if $viewModel.userSession == nil {
             NavigationStack(path: $viewModel.loginPresentedViews) {
-                LoginView()
+                LoginView2()
             }
             
         } else {
