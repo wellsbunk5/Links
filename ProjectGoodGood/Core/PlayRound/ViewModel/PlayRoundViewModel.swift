@@ -68,6 +68,8 @@ class PlayRoundViewModel: ObservableObject {
         }
         
     }
+    
+//    func uploadImages(
 
     
     func navigationDestination(for path: String) -> AnyView {
@@ -81,7 +83,7 @@ class PlayRoundViewModel: ObservableObject {
                 case "Start":
                     guard let uid = Auth.auth().currentUser?.uid else { return AnyView(Text("Not Valid User") )}
                 
-                self.currentRound = GolfRound(userId: uid, courseId: selectedCourse.id ?? "no Id", timestamp: Timestamp(date: Date()), likes: 0, numHoles: holeNum == 1 ? score : 9, totalScore: 0, scores: ["\(holeNum)": 0], putts: ["\(holeNum)": 0], roundPictureUrls: [String](), greensInRegulation: 0, totalPutts: 0, totalEagle: 0, totalBirdie: 0, totalPar: 0, totalBogey: 0, totalDouble: 0, totalTriple: 0)
+                self.currentRound = GolfRound(userId: uid, courseId: selectedCourse.id ?? "no Id", timestamp: Timestamp(date: Date()), likes: 0, numHoles: holeNum == 1 ? score : 9, totalScore: 0, scores: ["\(holeNum)": 0], putts: ["\(holeNum)": 0], roundPictureUrls: [String](), greensInRegulation: 0, totalPutts: 0, totalEagle: 0, totalBirdie: 0, totalPar: 0, totalBogey: 0, totalDouble: 0, totalTriple: 0, course: selectedCourse)
                 
                 userService.fetchUser(withUid: uid, completion: { user in
                     self.currentRound?.user = user

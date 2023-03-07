@@ -14,7 +14,7 @@ struct ContentView: View {
     @ObservedObject var playRoundViewModel = PlayRoundViewModel()
     
     var body: some View {
-        if $viewModel.userSession == nil {
+        if viewModel.userSession == nil {
             NavigationStack(path: $viewModel.loginPresentedViews) {
                 LoginView2()
             }
