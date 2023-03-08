@@ -14,7 +14,7 @@ struct ContentView: View {
     @ObservedObject var playRoundViewModel = PlayRoundViewModel()
     
     var body: some View {
-        if viewModel.userSession == nil {
+        if $viewModel.userSession == nil {
             NavigationStack(path: $viewModel.loginPresentedViews) {
                 LoginView2()
             }
@@ -43,8 +43,7 @@ struct ContentView: View {
                         .offset(x: showMenu ?  150 : 500, y: 0) // was 0 : -300, y: 0: changing it made it right aligned
 
                 }
-                .navigationTitle("Home")
-                .navigationBarTitleDisplayMode(.inline)
+
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if let user = viewModel.currentUser {

@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct GolfRoundView: View {
+    @State private var showLike = true
     @ObservedObject var viewModel: GolfRoundViewModel
     
     init(golfRound: GolfRound) {
@@ -34,11 +35,15 @@ struct GolfRoundView: View {
                         .frame(width: 250, height: 75, alignment: .leading)
                 }
             }
-            
+
+            //Text for date not appearing
             Text(DateFormatter().string(from: viewModel.golfRound.timestamp.dateValue()))
                 .font(.headline)
                 .frame(width: 325, height: 25, alignment: .leading)
-            
+             //* Caption for Post, need to make this dynamic
+             Text("Placeholder for caption. Realistically this will be a couple lines pulling from the database that someone will add when the are on the 'Post Round' view. Now I am just rambling to have text appear.")
+               .font(.system(size:12))
+
             if let course = viewModel.golfRound.course {
                 HStack {
                     Text(course.nickname)
@@ -139,44 +144,34 @@ struct GolfRoundView: View {
                 }
             }
             
-            Text("\(viewModel.golfRound.totalScore)")
-            
-            HStack {
-                Button {
-                    viewModel.golfRound.didLike ?? false ?
-                    viewModel.unlikeRound() :
-                    viewModel.likeRound()
-                } label: {
-                    Image(systemName: viewModel.golfRound.didLike ?? false ? "heart.fill" : "heart")
-                        .font(.subheadline)
-                        .foregroundColor(viewModel.golfRound.didLike ?? false ? .red : .gray)
+            if showLike == true{
+                HStack {
+                    //Like Button
+                    Button {
+                        viewModel.golfRound.didLike ?? false ?
+                        viewModel.unlikeRound() :
+                        viewModel.likeRound()
+                    } label: {
+                        Image(systemName: viewModel.golfRound.didLike ?? false ? "heart.fill" : "heart")
+                            .font(.subheadline)
+                            .foregroundColor(viewModel.golfRound.didLike ?? false ? .red : .gray)
+                    }
+                    //Comment Button
+                    Button {
+                        // action
+                    } label: {
+                        Image(systemName: "bubble.left")
+                            .font(.subheadline)
+                    }
+                    
                 }
-                
-                Spacer ()
-                
-                Button {
-                    // action
-                } label: {
-                    Image(systemName: "bubble.left")
-                        .font(.subheadline)
-                }
-                
-                Spacer()
-                
-                Button {
-                    // action
-                } label: {
-                    Image(systemName: "bookmark")
-                        .font(.subheadline)
-                }
+                .padding(1)
+                .foregroundColor(.gray)
             }
-            .padding()
-            .foregroundColor(.gray)
-            
             Divider()
         }
-        .padding()
-        
+        //.padding() //remove spacing between Posts
+
         
     }
     

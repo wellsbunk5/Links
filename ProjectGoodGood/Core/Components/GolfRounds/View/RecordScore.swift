@@ -15,8 +15,22 @@ struct RecordScore: View {
     
     
     var body: some View {
-        VStack(alignment: .leading){
-            Spacer().frame(height:100)
+        
+        VStack{
+            //Cancel button back to FeedView() still has 'Back' button and doesn't show navigation
+            ZStack{
+                VStack{
+                    NavigationLink("Cancel", destination: FeedView())
+                        .font(.title2)
+                        .padding(10)
+                        .foregroundColor(Color.black)
+                }
+            }
+            .frame(width: 320, height:60)
+            .cornerRadius(10)
+            .offset(x: 85)
+            
+            Spacer().frame(height:40)
             
             //Header with Hole number and Par stat
             ZStack{

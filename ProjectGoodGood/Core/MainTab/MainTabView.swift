@@ -19,15 +19,15 @@ struct MainTabView: View {
                         self.selectedIndex = 0
                     }
                     .tabItem {
-                        Image(systemName: "house")
+                        Label("Home",systemImage: "house")
                     }.tag(0)
-                
+
                 PlayRoundView(viewModel: playRoundViewModel)
                     .onTapGesture {
                         self.selectedIndex = 2
                     }
                     .tabItem {
-                        Image(systemName: "figure.golf")
+                        Label("Play",systemImage: "figure.golf")
                     }.tag(1) //tag was 2changed position to put Play in the middle
                 
                 ExploreView()
@@ -35,9 +35,9 @@ struct MainTabView: View {
                         self.selectedIndex = 1
                     }
                     .tabItem {
-                        Image(systemName: "magnifyingglass")
-                    }.tag(2) //tag was 1 changed position to put Play in the middle        
-        }
+                        Label("Search",systemImage: "magnifyingglass")
+                    }.tag(2) //tag was 1 changed position to put Play in the middle
+        }.accentColor(Color.parColor)
     }
 }
 

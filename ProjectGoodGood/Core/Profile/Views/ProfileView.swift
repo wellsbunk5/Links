@@ -28,14 +28,12 @@ struct ProfileView: View {
                     .colorInvert()
                     .bold()
                     .font(.title)
-                
-                
             }
             .frame(width: 320, height: 60)
             //for rounded corners
             .cornerRadius(10)
             
-            HStack {
+            VStack {
                 Spacer().frame(height: 10)
                 
                 if profileViewModel.user.isCurrentUser {
@@ -75,16 +73,15 @@ struct ProfileView: View {
             Text(profileViewModel.user.username).frame(height: 20)
                 .font(.caption)
                 .foregroundColor(.gray)
-            Text(profileViewModel.user.email).frame(height: 20)
+            //Text(profileViewModel.user.email).frame(height: 20)
             //Text(profileViewModel.user.id ?? "No Id")
             
             Spacer().frame(height: 20)
             Divider()
-            Spacer().frame(height: 20)
-                //Section Header for Rounds played
-            Text("Rounds Played")
-                .bold()
-                .font(.title2)
+                //Section Header for Rounds played (not even needed...)
+//            Text("Rounds Played")
+//                .bold()
+//                .font(.headline)
             
                 //User rounds: *need to add Nate's scorecard component
             ScrollView {

@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct PostRoundView: View {
+    @State private var showLike = false
     @ObservedObject var viewModel: PlayRoundViewModel
     @State private var selectedItems = [PhotosPickerItem]()
     @State private var selectedImages = [Image]()
@@ -98,6 +99,7 @@ struct PostRoundView: View {
                     .frame(width: 320, height: 60)
                     .cornerRadius(10)
                     
+                        
                     GolfRoundView(golfRound: round)
 //                    HStack {
 //
@@ -151,7 +153,7 @@ struct PostRoundView: View {
             }
         }
     }
-    
+
 //    func loadImage() async {
 //        guard let selectedImage = selectedImage else { return }
 //        if let data = try? await selectedImage.loadTransferable(type: Data.self) {
