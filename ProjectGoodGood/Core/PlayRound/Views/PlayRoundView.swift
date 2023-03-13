@@ -15,7 +15,7 @@ struct PlayRoundView: View {
             VStack {
                 //Course Already Selected
                 if viewModel.selectedCourse != nil {
-                    Spacer().frame(height:100)
+                    Spacer().frame(height:10)
                     VStack(alignment: .leading){
                         //Back Button to no course  selected
                         VStack(alignment: .leading){
@@ -32,10 +32,8 @@ struct PlayRoundView: View {
                         }
                         //Header with selected course as title
                         ZStack{
-                            Color.birdyColor
-                                .ignoresSafeArea()
                             Text(viewModel.selectedCourse?.nickname ?? "No Course Selected")
-                                .colorInvert()
+                                .foregroundColor(Color.birdyColor)
                                 .bold()
                                 .font(.title)
                         }
@@ -68,21 +66,19 @@ struct PlayRoundView: View {
                     }
                     .frame(width: 320, height: 180)
                     .cornerRadius(10)
+                    
                 //No Course Selected: List of all the courses to select
                 } else {
-                    Spacer().frame(height:143)
+                    Spacer().frame(height:65)
                     //Header
                         ZStack{
-                            Color.birdyColor
-                                .ignoresSafeArea()
                             Text("Courses")
-                                .colorInvert()
+                                .foregroundColor(Color.birdyColor)
                                 .bold()
                                 .font(.title)
+                                .padding([.bottom],35)
                         }
-                        .frame(width: 320, height: 60)
-                        .cornerRadius(10)
-                        .padding([.bottom],20)
+
                     // listing out each course location
                                         
                     ZStack{
@@ -96,7 +92,7 @@ struct PlayRoundView: View {
                                         Text(course.nickname)
                                             .font(.title2)
                                             .foregroundColor(Color.parColor)
-                                            .frame(width: 320, height: 40)
+                                            .frame(width: 320, height: 60)
                                         //    .background(Color.parColor)
                                         // .clipShape(Capsule())
                                         //   .cornerRadius(10)

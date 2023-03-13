@@ -18,20 +18,14 @@ struct StatsView: View {
     var body: some View {
         VStack(){
             //shift the title down
-            Spacer().frame(height:100)
+            Spacer().frame(height:10)
             //Profile Header
             ZStack(){
-                Color.birdyColor
-                    .ignoresSafeArea()
                 Text("Profile Stats")
-                    .colorInvert()
+                    .foregroundColor(Color.birdyColor)
                     .bold()
                     .font(.title)
-                
             }
-            .frame(width: 320, height: 60)
-            //for rounded corners
-            .cornerRadius(10)
                 
             //Greens in Regulation
             ZStack(){

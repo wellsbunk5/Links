@@ -16,17 +16,13 @@ struct FriendsView: View {
             LazyVStack {
                 Spacer().frame(height:10)
                     //* add friends icon to the top once we get the ability to add friends to collection setup in the db
+                    //header
                 ZStack{
-                    Color.birdyColor
-                        .ignoresSafeArea()
                     Text("My Friends")
-                        .colorInvert()
+                        .foregroundColor(Color.birdyColor)
                         .bold()
                         .font(.title)
                 }
-                .frame(width: 320, height: 60)
-                .cornerRadius(10)
-                .padding([.bottom],20)
 
                 ForEach(viewModel.searchableUsers) { user in
                     NavigationLink {

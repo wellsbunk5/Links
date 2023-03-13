@@ -19,17 +19,13 @@ struct PostRoundView: View {
             ScrollView {
                 VStack {
                     ZStack {
-                        Color.birdyColor
-                            .ignoresSafeArea()
                         Text("Round Stats")
-                            .colorInvert()
+                            .foregroundColor(Color.birdyColor)
                             .bold()
                             .font(.title)
                         
                     }
-                    .frame(width: 320, height: 60)
-                    .cornerRadius(10)
-                    
+
                     ZStack {
                         Color(.systemGray)
                             .ignoresSafeArea()

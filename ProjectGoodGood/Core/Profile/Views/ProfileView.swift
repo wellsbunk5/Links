@@ -22,17 +22,13 @@ struct ProfileView: View {
             //Header
             //* Add the user Image - mess around with no 'Profile' title
             ZStack(){
-                Color.birdyColor
-                    .ignoresSafeArea()
                 Text(profileViewModel.user.fullname)
-                    .colorInvert()
+                    .foregroundColor(Color.birdyColor)
                     .bold()
                     .font(.title)
             }
-            .frame(width: 320, height: 60)
-            //for rounded corners
-            .cornerRadius(10)
-            
+
+                //User information and either button to edit own profile or follow/unfollow button
             VStack {
                 Spacer().frame(height: 10)
                 
@@ -73,16 +69,10 @@ struct ProfileView: View {
             Text(profileViewModel.user.username).frame(height: 20)
                 .font(.caption)
                 .foregroundColor(.gray)
-            //Text(profileViewModel.user.email).frame(height: 20)
-            //Text(profileViewModel.user.id ?? "No Id")
             
             Spacer().frame(height: 20)
             Divider()
-                //Section Header for Rounds played (not even needed...)
-//            Text("Rounds Played")
-//                .bold()
-//                .font(.headline)
-            
+
                 //User rounds: *need to add Nate's scorecard component
             ScrollView {
                 ForEach (profileViewModel.roundsPlayed) { golfRound in

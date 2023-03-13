@@ -21,7 +21,7 @@ struct RecordScore: View {
             ZStack{
                 VStack{
                     NavigationLink("Cancel", destination: FeedView())
-                        .font(.title2)
+                        .font(.system(size: CGFloat(15)))
                         .padding(10)
                         .foregroundColor(Color.black)
                 }
@@ -34,16 +34,11 @@ struct RecordScore: View {
             
             //Header with Hole number and Par stat
             ZStack{
-                Color.birdyColor
-                    .ignoresSafeArea()
                 Text("Hole \(holeNum) : Par \(course.pars[holeNum] ?? 0)")
-                    .colorInvert()
+                    .foregroundColor(Color.birdyColor)
                     .bold()
                     .font(.title)
             }
-            .frame(width: 320, height: 60)
-            .cornerRadius(10)
-            .padding([.bottom],20)
             
             // hole score tracking box
             ZStack{

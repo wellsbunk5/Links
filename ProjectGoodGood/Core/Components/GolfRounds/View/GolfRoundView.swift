@@ -26,13 +26,13 @@ struct GolfRoundView: View {
                         .resizable()
                         .scaledToFill()
                         .clipShape(Circle())
-                        .frame(width: 75, height: 75)
+                        .frame(width: 50, height: 50)
                         .shadow(radius: 3)
                     
                     Text(user.fullname)
                         .padding()
-                        .font(.title).bold()
-                        .frame(width: 250, height: 75, alignment: .leading)
+                        .font(.title2).bold()
+                        .frame(width: 250, height: 50, alignment: .leading)
                 }
             }
 
