@@ -17,6 +17,12 @@
 		AE4BFD5A29916B2000E54C66 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5929916B2000E54C66 /* FriendsView.swift */; };
 		AE4BFD5C29916B4200E54C66 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */; };
 		AE4BFD5E29916B8C00E54C66 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5D29916B8C00E54C66 /* StatsView.swift */; };
+		AEF105D629BF834000403128 /* JoinBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF105D529BF834000403128 /* JoinBar.swift */; };
+		AEF105D829BF843C00403128 /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF105D729BF843C00403128 /* JoinViewModel.swift */; };
+		AEF105DA29BF8C8100403128 /* StartGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF105D929BF8C8100403128 /* StartGroupView.swift */; };
+		AEF105DC29BF8CAA00403128 /* StartGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF105DB29BF8CAA00403128 /* StartGroupViewModel.swift */; };
+		AEF105DE29BF8D8600403128 /* GroupRecordScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF105DD29BF8D8600403128 /* GroupRecordScore.swift */; };
+		AEF105E029BFCC0300403128 /* GroupPlayWaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF105DF29BFCC0200403128 /* GroupPlayWaitingView.swift */; };
 		BF7F9E362979DA8A0068F38C /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E352979DA8A0068F38C /* UserRowView.swift */; };
 		BF7F9E3B2979DF360068F38C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E3A2979DF360068F38C /* SideMenuView.swift */; };
 		BF7F9E3D2979DF580068F38C /* SideMenuOptionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E3C2979DF580068F38C /* SideMenuOptionRowView.swift */; };
@@ -74,6 +80,12 @@
 		AE4BFD5929916B2000E54C66 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		AE4BFD5D29916B8C00E54C66 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		AEF105D529BF834000403128 /* JoinBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinBar.swift; sourceTree = "<group>"; };
+		AEF105D729BF843C00403128 /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
+		AEF105D929BF8C8100403128 /* StartGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGroupView.swift; sourceTree = "<group>"; };
+		AEF105DB29BF8CAA00403128 /* StartGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGroupViewModel.swift; sourceTree = "<group>"; };
+		AEF105DD29BF8D8600403128 /* GroupRecordScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRecordScore.swift; sourceTree = "<group>"; };
+		AEF105DF29BFCC0200403128 /* GroupPlayWaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPlayWaitingView.swift; sourceTree = "<group>"; };
 		BF7F9E352979DA8A0068F38C /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		BF7F9E3A2979DF360068F38C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		BF7F9E3C2979DF580068F38C /* SideMenuOptionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionRowView.swift; sourceTree = "<group>"; };
@@ -138,6 +150,34 @@
 				363BBB0A2993222700403EE0 /* Colors.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AEF105CD29BF70A700403128 /* GroupPlayRound */ = {
+			isa = PBXGroup;
+			children = (
+				AEF105CE29BF70D500403128 /* ViewModel */,
+				AEF105D029BF70E900403128 /* Views */,
+			);
+			path = GroupPlayRound;
+			sourceTree = "<group>";
+		};
+		AEF105CE29BF70D500403128 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AEF105D729BF843C00403128 /* JoinViewModel.swift */,
+				AEF105DB29BF8CAA00403128 /* StartGroupViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AEF105D029BF70E900403128 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AEF105D529BF834000403128 /* JoinBar.swift */,
+				AEF105D929BF8C8100403128 /* StartGroupView.swift */,
+				AEF105DF29BFCC0200403128 /* GroupPlayWaitingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		BF7F9E342979DA730068F38C /* Users */ = {
@@ -207,6 +247,7 @@
 			children = (
 				BFF221B0297748760074E6DE /* GolfRoundView.swift */,
 				BF951209298C52E600230A4B /* RecordScore.swift */,
+				AEF105DD29BF8D8600403128 /* GroupRecordScore.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +365,7 @@
 				BFF221B729774E740074E6DE /* Explore */,
 				BFF221B629774E710074E6DE /* Profile */,
 				BFF221B529774E6B0074E6DE /* PlayRound */,
+				AEF105CD29BF70A700403128 /* GroupPlayRound */,
 				BFF221B229774D810074E6DE /* MainTab */,
 				BFF221AA297747570074E6DE /* Feed */,
 			);
@@ -546,6 +588,8 @@
 				BFF2219A297746E70074E6DE /* ContentView.swift in Sources */,
 				BF7F9E4A297A1AD70068F38C /* UserService.swift in Sources */,
 				BF7F9E3F2979DF7E0068F38C /* SideMenuViewModel.swift in Sources */,
+				AEF105D629BF834000403128 /* JoinBar.swift in Sources */,
+				AEF105D829BF843C00403128 /* JoinViewModel.swift in Sources */,
 				BFF221B1297748760074E6DE /* GolfRoundView.swift in Sources */,
 				BFF221AE297747AE0074E6DE /* FeedView.swift in Sources */,
 				BFF221C2297755130074E6DE /* LoginView.swift in Sources */,
@@ -566,8 +610,12 @@
 				BFF221BB297750060074E6DE /* ProfileView.swift in Sources */,
 				BFE23E96297B115E00730601 /* FeedViewModel.swift in Sources */,
 				6B5D5A0B29A196C7004E0800 /* GolfFrequencyQuestion.swift in Sources */,
+				AEF105E029BFCC0300403128 /* GroupPlayWaitingView.swift in Sources */,
+				AEF105DE29BF8D8600403128 /* GroupRecordScore.swift in Sources */,
+				AEF105DA29BF8C8100403128 /* StartGroupView.swift in Sources */,
 				BFE23E94297B0E9200730601 /* PlayRoundViewModel.swift in Sources */,
 				BFF221B429774D960074E6DE /* MainTabView.swift in Sources */,
+				AEF105DC29BF8CAA00403128 /* StartGroupViewModel.swift in Sources */,
 				BFF221DA29777B120074E6DE /* AuthViewModel.swift in Sources */,
 				BFE23E90297B0CCE00730601 /* GolfRoundService.swift in Sources */,
 				BF7F9E4C297A1D4E0068F38C /* User.swift in Sources */,

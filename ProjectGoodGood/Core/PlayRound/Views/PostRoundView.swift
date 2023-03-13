@@ -23,7 +23,6 @@ struct PostRoundView: View {
                             .foregroundColor(Color.birdyColor)
                             .bold()
                             .font(.title)
-                        
                     }
 
                     ZStack {
@@ -42,7 +41,7 @@ struct PostRoundView: View {
                             }
                        }
                     }
-                    .frame(width: 320, height: 120)
+                    .frame(width: 320, height: 80)
                     .cornerRadius(10)
                     
                     ZStack {
@@ -61,7 +60,7 @@ struct PostRoundView: View {
                             }
                        }
                     }
-                    .frame(width: 320, height: 120)
+                    .frame(width: 320, height: 80) //was 120
                     .cornerRadius(10)
                     
                     ZStack {
@@ -80,21 +79,20 @@ struct PostRoundView: View {
                             }
                        }
                     }
-                    .frame(width: 320, height: 120)
+                    .frame(width: 320, height: 80)
                     .cornerRadius(10)
+                    .padding(.bottom, 20)
                     
+
+                    Divider()
                     ZStack {
-                        Color.birdyColor
-                            .ignoresSafeArea()
                         Text("Scorecard")
-                            .colorInvert()
+                            .foregroundColor(Color.birdyColor)
                             .bold()
                             .font(.title)
                         
                     }
-                    .frame(width: 320, height: 60)
-                    .cornerRadius(10)
-                    
+
                         
                     GolfRoundView(golfRound: round)
 //                    HStack {

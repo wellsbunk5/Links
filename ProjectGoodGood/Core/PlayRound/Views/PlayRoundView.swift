@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct PlayRoundView: View {
+    @State private var showingPopover = false
     @ObservedObject var viewModel: PlayRoundViewModel
+        //*To Be used to connect to the joinViewModel and JoinBar for searching
+    //@ObservedObject var joinViewModel: JoinViewModel
     
     var body: some View {
 //        NavigationStack(path: $viewModel.playRoundPresentedViews) {
@@ -67,6 +70,9 @@ struct PlayRoundView: View {
                     .frame(width: 320, height: 180)
                     .cornerRadius(10)
                     
+                    Spacer()
+
+                    
                 //No Course Selected: List of all the courses to select
                 } else {
                     Spacer().frame(height:65)
@@ -78,9 +84,8 @@ struct PlayRoundView: View {
                                 .font(.title)
                                 .padding([.bottom],35)
                         }
-
+                    
                     // listing out each course location
-                                        
                     ZStack{
                         Color.lightGreyColor
                             .ignoresSafeArea()
@@ -93,25 +98,91 @@ struct PlayRoundView: View {
                                             .font(.title2)
                                             .foregroundColor(Color.parColor)
                                             .frame(width: 320, height: 60)
-                                        //    .background(Color.parColor)
-                                        // .clipShape(Capsule())
-                                        //   .cornerRadius(10)
-                                        //    .padding()
                                 }
-                               // .shadow(color: .gray.opacity(0.5), radius: 10, x:0, y:0)
-                                //*use if we have multiple coursese
-//                                Divider()
-//                                    .overlay(Color.darkGreyColor)
+
                             }
                         }
                     }
                     .frame(width: 320, height: 60)
                     .cornerRadius(10)
                     
+                    Spacer()
+
+                    //Group Play
+                    HStack(spacing: 10){
+                        //Join group play round Popup
+                        ZStack{
+                            Color.parColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Button("Join Round") {
+                                    showingPopover = true
+                                }
+                                .font(.title3)
+                                .padding(10)
+                                .foregroundColor(Color.white)
+                                .popover(isPresented: $showingPopover) {
+                                    Spacer()
+                                        .frame(height: 50)
+                                        //*connect this to the joinViewModel and JoinBar for searching
+//                                    JoinBar(text: $joinViewModel.searchText)
+//                                        .padding()
+                                    Text("Need to connect this to the joinViewModel and JoinBar for searching/inputing the join code")
+                                        .font(.headline)
+                                        .padding()
+                                    HStack(spacing: 10){
+                                            //Cancel Button
+                                        ZStack{
+                                            Color.doubleBogeyColor
+                                                .ignoresSafeArea()
+                                            Button("Cancel") {
+                                                showingPopover = false
+                                            }
+                                            .font(.title3)
+                                            .padding(10)
+                                            .foregroundColor(Color.white)
+                                        }
+                                        .frame(width: 150, height:40)
+                                        .cornerRadius(10)
+                                        
+                                            //Join Buttom after they have entered the Join Code
+                                        //*connect this to the joinViewModel and JoinBar for searching
+                                        ZStack{
+                                            Color.parColor
+                                                .ignoresSafeArea()
+                                            VStack{
+                                                NavigationLink("Join", destination: GroupPlayWaitingView())
+                                                    .font(.title3)
+                                                    .padding(10)
+                                                    .foregroundColor(Color.white)
+                                                    .navigationBarHidden(true)
+                                            }
+                                        }
+                                        .frame(width: 150, height:40)
+                                        .cornerRadius(10)
+                                    }
+                                }
+                            }
+                        }
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
+
+                        //*Start group play round Button. They need to select a course, so maybe this is better after they have selected a course. This should be gray until the pick a course to play
+                        ZStack{
+                            Color.doubleBogeyColor
+                                .ignoresSafeArea()
+                            VStack{
+                                NavigationLink("Start Group", destination: StartGroupView())
+                                    .font(.title3)
+                                    .padding(10)
+                                    .foregroundColor(Color.white)
+                            }
+                        }
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
+                    }
+                    .padding(.bottom, 50)                    
                 }
-                //shift everything upsquare.and.arrow.up
-                Spacer()
-                
             }
             .navigationDestination(for: String.self, destination: viewModel.navigationDestination(for:))
 //        }

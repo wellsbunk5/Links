@@ -35,7 +35,7 @@ struct MainTabView: View {
                         self.selectedIndex = 1
                     }
                     .tabItem {
-                        Label("Search",systemImage: "magnifyingglass")
+                        Label("Explore",systemImage: "magnifyingglass")
                     }.tag(2) //tag was 1 changed position to put Play in the middle
         }.accentColor(Color.parColor)
     }

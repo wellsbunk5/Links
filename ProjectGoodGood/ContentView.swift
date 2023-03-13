@@ -41,7 +41,6 @@ struct ContentView: View {
                         .frame(width: 300)
                         .background(showMenu ? Color.white : Color.clear)
                         .offset(x: showMenu ?  100 : 500, y: 0) // was 0 : -300, y: 0: changing it made it right aligned
-
                 }
 
                 .toolbar {

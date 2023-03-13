@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct GolfRoundView: View {
-    @State private var showLike = true
+    @State private var showLikeComment = true
     @ObservedObject var viewModel: GolfRoundViewModel
     
     init(golfRound: GolfRound) {
@@ -40,10 +40,21 @@ struct GolfRoundView: View {
             Text(DateFormatter().string(from: viewModel.golfRound.timestamp.dateValue()))
                 .font(.headline)
                 .frame(width: 325, height: 25, alignment: .leading)
-             //* Caption for Post, need to make this dynamic
-             Text("Placeholder for caption. Realistically this will be a couple lines pulling from the database that someone will add when the are on the 'Post Round' view. Now I am just rambling to have text appear.")
-               .font(.system(size:12))
-
+            
+             //* Caption for Post, need to make this dynamic and optional for the post round
+            VStack{
+                if showLikeComment == true{
+                    Text("Placeholder for caption. Realistically this will be a couple lines pulling from the database that someone will add when the are on the 'Post Round' view.")
+                      .font(.system(size:12))
+                }
+                    //show input box *Need to connect this to the backend
+                else{
+                    Text("Replace with input field")
+                        .font(.system(size:12))
+//                    CustomInputField(imageName: "bubble.left", placeholderText: "Comment", isSecureField: false, text:$comment)
+                }
+            }
+            
             if let course = viewModel.golfRound.course {
                 HStack {
                     Text(course.nickname)
@@ -144,7 +155,7 @@ struct GolfRoundView: View {
                 }
             }
             
-            if showLike == true{
+            if showLikeComment == true{
                 HStack {
                     //Like Button
                     Button {
