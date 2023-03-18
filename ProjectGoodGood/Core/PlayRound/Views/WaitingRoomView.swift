@@ -16,19 +16,25 @@ struct WaitingRoomView: View {
             Text("Join Code: \(viewModel.tempGroup.groupJoinCode)")
             Text("Course: \(viewModel.selectedCourse.nickname)")
             Text("Front 9")
-            Text("Players:")
-            ForEach(viewModel.players, id: \.username) { player in
-                Text("\(player.fullname)")
+            
+            if viewModel.roundType == RoundType.withFriends {
+                Text("Players:")
+                ForEach(viewModel.players, id: \.username) { player in
+                    Text("\(player.fullname)")
+                }
+                
+                NavigationLink("Add Players", value: "SelectPlayers")
             }
             
-            NavigationLink("Add Players", value: "SelectPlayers")
-            
-            Button {
-                viewModel.populateTempRounds()
-                viewModel.postTempGroup()
-                viewModel.playRoundPresentedViews.append("StartRound")
-            } label: {
-                Text("Start Round")
+            if viewModel.roundType == RoundType.withFriends && viewModel.players.count > 1 || viewModel.roundType == RoundType.solo{
+                
+                Button {
+                    viewModel.populateTempRounds()
+                    viewModel.postTempGroup()
+                    viewModel.playRoundPresentedViews.append("StartRound")
+                } label: {
+                    Text("Start Round")
+                }
             }
             
         }

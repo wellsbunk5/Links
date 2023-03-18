@@ -130,96 +130,116 @@ struct StartRoundView: View {
                 }
                 Spacer()
                 
-                Button ("Play Round") {
-                    viewModel.roundType = RoundType.solo
-                    showPlayRoundSheet = true
-                }
-                
-                HStack(spacing: 10){
-                    //Join group play round Popup
-                    ZStack{
-                        Color.parColor
-                            .ignoresSafeArea()
-                        VStack{
-                            Button("Join Round") {
-                                viewModel.showJoinCodeAlert = true
-                            }
-                            .font(.title3)
-                            .padding(10)
-                            .foregroundColor(Color.white)
-                            .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
-                                TextField("Join Code", text: $viewModel.joinCode)
-                                HStack {
-                                    Button {
-                                        viewModel.showJoinCodeAlert = false
-                                    }label: {
-                                        Text("Cancel")
-                                    }
-                                    
-                                    Button {
-                                        viewModel.checkJoinCode()
-                                        if viewModel.tempGroup != nil {
-                                            showPlayRoundSheet = true
-                                        }
-                                    } label: {
-                                        Text("Submit")
-                                    }
+                if viewModel.selectedCourse != nil {
+                    Button ("Play Round") {
+                        viewModel.roundType = RoundType.solo
+                        showPlayRoundSheet = true
+                    }
+                    
+                    HStack(spacing: 10){
+                        //Join group play round Popup
+                        ZStack{
+                            Color.parColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Button("Join Round") {
+                                    viewModel.showJoinCodeAlert = true
                                 }
-//                            .popover(isPresented: $showingPopover) {
-//                                Spacer()
-//                                    .frame(height: 50)
-//                                    //*connect this to the joinViewModel and JoinBar for searching
-////                                    JoinBar(text: $joinViewModel.searchText)
-////                                        .padding()
-//                                Text("Need to connect this to the joinViewModel and JoinBar for searching/inputing the join code")
-//                                    .font(.headline)
-//                                    .padding()
-//                                HStack(spacing: 10){
-//                                        //Cancel Button
-//                                    ZStack{
-//                                        Color.doubleBogeyColor
-//                                            .ignoresSafeArea()
-//                                        Button("Cancel") {
-//                                            showingPopover = false
-//                                        }
-//                                        .font(.title3)
-//                                        .padding(10)
-//                                        .foregroundColor(Color.white)
-//                                    }
-//                                    .frame(width: 150, height:40)
-//                                    .cornerRadius(10)
-//
-//                                        //Join Buttom after they have entered the Join Code
-//                                    //*connect this to the joinViewModel and JoinBar for searching
-//                                    ZStack{
-//                                        Color.parColor
-//                                            .ignoresSafeArea()
-//                                        VStack{
-//                                            NavigationLink("Join", destination: GroupPlayWaitingView())
-//                                                .font(.title3)
-//                                                .padding(10)
-//                                                .foregroundColor(Color.white)
-//                                                .navigationBarHidden(true)
-//                                        }
-//                                    }
-//                                    .frame(width: 150, height:40)
-//                                    .cornerRadius(10)
-//                                }
+                                .font(.title3)
+                                .padding(10)
+                                .foregroundColor(Color.white)
+                                .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
+                                    TextField("Join Code", text: $viewModel.joinCode)
+                                    HStack {
+                                        Button {
+                                            viewModel.showJoinCodeAlert = false
+                                        }label: {
+                                            Text("Cancel")
+                                        }
+                                        
+                                        Button {
+                                            viewModel.checkJoinCode()
+                                            if viewModel.tempGroup != nil {
+                                                showPlayRoundSheet = true
+                                            }
+                                        } label: {
+                                            Text("Submit")
+                                        }
+                                    }
+    //                            .popover(isPresented: $showingPopover) {
+    //                                Spacer()
+    //                                    .frame(height: 50)
+    //                                    //*connect this to the joinViewModel and JoinBar for searching
+    ////                                    JoinBar(text: $joinViewModel.searchText)
+    ////                                        .padding()
+    //                                Text("Need to connect this to the joinViewModel and JoinBar for searching/inputing the join code")
+    //                                    .font(.headline)
+    //                                    .padding()
+    //                                HStack(spacing: 10){
+    //                                        //Cancel Button
+    //                                    ZStack{
+    //                                        Color.doubleBogeyColor
+    //                                            .ignoresSafeArea()
+    //                                        Button("Cancel") {
+    //                                            showingPopover = false
+    //                                        }
+    //                                        .font(.title3)
+    //                                        .padding(10)
+    //                                        .foregroundColor(Color.white)
+    //                                    }
+    //                                    .frame(width: 150, height:40)
+    //                                    .cornerRadius(10)
+    //
+    //                                        //Join Buttom after they have entered the Join Code
+    //                                    //*connect this to the joinViewModel and JoinBar for searching
+    //                                    ZStack{
+    //                                        Color.parColor
+    //                                            .ignoresSafeArea()
+    //                                        VStack{
+    //                                            NavigationLink("Join", destination: GroupPlayWaitingView())
+    //                                                .font(.title3)
+    //                                                .padding(10)
+    //                                                .foregroundColor(Color.white)
+    //                                                .navigationBarHidden(true)
+    //                                        }
+    //                                    }
+    //                                    .frame(width: 150, height:40)
+    //                                    .cornerRadius(10)
+    //                                }
+                                }
                             }
                         }
-                    }
-                    .frame(width: 150, height:40)
-                    .cornerRadius(10)
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
 
-                    //*Start group play round Button. They need to select a course, so maybe this is better after they have selected a course. This should be gray until the pick a course to play
+                        //*Start group play round Button. They need to select a course, so maybe this is better after they have selected a course. This should be gray until the pick a course to play
+                        ZStack{
+                            Color.doubleBogeyColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Button("Start Group") {
+                                    viewModel.roundType = RoundType.withFriends
+                                    showPlayRoundSheet = true
+                                }
+                                    .font(.title3)
+                                    .padding(10)
+                                    .foregroundColor(Color.white)
+                            }
+                        }
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
+                        .fullScreenCover(isPresented: $showPlayRoundSheet, onDismiss: clearTempRound) {
+                            PlayRoundView(startRoundViewModel: viewModel, showPlayRoundModal: $showPlayRoundSheet)
+                        }
+                        
+                    }
+                    .padding(.bottom, 50)
+                } else {
                     ZStack{
-                        Color.doubleBogeyColor
+                        Color.lightGreyColor
                             .ignoresSafeArea()
                         VStack{
-                            Button("Start Group") {
-                                viewModel.roundType = RoundType.withFriends
-                                showPlayRoundSheet = true
-                            }
+                            Text("Play Round")
                                 .font(.title3)
                                 .padding(10)
                                 .foregroundColor(Color.white)
@@ -227,15 +247,101 @@ struct StartRoundView: View {
                     }
                     .frame(width: 150, height:40)
                     .cornerRadius(10)
-                    .fullScreenCover(isPresented: $showPlayRoundSheet, onDismiss: clearTempRound) {
-                        PlayRoundView(startRoundViewModel: viewModel, showPlayRoundModal: $showPlayRoundSheet)
-                    }
                     
+                    HStack(spacing: 10){
+                        //Join group play round Popup
+                        ZStack{
+                            Color.parColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Button("Join Round") {
+                                    viewModel.showJoinCodeAlert = true
+                                }
+                                .font(.title3)
+                                .padding(10)
+                                .foregroundColor(Color.white)
+                                .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
+                                    TextField("Join Code", text: $viewModel.joinCode)
+                                    HStack {
+                                        Button {
+                                            viewModel.showJoinCodeAlert = false
+                                        }label: {
+                                            Text("Cancel")
+                                        }
+                                        
+                                        Button {
+                                            viewModel.checkJoinCode()
+                                            if viewModel.tempGroup != nil {
+                                                showPlayRoundSheet = true
+                                            }
+                                        } label: {
+                                            Text("Submit")
+                                        }
+                                    }
+    //                            .popover(isPresented: $showingPopover) {
+    //                                Spacer()
+    //                                    .frame(height: 50)
+    //                                    //*connect this to the joinViewModel and JoinBar for searching
+    ////                                    JoinBar(text: $joinViewModel.searchText)
+    ////                                        .padding()
+    //                                Text("Need to connect this to the joinViewModel and JoinBar for searching/inputing the join code")
+    //                                    .font(.headline)
+    //                                    .padding()
+    //                                HStack(spacing: 10){
+    //                                        //Cancel Button
+    //                                    ZStack{
+    //                                        Color.doubleBogeyColor
+    //                                            .ignoresSafeArea()
+    //                                        Button("Cancel") {
+    //                                            showingPopover = false
+    //                                        }
+    //                                        .font(.title3)
+    //                                        .padding(10)
+    //                                        .foregroundColor(Color.white)
+    //                                    }
+    //                                    .frame(width: 150, height:40)
+    //                                    .cornerRadius(10)
+    //
+    //                                        //Join Buttom after they have entered the Join Code
+    //                                    //*connect this to the joinViewModel and JoinBar for searching
+    //                                    ZStack{
+    //                                        Color.parColor
+    //                                            .ignoresSafeArea()
+    //                                        VStack{
+    //                                            NavigationLink("Join", destination: GroupPlayWaitingView())
+    //                                                .font(.title3)
+    //                                                .padding(10)
+    //                                                .foregroundColor(Color.white)
+    //                                                .navigationBarHidden(true)
+    //                                        }
+    //                                    }
+    //                                    .frame(width: 150, height:40)
+    //                                    .cornerRadius(10)
+    //                                }
+                                }
+                            }
+                        }
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
+
+                        //*Start group play round Button. They need to select a course, so maybe this is better after they have selected a course. This should be gray until the pick a course to play
+                        ZStack{
+                            Color.lightGreyColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Text("Start Group")
+                                    .font(.title3)
+                                    .padding(10)
+                                    .foregroundColor(Color.white)
+                            }
+                        }
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
+                        
+                    }
+                    .padding(.bottom, 50)
                 }
-                .padding(.bottom, 50)
             }
-//            .navigationDestination(for: String.self, destination: viewModel.navigationDestination(for:))
-//        }
     }
     
     func clearTempRound() {
