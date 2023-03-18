@@ -9,13 +9,17 @@ import SwiftUI
 import PhotosUI
 
 struct PostRoundView: View {
-    @State private var showLike = false
-    @ObservedObject var viewModel: PlayRoundViewModel
-    @State private var selectedItems = [PhotosPickerItem]()
-    @State private var selectedImages = [Image]()
+//    @State private var selectedItems = [PhotosPickerItem]()
+//    @State private var selectedImages = [Image]()
+    var viewModel: PlayRoundViewModel
+    var round: GolfRound
+
     
     var body: some View {
-        if let round = viewModel.currentRound {
+//        VStack {
+//            Text("Post Round")
+//
+//        }
             ScrollView {
                 VStack {
                     ZStack {
@@ -43,7 +47,7 @@ struct PostRoundView: View {
                     }
                     .frame(width: 320, height: 80)
                     .cornerRadius(10)
-                    
+
                     ZStack {
                         Color(.systemGray)
                             .ignoresSafeArea()
@@ -62,7 +66,7 @@ struct PostRoundView: View {
                     }
                     .frame(width: 320, height: 80) //was 120
                     .cornerRadius(10)
-                    
+
                     ZStack {
                         Color(.systemGray)
                             .ignoresSafeArea()
@@ -82,7 +86,7 @@ struct PostRoundView: View {
                     .frame(width: 320, height: 80)
                     .cornerRadius(10)
                     .padding(.bottom, 20)
-                    
+
 
                     Divider()
                     ZStack {
@@ -90,49 +94,53 @@ struct PostRoundView: View {
                             .foregroundColor(Color.birdyColor)
                             .bold()
                             .font(.title)
-                        
+
                     }
 
-                        
-                    GolfRoundView(golfRound: round)
-//                    HStack {
-//
-//                        ForEach(0..<selectedImages.count, id: \.self) { i in
-//                              selectedImages[i]
-//                                  .resizable()
-//                                  .scaledToFit()
-//                                  .frame(width: 100, height: 100)
-//                          }
-//
-//
-//                        PhotosPicker("Select images", selection: $selectedItems, matching: .images)
-//
-//                    }
-//                    .onChange(of: selectedItems) { _ in
-//                        Task {
-//                            selectedImages.removeAll()
-//
-//                            for item in selectedItems {
-//                                if let data = try? await item.loadTransferable(type: Data.self) {
-//                                    if let uiImage = UIImage(data: data) {
-//                                        let image = Image(uiImage: uiImage)
-//                                        selectedImages.append(image)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-                    
 
+                    GolfRoundView(golfRound: round)
+////                    HStack {
+////
+////                        ForEach(0..<selectedImages.count, id: \.self) { i in
+////                              selectedImages[i]
+////                                  .resizable()
+////                                  .scaledToFit()
+////                                  .frame(width: 100, height: 100)
+////                          }
+////
+////
+////                        PhotosPicker("Select images", selection: $selectedItems, matching: .images)
+////
+////                    }
+////                    .onChange(of: selectedItems) { _ in
+////                        Task {
+////                            selectedImages.removeAll()
+////
+////                            for item in selectedItems {
+////                                if let data = try? await item.loadTransferable(type: Data.self) {
+////                                    if let uiImage = UIImage(data: data) {
+////                                        let image = Image(uiImage: uiImage)
+////                                        selectedImages.append(image)
+////                                    }
+////                                }
+////                            }
+////                        }
+////                    }
+//
+//
+//
+                    Button {
+                        viewModel.playRoundPresentedViews.removeLast()
+                    } label: {
+                        Text("Previous Hole")
+                    }
                     
                     ZStack{
                         Color.parColor
                             .ignoresSafeArea()
                         VStack{
                             Button {
-//                                viewModel.postRound(round)
-                                viewModel.playRoundPresentedViews = []
-                                viewModel.selectedCourse = nil
+                                viewModel.postRound(round)
                             } label: {
                                 Text("Post Round")
                                     .font(.title2)
@@ -145,7 +153,7 @@ struct PostRoundView: View {
                     .cornerRadius(10)
                 }
             }
-        }
+            .toolbar(.hidden)
     }
 
 //    func loadImage() async {

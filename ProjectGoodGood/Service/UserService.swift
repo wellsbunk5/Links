@@ -10,6 +10,19 @@ import FirebaseFirestoreSwift
 
 struct UserService {
     
+    func fetchActiveUser ( completion: @escaping(User) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .getDocument { snapshot, _ in
+                guard let snapshot = snapshot else { return }
+                
+                guard let user = try? snapshot.data(as: User.self) else { return }
+                completion(user)
+            }
+    }
+    
     func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
         Firestore.firestore().collection("users")
             .document(uid)
@@ -18,6 +31,32 @@ struct UserService {
                 
                 guard let user = try? snapshot.data(as: User.self) else { return }
                 completion(user)
+            }
+    }
+    
+    func fetchFriends(completion: @escaping([User]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        var friends = [User]()
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("following")
+            .getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+                
+                documents.forEach { doc in
+                    let userId = doc.documentID
+                    
+                    Firestore.firestore().collection("users").document(userId)
+                        .getDocument { snapshot, _ in
+                            guard let snapshot = snapshot else { return }
+                            
+                            guard let user = try? snapshot.data(as: User.self) else { return }
+                            
+                            friends.append(user)
+                            completion(friends)
+                        }
+                }
             }
     }
     

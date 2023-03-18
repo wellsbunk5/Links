@@ -22,12 +22,12 @@ struct GroupPlayWaitingView: View {
             ZStack{
                 Color.doubleBogeyColor
                     .ignoresSafeArea()
-                VStack{
-                    NavigationLink("TempGroupRecordScore", destination: GroupRecordScore(holeNum: "1", course: Course(fullName: "The Links at Sleepy Ridge", nickname: "sleepy ridge", address: "e", city: "l", state: "e", zip: "d", totalPar: 72, pars: ["1": 4])))
-                        .font(.title3)
-                        .padding(10)
-                        .foregroundColor(Color.white)
-                }
+//                VStack{
+//                    NavigationLink("TempGroupRecordScore", destination: GroupRecordScore(holeNum: "1", course: Course(fullName: "The Links at Sleepy Ridge", nickname: "sleepy ridge", address: "e", city: "l", state: "e", zip: "d", totalPar: 72, pars: ["1": 4])))
+//                        .font(.title3)
+//                        .padding(10)
+//                        .foregroundColor(Color.white)
+//                }
             }
             .frame(width: 150, height:40)
             .cornerRadius(10)

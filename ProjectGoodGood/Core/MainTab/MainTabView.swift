@@ -7,42 +7,44 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedIndex = 0
+    @State private var selectedTab: MainTabs = .home
     @EnvironmentObject var authViewModel: AuthViewModel
-    var playRoundViewModel: PlayRoundViewModel
         var body: some View {
            //if let user = authViewModel.currentUser {
 
-            TabView(selection: $selectedIndex) {
+            TabView(selection: $selectedTab) {
                 FeedView()
-                    .onTapGesture {
-                        self.selectedIndex = 0
-                    }
                     .tabItem {
                         Label("Home",systemImage: "house")
-                    }.tag(0)
+                    }.tag(MainTabs.home)
 
-                PlayRoundView(viewModel: playRoundViewModel)
-                    .onTapGesture {
-                        self.selectedIndex = 2
-                    }
+                StartRoundView()
+//                    .onTapGesture {
+//                        self.selectedIndex = 2
+//                    }
                     .tabItem {
                         Label("Play",systemImage: "figure.golf")
-                    }.tag(1) //tag was 2changed position to put Play in the middle
+                    }.tag(MainTabs.play) //tag was 2changed position to put Play in the middle
                 
                 ExploreView()
-                    .onTapGesture {
-                        self.selectedIndex = 1
-                    }
+//                    .onTapGesture {
+//                        self.selectedIndex = 1
+//                    }
                     .tabItem {
                         Label("Explore",systemImage: "magnifyingglass")
-                    }.tag(2) //tag was 1 changed position to put Play in the middle
+                    }.tag(MainTabs.explore) //tag was 1 changed position to put Play in the middle
         }.accentColor(Color.parColor)
     }
 }
 
+enum MainTabs {
+    case home
+    case play
+    case explore
+}
+
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(playRoundViewModel: PlayRoundViewModel())
+        MainTabView()
     }
 }
