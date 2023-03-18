@@ -17,9 +17,7 @@ struct ContentView: View {
             }
             
         } else {
-            ZStack(alignment: .topLeading) {
-                MainTabView()
-            }
+            MainTabView()
         }
     }
 }

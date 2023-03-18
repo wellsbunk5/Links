@@ -10,10 +10,12 @@ import Kingfisher
 
 struct FeedView: View {
     @State private var showMenu = false
-    @EnvironmentObject var viewModel: AuthViewModel
     @ObservedObject var feedViewModel = FeedViewModel()
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     
     var body: some View {
+        
         NavigationStack {
             ZStack(alignment: .topLeading) {
                 ScrollView {
@@ -25,9 +27,9 @@ struct FeedView: View {
                         }
                     }
                 }
-                .refreshable {
-                    feedViewModel.fetchRounds()
-                }
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(showMenu)
+                
                 if showMenu {
                     ZStack {
                         Color(.black)
@@ -45,6 +47,7 @@ struct FeedView: View {
                     .background(showMenu ? Color.white : Color.clear)
                     .offset(x: showMenu ?  100 : 500, y: 0) // was 0 : -300, y: 0: changing it made it right aligned
             }
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if let user = viewModel.currentUser {
@@ -60,18 +63,21 @@ struct FeedView: View {
                                 .frame(width: 32, height: 32)
                         }
                     }
-
+                    
                 }
             }
             .onAppear {
                 showMenu = false
             }
         }
+        .refreshable {
+            feedViewModel.fetchRounds()
+        }
     }
 }
 
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView()
-    }
-}
+//struct FeedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FeedView()
+//    }
+//}

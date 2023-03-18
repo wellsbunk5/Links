@@ -187,17 +187,16 @@ struct GolfRoundService {
                     //
                     //                    }
                 }
+                Firestore.firestore().collection("rounds")
+                      .whereField("userId", in: followedUsers)
+                      .order(by: "timestamp", descending: true).limit(to: 15)
+                      .addSnapshotListener { querySnapshot, _ in
+                             guard let documents = querySnapshot?.documents else { return }
+                          
+                          let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
+                          completion(rounds)
+                    }
             }
-                
-              Firestore.firestore().collection("rounds")
-                    .whereField("userId", in: followedUsers)
-                    .order(by: "timestamp", descending: true).limit(to: 15)
-                    .addSnapshotListener { querySnapshot, _ in
-                           guard let documents = querySnapshot?.documents else { return }
-                        
-                        let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
-                        completion(rounds)
-                       }
         
 //        listener.remove()
     }
