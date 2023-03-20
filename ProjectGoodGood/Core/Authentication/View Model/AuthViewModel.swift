@@ -100,7 +100,7 @@ class AuthViewModel: ObservableObject {
         switch path {
             case "register":
                 return AnyView(
-                    NewUserView()
+                    NewUserView2()
                 )
             case "uploadImage":
                 return AnyView(
@@ -108,7 +108,7 @@ class AuthViewModel: ObservableObject {
                 )
             default:
                 return AnyView(
-                    LoginView()
+                    LoginView2()
                 )
         }
     }
