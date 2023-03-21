@@ -14,6 +14,7 @@
 		6B5D5A0C29A196C7004E0800 /* AgeQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0629A196C6004E0800 /* AgeQuestion.swift */; };
 		6B5D5A0D29A196C7004E0800 /* HandicapQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0729A196C6004E0800 /* HandicapQuestion.swift */; };
 		6B5D5A0E29A196C7004E0800 /* NewUserView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0829A196C6004E0800 /* NewUserView2.swift */; };
+		6B6F041529C953EB0096576D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6F041429C953EB0096576D /* RadioButton.swift */; };
 		AE4BFD5A29916B2000E54C66 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5929916B2000E54C66 /* FriendsView.swift */; };
 		AE4BFD5C29916B4200E54C66 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */; };
 		AE4BFD5E29916B8C00E54C66 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5D29916B8C00E54C66 /* StatsView.swift */; };
@@ -83,6 +84,7 @@
 		6B5D5A0629A196C6004E0800 /* AgeQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeQuestion.swift; sourceTree = "<group>"; };
 		6B5D5A0729A196C6004E0800 /* HandicapQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandicapQuestion.swift; sourceTree = "<group>"; };
 		6B5D5A0829A196C6004E0800 /* NewUserView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserView2.swift; sourceTree = "<group>"; };
+		6B6F041429C953EB0096576D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		AE4BFD5929916B2000E54C66 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		AE4BFD5D29916B8C00E54C66 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				BFF221AF2977485B0074E6DE /* GolfRounds */,
 				BFF221C5297756910074E6DE /* RoundedShape.swift */,
 				BFF221C929775B200074E6DE /* CustomInputField.swift */,
+				6B6F041429C953EB0096576D /* RadioButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				BFE23E89297A2EFA00730601 /* SearchBar.swift in Sources */,
 				BFF221CA29775B200074E6DE /* CustomInputField.swift in Sources */,
 				BF7F9E412979E0F20068F38C /* UserFollowerStatsView.swift in Sources */,
+				6B6F041529C953EB0096576D /* RadioButton.swift in Sources */,
 				6B5D5A0D29A196C7004E0800 /* HandicapQuestion.swift in Sources */,
 				BFE23E8B297A4A3500730601 /* NewUserView.swift in Sources */,
 				BFF22198297746E70074E6DE /* ProjectGoodGoodApp.swift in Sources */,

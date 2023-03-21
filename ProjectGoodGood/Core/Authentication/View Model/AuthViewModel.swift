@@ -83,12 +83,18 @@ class AuthViewModel: ObservableObject {
         
         ImageUploader.uploadImage(image: image) { profileImageUrl in
             Firestore.firestore().collection("users")
-                .document(uid).updateData(["profileImageUrl": profileImageUrl]) { _ in
-                    self.userSession = self.tempUserSession
-                    self.fetchUser()
-                }
+                .document(uid).updateData(["profileImageUrl": profileImageUrl])
+                //{ _ in
+                //self.userSession = self.tempUserSession
+                //self.fetchUser()
+                //}
         }
     }
+    
+    func completeSetup() {
+                self.userSession = self.tempUserSession
+                self.fetchUser()
+        }
     
     func fetchUser() {
         service.fetchActiveUser() { user in
@@ -105,6 +111,22 @@ class AuthViewModel: ObservableObject {
             case "uploadImage":
                 return AnyView(
                     AddProfilePhotoView()
+                )
+            case "ageQuestion":
+                return AnyView(
+                    AgeQuestion()
+                )
+            case "genderQuestion":
+                return AnyView(
+                    GenderQuestion()
+                )
+            case "freqQuestion":
+                return AnyView(
+                    GolfFrequencyQuestion()
+                )
+            case "handicapQuestion":
+                return AnyView(
+                    HandicapQuestion()
                 )
             default:
                 return AnyView(

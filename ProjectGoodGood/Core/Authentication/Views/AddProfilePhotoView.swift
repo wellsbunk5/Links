@@ -47,6 +47,8 @@ struct AddProfilePhotoView: View {
                     } else {
                         Image(systemName: "plus.circle")
                             .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.white)
                         .modifier(ProfileImageModifier())                }
                 }
                 .sheet(isPresented: $showImagePicker,
@@ -63,6 +65,7 @@ struct AddProfilePhotoView: View {
                 if let selectedImage = selectedImage {
                     Button {
                         viewModel.uploadProfileImage(selectedImage)
+                        viewModel.loginPresentedViews.append("ageQuestion")
                     } label: {
                         Text("Continue")
                             .font(.headline)
