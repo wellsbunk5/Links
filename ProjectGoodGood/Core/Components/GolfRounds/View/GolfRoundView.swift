@@ -71,87 +71,167 @@ struct GolfRoundView: View {
                         .fill(Color.roundColor)
                         .frame(width: 350, height: 200)
                     
-                    VStack {
-                        HStack {
-                            ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
+                    if viewModel.golfRound.scores.count == 9 {
+                        VStack {
+                            HStack {
                                 VStack {
-                                    Text("\(key)")
-                                        .frame(width: 20)
+                                    Text("Hole")
                                         .font(.caption)
-                                    
-                                    if course.pars[key] == value {
-                                        Text("\(value)")
-                                            .frame(width: 20, height: 20)
-                                            .fontWeight(.bold)
-                                            .font(.title3)
-                                            .foregroundColor(Color.parColor)
-                                    }
-                                    else if course.pars[key] == value - 1 {
-                                        ZStack {
-                                            Rectangle()
-                                                .stroke(Color.bogeyColor, lineWidth: 2)
-                                                .frame(width: 22, height: 22)
-                                            
-                                            Text("\(value)")
-                                                .frame(width: 20, height: 20)
-                                                .fontWeight(.bold)
-                                                .font(.title3)
-                                                .foregroundColor(Color.bogeyColor)
-                                        }
+                                        .offset(y: -10)
 
-                                    }
-                                    else if course.pars[key] == value + 1 {
-                                        ZStack {
-                                            Circle()
-                                                .stroke(Color.birdyColor, lineWidth: 2)
-                                                .frame(width: 22, height: 22)
-                                            
+                                    Text("Par")
+                                        .font(.caption)
+                                        .offset(y: -3)
+                                    
+                                    Text("Score")
+                                        .font(.caption)
+                                        .offset(y: 6)
+                                }
+                                .frame(width: 35)
+                                
+                                Divider()
+                                    .frame(height: 70)
+                                    .overlay(.black)
+                                
+                                ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
+                                    VStack {
+                                        Text("\(key)")
+                                            .frame(width: 20)
+                                            .font(.caption)
+                                        
+                                        Text("\(course.pars[key] ?? 3)")
+                                            .frame(width: 20, height: 10)
+                                            .font(.caption)
+                                        
+                                        if course.pars[key] == value {
                                             Text("\(value)")
                                                 .frame(width: 20, height: 20)
                                                 .fontWeight(.bold)
                                                 .font(.title3)
-                                                .foregroundColor(Color.birdyColor)
+                                                .foregroundColor(Color.parColor)
                                         }
-                                                                            }
-                                    else if course.pars[key] == value + 2 {
-                                        Text("\(value)")
-                                            .frame(width: 20, height: 20)
-                                            .fontWeight(.bold)
-                                            .font(.title3)
-                                            .foregroundColor(Color.eagleColor)
-                                    }
-                                    else if value == 1 {
-                                        Text("\(value)")
-                                            .frame(width: 20, height: 20)
-                                            .fontWeight(.bold)
-                                            .font(.title3)
-                                            .foregroundColor(Color.holeInOneColor)
-                                    }
-                                    else {
-                                        ZStack {
-                                            Rectangle()
-                                                .stroke(Color.doubleBogeyColor, lineWidth: 2)
-                                                .frame(width: 22, height: 22)
-                                            
-                                            Text("\(value)")
-                                                .frame(width: 20, height: 20)
-                                                .fontWeight(.bold)
-                                                .font(.title3)
-                                                .foregroundColor(Color.doubleBogeyColor)
+                                        else if course.pars[key] ?? 4 <= (value - 1) {
+                                            ZStack {
+                                                Rectangle()
+                                                    .stroke(Color.bogeyColor, lineWidth: 2)
+                                                    .frame(width: 22, height: 22)
+                                                
+                                                Text("\(value)")
+                                                    .frame(width: 20, height: 20)
+                                                    .fontWeight(.bold)
+                                                    .font(.title3)
+                                                    .foregroundColor(Color.bogeyColor)
+                                            }
+
                                         }
+                                        else if course.pars[key] ?? 4 >= (value + 1) {
+                                            ZStack {
+                                                Circle()
+                                                    .stroke(Color.birdyColor, lineWidth: 2)
+                                                    .frame(width: 22, height: 22)
+                                                
+                                                Text("\(value)")
+                                                    .frame(width: 20, height: 20)
+                                                    .fontWeight(.bold)
+                                                    .font(.title3)
+                                                    .foregroundColor(Color.birdyColor)
+                                            }
+                                        }
+        
                                     }
+                                    
                                 }
                                 
+                                Text(String(viewModel.golfRound.totalScore))
+                                    .font(.title)
+                                    .offset(x: -4, y: 20)
+                                    .foregroundColor(Color.birdyColor)
                             }
-                            
-                            Text(String(viewModel.golfRound.totalScore))
-                                .font(.title)
-                                .offset(x: 35)
-                                .foregroundColor(Color.birdyColor)
                         }
+                        .offset(y: -45)
+                        
+                    } else {
+                        VStack {
+                            ScrollView(.horizontal) {
+                            HStack {
+                                VStack {
+                                    Text("Hole")
+                                        .font(.caption)
+                                        .offset(y: -10)
+
+                                    Text("Par")
+                                        .font(.caption)
+                                        .offset(y: -3)
+                                    
+                                    Text("Score")
+                                        .font(.caption)
+                                        .offset(y: 6)
+                                }
+                                .frame(width: 35)
+                                
+                                Divider()
+                                    .frame(height: 70)
+                                    .overlay(.black)
+                                
+                                ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
+                                        VStack {
+                                            Text("\(key)")
+                                                .frame(width: 20)
+                                                .font(.caption)
+                                            
+                                            Text("\(course.pars[key] ?? 3)")
+                                                .frame(width: 20, height: 10)
+                                                .font(.caption)
+                                            
+                                            if course.pars[key] == value {
+                                                Text("\(value)")
+                                                    .frame(width: 20, height: 20)
+                                                    .fontWeight(.bold)
+                                                    .font(.title3)
+                                                    .foregroundColor(Color.parColor)
+                                            }
+                                            else if course.pars[key] ?? 4 <= (value - 1) {
+                                                ZStack {
+                                                    Rectangle()
+                                                        .stroke(Color.bogeyColor, lineWidth: 2)
+                                                        .frame(width: 22, height: 22)
+                                                    
+                                                    Text("\(value)")
+                                                        .frame(width: 20, height: 20)
+                                                        .fontWeight(.bold)
+                                                        .font(.title3)
+                                                        .foregroundColor(Color.bogeyColor)
+                                                }
+
+                                            }
+                                            else if course.pars[key] ?? 4 >= (value + 1) {
+                                                ZStack {
+                                                    Circle()
+                                                        .stroke(Color.birdyColor, lineWidth: 2)
+                                                        .frame(width: 22, height: 22)
+                                                    
+                                                    Text("\(value)")
+                                                        .frame(width: 20, height: 20)
+                                                        .fontWeight(.bold)
+                                                        .font(.title3)
+                                                        .foregroundColor(Color.birdyColor)
+                                                }
+                                            }
+            
+                                        }
+                                }
+                                
+                                Text(String(viewModel.golfRound.totalScore))
+                                    .font(.title)
+                                    .offset(x: -2, y: 20)
+                                    .foregroundColor(Color.birdyColor)
+                            }
+                        }
+                        .frame(width: 320, height: 100)
                     }
                     .offset(y: -40)
-                    .offset(x: -20)
+                    .offset(x: 4)
+                    }
                 }
             }
             
