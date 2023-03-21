@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct GenderQuestion: View {
+    @State private var gender = ""
+    @EnvironmentObject var viewModel: AuthViewModel
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         ZStack{
             Color(hue: 0.3653846153846154, saturation: 0.5165562913907286, brightness: 0.592156862745098, opacity: 1.0)
@@ -26,51 +30,16 @@ struct GenderQuestion: View {
                     .font(.title.bold())
                     .foregroundColor(Color(uiColor: .white))
                     .multilineTextAlignment(.leading)
+                
+            
 
-                VStack(alignment: .leading, spacing: 10.0) {
-                    HStack(alignment: .center, spacing: 8.0) {
-                        Image(systemName: "circle")
-                            .foregroundColor(Color(uiColor: .secondaryLabel))
-                            .font(.system(size: CGFloat(17)))
+                VStack(alignment: .center, spacing: 6.0) {
+                    
+                    RadioButtonGroup(items: ["Male", "Female", "Other", "Prefer Not to Say"], selectedId: "") { selected in
+                                    print("Selected is: \(selected)")
+                                }
+                    
 
-                        Text("Female")
-                            .font(.title3)
-                            .foregroundColor(Color(uiColor: .white))
-                            .multilineTextAlignment(.leading)
-                    }
-
-                    HStack(alignment: .center, spacing: 8.0) {
-                        Image(systemName: "circle")
-                            .foregroundColor(Color(uiColor: .secondaryLabel))
-                            .font(.system(size: CGFloat(17)))
-
-                        Text("Male")
-                            .font(.title3)
-                            .foregroundColor(Color(uiColor: .white))
-                            .multilineTextAlignment(.leading)
-                    }
-
-                    HStack(alignment: .center, spacing: 8.0) {
-                        Image(systemName: "circle")
-                            .foregroundColor(Color(uiColor: .secondaryLabel))
-                            .font(.system(size: CGFloat(17)))
-
-                        Text("Other")
-                            .font(.title3)
-                            .foregroundColor(Color(uiColor: .white))
-                            .multilineTextAlignment(.leading)
-                    }
-
-                    HStack(alignment: .center, spacing: 8.0) {
-                        Image(systemName: "circle")
-                            .foregroundColor(Color(uiColor: .secondaryLabel))
-                            .font(.system(size: CGFloat(17)))
-
-                        Text("Prefer not to say")
-                            .font(.title3)
-                            .foregroundColor(Color(uiColor: .white))
-                            .multilineTextAlignment(.leading)
-                    }
                 }
 
                 Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
@@ -94,33 +63,42 @@ struct GenderQuestion: View {
                 }
 
                 HStack(alignment: .center, spacing: 8.0) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color(uiColor: .white))
-                        .font(.system(size: CGFloat(30)))
-                        .padding(
-                            EdgeInsets(
-                                top: CGFloat(16.0),
-                                leading: CGFloat(16.0),
-                                bottom: CGFloat(16.0),
-                                trailing: CGFloat(16.0)
+                    Button {
+                        viewModel.loginPresentedViews.append("ageQuestion")
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color(uiColor: .white))
+                            .font(.system(size: CGFloat(30)))
+                            .padding(
+                                EdgeInsets(
+                                    top: CGFloat(16.0),
+                                    leading: CGFloat(16.0),
+                                    bottom: CGFloat(16.0),
+                                    trailing: CGFloat(16.0)
+                                )
                             )
-                        )
-                        .frame(alignment: .center)
+                            .frame(alignment: .center)
+                    }
+                    
 
                     Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
-
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(Color(uiColor: .white))
-                        .font(.system(size: CGFloat(30)))
-                        .padding(
-                            EdgeInsets(
-                                top: CGFloat(16.0),
-                                leading: CGFloat(16.0),
-                                bottom: CGFloat(16.0),
-                                trailing: CGFloat(16.0)
+                    
+                    Button {
+                        viewModel.loginPresentedViews.append("freqQuestion")
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color(uiColor: .white))
+                            .font(.system(size: CGFloat(30)))
+                            .padding(
+                                EdgeInsets(
+                                    top: CGFloat(16.0),
+                                    leading: CGFloat(16.0),
+                                    bottom: CGFloat(16.0),
+                                    trailing: CGFloat(16.0)
+                                )
                             )
-                        )
-                        .frame(alignment: .center)
+                            .frame(alignment: .center)
+                    }
                 }
                 .padding(
                     EdgeInsets(
