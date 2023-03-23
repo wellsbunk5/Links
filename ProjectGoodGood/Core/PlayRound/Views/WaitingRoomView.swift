@@ -22,40 +22,32 @@ struct WaitingRoomView: View {
                     .padding([.top],35)
             }
             
-            Divider()
-                .overlay(Color.darkGreyColor)
-            
-            Text("Join Code:")
-                .foregroundColor(Color.darkGreyColor)
-                .bold()
-                .font(.title2)
-            
-                //Dynamic Join Code
-            ZStack{
-                Color.lightGreyColor
-                    .ignoresSafeArea()
-                Text("\(viewModel.tempGroup.groupJoinCode)")
-                    .foregroundColor(Color.parColor)
-                    .bold()
-                    .font(.system(size:40))
-                
-            }
-            .frame(width: 250, height:80)
-            .cornerRadius(10)
-            .padding([.bottom],10)
-            
-            Divider()
-                .overlay(Color.darkGreyColor)
-            
-//            Text("\(viewModel.tempGroup.groupJoinCode)")
-//                .foregroundColor(Color.parColor)
-//                .bold()
-//                .font(.title)
-
-//            Text("Course: \(viewModel.selectedCourse.nickname)")
-//            Text("Front 9")
-            
             if viewModel.roundType == RoundType.withFriends {
+                Divider()
+                    .overlay(Color.darkGreyColor)
+                
+                Text("Join Code:")
+                    .foregroundColor(Color.darkGreyColor)
+                    .bold()
+                    .font(.title2)
+                
+                    //Dynamic Join Code
+                ZStack{
+                    Color.lightGreyColor
+                        .ignoresSafeArea()
+                    Text("\(viewModel.tempGroup.groupJoinCode)")
+                        .foregroundColor(Color.parColor)
+                        .bold()
+                        .font(.system(size:40))
+                    
+                }
+                .frame(width: 250, height:80)
+                .cornerRadius(10)
+                .padding([.bottom],10)
+                
+                Divider()
+                    .overlay(Color.darkGreyColor)
+            
                 Text("Players")
                     .foregroundColor(Color.birdyColor)
                     .bold()
