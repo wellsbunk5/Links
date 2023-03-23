@@ -255,6 +255,7 @@ struct NewUserView2: View {
             }
 
         }
+        .toolbar(.hidden)
     }
 }
 

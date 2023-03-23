@@ -16,6 +16,9 @@ struct User: Identifiable, Decodable, Equatable {
     let profileImageUrl: String
     var numFollowers: Int
     var numFollowing: Int
+    var age: Int
+    var gender: String
+    var frequency: String
     
     var greensInRegulation: Int
     var totalPutts: Int
@@ -32,4 +35,11 @@ struct User: Identifiable, Decodable, Equatable {
     
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == id}
     var doesFollow: Bool? = false
+}
+
+struct UserQuestions {
+    var age: Int
+    var gender: String
+    var frequency: String
+    var handicap: Int
 }

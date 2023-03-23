@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		363BBB0B2993222700403EE0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BBB0A2993222700403EE0 /* Colors.swift */; };
+		6B5631AC29CAAE3C00676D30 /* StatsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5631AB29CAAE3C00676D30 /* StatsView2.swift */; };
+		6B5631AF29CAC9B800676D30 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6B5631AE29CAC9B800676D30 /* SwiftUICharts */; };
 		6B5D5A0929A196C7004E0800 /* LoginView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0329A196C6004E0800 /* LoginView2.swift */; };
 		6B5D5A0A29A196C7004E0800 /* GenderQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0429A196C6004E0800 /* GenderQuestion.swift */; };
 		6B5D5A0B29A196C7004E0800 /* GolfFrequencyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0529A196C6004E0800 /* GolfFrequencyQuestion.swift */; };
 		6B5D5A0C29A196C7004E0800 /* AgeQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0629A196C6004E0800 /* AgeQuestion.swift */; };
 		6B5D5A0D29A196C7004E0800 /* HandicapQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0729A196C6004E0800 /* HandicapQuestion.swift */; };
 		6B5D5A0E29A196C7004E0800 /* NewUserView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D5A0829A196C6004E0800 /* NewUserView2.swift */; };
+		6B6F041529C953EB0096576D /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6F041429C953EB0096576D /* RadioButton.swift */; };
 		AE4BFD5A29916B2000E54C66 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5929916B2000E54C66 /* FriendsView.swift */; };
 		AE4BFD5C29916B4200E54C66 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */; };
 		AE4BFD5E29916B8C00E54C66 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4BFD5D29916B8C00E54C66 /* StatsView.swift */; };
@@ -73,12 +76,14 @@
 
 /* Begin PBXFileReference section */
 		363BBB0A2993222700403EE0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		6B5631AB29CAAE3C00676D30 /* StatsView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView2.swift; sourceTree = "<group>"; };
 		6B5D5A0329A196C6004E0800 /* LoginView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView2.swift; sourceTree = "<group>"; };
 		6B5D5A0429A196C6004E0800 /* GenderQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderQuestion.swift; sourceTree = "<group>"; };
 		6B5D5A0529A196C6004E0800 /* GolfFrequencyQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfFrequencyQuestion.swift; sourceTree = "<group>"; };
 		6B5D5A0629A196C6004E0800 /* AgeQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeQuestion.swift; sourceTree = "<group>"; };
 		6B5D5A0729A196C6004E0800 /* HandicapQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandicapQuestion.swift; sourceTree = "<group>"; };
 		6B5D5A0829A196C6004E0800 /* NewUserView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserView2.swift; sourceTree = "<group>"; };
+		6B6F041429C953EB0096576D /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		AE4BFD5929916B2000E54C66 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		AE4BFD5B29916B4200E54C66 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		AE4BFD5D29916B8C00E54C66 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 				BFF221D2297771BD0074E6DE /* FirebaseAuth in Frameworks */,
 				BFF221D8297771BE0074E6DE /* FirebaseStorage in Frameworks */,
 				BFF221D4297771BE0074E6DE /* FirebaseFirestore in Frameworks */,
+				6B5631AF29CAC9B800676D30 /* SwiftUICharts in Frameworks */,
 				BFF221D6297771BE0074E6DE /* FirebaseFirestoreSwift in Frameworks */,
 				BFE23E8E297B084300730601 /* Kingfisher in Frameworks */,
 			);
@@ -205,6 +211,7 @@
 				BFF221BA297750060074E6DE /* ProfileView.swift */,
 				AE4BFD5929916B2000E54C66 /* FriendsView.swift */,
 				AE4BFD5D29916B8C00E54C66 /* StatsView.swift */,
+				6B5631AB29CAAE3C00676D30 /* StatsView2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,6 +369,7 @@
 				BFF221AF2977485B0074E6DE /* GolfRounds */,
 				BFF221C5297756910074E6DE /* RoundedShape.swift */,
 				BFF221C929775B200074E6DE /* CustomInputField.swift */,
+				6B6F041429C953EB0096576D /* RadioButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -498,6 +506,7 @@
 				BFF221D5297771BE0074E6DE /* FirebaseFirestoreSwift */,
 				BFF221D7297771BE0074E6DE /* FirebaseStorage */,
 				BFE23E8D297B084300730601 /* Kingfisher */,
+				6B5631AE29CAC9B800676D30 /* SwiftUICharts */,
 			);
 			productName = ProjectGoodGood;
 			productReference = BFF22194297746E70074E6DE /* ProjectGoodGood.app */;
@@ -530,6 +539,7 @@
 			packageReferences = (
 				BFF221D0297771BD0074E6DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				BFE23E8C297B084300730601 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6B5631AD29CAC9B800676D30 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = BFF22195297746E70074E6DE /* Products */;
 			projectDirPath = "";
@@ -575,6 +585,7 @@
 				BFF221C2297755130074E6DE /* LoginView.swift in Sources */,
 				6B5D5A0929A196C7004E0800 /* LoginView2.swift in Sources */,
 				BFBA5A952980A5F900D57D5E /* ProfileViewModel.swift in Sources */,
+				6B5631AC29CAAE3C00676D30 /* StatsView2.swift in Sources */,
 				AE4BFD5C29916B4200E54C66 /* FriendsViewModel.swift in Sources */,
 				BF7F9E3D2979DF580068F38C /* SideMenuOptionRowView.swift in Sources */,
 				BFE23E98297B123900730601 /* GolfRound.swift in Sources */,
@@ -583,6 +594,7 @@
 				BFE23E89297A2EFA00730601 /* SearchBar.swift in Sources */,
 				BFF221CA29775B200074E6DE /* CustomInputField.swift in Sources */,
 				BF7F9E412979E0F20068F38C /* UserFollowerStatsView.swift in Sources */,
+				6B6F041529C953EB0096576D /* RadioButton.swift in Sources */,
 				6B5D5A0D29A196C7004E0800 /* HandicapQuestion.swift in Sources */,
 				BFE23E8B297A4A3500730601 /* NewUserView.swift in Sources */,
 				BFF22198297746E70074E6DE /* ProjectGoodGoodApp.swift in Sources */,
@@ -814,6 +826,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6B5631AD29CAC9B800676D30 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		BFE23E8C297B084300730601 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -833,6 +853,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6B5631AE29CAC9B800676D30 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B5631AD29CAC9B800676D30 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
 		BFE23E8D297B084300730601 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BFE23E8C297B084300730601 /* XCRemoteSwiftPackageReference "Kingfisher" */;

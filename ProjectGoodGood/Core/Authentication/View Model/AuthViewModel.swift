@@ -13,6 +13,8 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var loginPresentedViews = [String]()
     
+    var newUserQuestions = initialValueQuestions.initial
+    
     private var tempUserSession: FirebaseAuth.User?
     
     private let service = UserService()
@@ -53,6 +55,9 @@ class AuthViewModel: ObservableObject {
                 "uid": user.uid,
                 "numFollowing": 0,
                 "numFollowers": 0,
+                "age": 0,
+                "gender": "",
+                "frequency": "",
                 "greensInRegulation": 0,
                 "totalPutts": 0,
                 "totalHolesPlayed": 0,
@@ -64,6 +69,7 @@ class AuthViewModel: ObservableObject {
                 "totalBogey": 0,
                 "totalDouble": 0,
                 "totalTriple": 0
+                
             ]
             
             Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
@@ -83,12 +89,20 @@ class AuthViewModel: ObservableObject {
         
         ImageUploader.uploadImage(image: image) { profileImageUrl in
             Firestore.firestore().collection("users")
-                .document(uid).updateData(["profileImageUrl": profileImageUrl]) { _ in
-                    self.userSession = self.tempUserSession
-                    self.fetchUser()
-                }
+                .document(uid).updateData(["profileImageUrl": profileImageUrl])
+                //{ _ in
+                //self.userSession = self.tempUserSession
+                //self.fetchUser()
+                //}
         }
     }
+    
+    func completeSetup() {
+        service.updateUserQuestions(newUserQuestions)
+                self.userSession = self.tempUserSession
+                self.loginPresentedViews = []
+                self.fetchUser()
+        }
     
     func fetchUser() {
         service.fetchActiveUser() { user in
@@ -106,10 +120,30 @@ class AuthViewModel: ObservableObject {
                 return AnyView(
                     AddProfilePhotoView()
                 )
+            case "ageQuestion":
+                return AnyView(
+                    AgeQuestion()
+                )
+            case "genderQuestion":
+                return AnyView(
+                    GenderQuestion()
+                )
+            case "freqQuestion":
+                return AnyView(
+                    GolfFrequencyQuestion()
+                )
+            case "handicapQuestion":
+                return AnyView(
+                    HandicapQuestion()
+                )
             default:
                 return AnyView(
                     LoginView2()
                 )
         }
     }
+}
+
+struct initialValueQuestions {
+    static let initial = UserQuestions(age: 0, gender: "Male", frequency: "At least once a week", handicap: 0)
 }
