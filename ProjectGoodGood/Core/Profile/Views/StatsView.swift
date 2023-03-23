@@ -29,7 +29,7 @@ struct StatsView: View {
                 
             //Greens in Regulation
             ZStack(){
-                Color(.systemGray)
+                Color.darkGreyColor
                     .ignoresSafeArea()
                 HStack{
                     Text("Greens in Reg")
@@ -51,7 +51,7 @@ struct StatsView: View {
             
             //Scoring
             ZStack(){
-                Color(.systemGray)
+                Color.darkGreyColor
                     .ignoresSafeArea()
                 HStack{
                     Text("Scoring")
@@ -73,7 +73,7 @@ struct StatsView: View {
             
             //Handicap
             ZStack(){
-                Color(.systemGray)
+                Color.darkGreyColor
                     .ignoresSafeArea()
                 HStack{
                     Text("Handicap")
@@ -95,7 +95,7 @@ struct StatsView: View {
             
             //Putting
             ZStack(){
-                Color(.systemGray)
+                Color.darkGreyColor
                     .ignoresSafeArea()
                 HStack{
                     Text("Putting")

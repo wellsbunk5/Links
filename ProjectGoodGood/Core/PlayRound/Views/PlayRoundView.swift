@@ -68,6 +68,8 @@ struct PlayRoundView: View {
                 Button("Cancel") {
                     showPlayRoundModal = false
                 }
+                .offset(x:-30)
+                .foregroundColor(Color.darkGreyColor)
             }
             
             NavigationStack(path: $playRoundViewModel.playRoundPresentedViews) {

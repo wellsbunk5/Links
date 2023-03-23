@@ -14,12 +14,16 @@ struct AddPlayersView: View {
     var body: some View {
         VStack {
             Text("Add Players")
+                .foregroundColor(Color.birdyColor)
+                .bold()
+                .font(.title)
             
             List {
                 ForEach( viewModel.friends) { friend in
                     let added = players.contains(friend)
                     HStack {
                         Text("\(friend.fullname)")
+                            .frame(height:45)
                         Spacer()
                         if added != true {
                             Button {
@@ -38,7 +42,8 @@ struct AddPlayersView: View {
                         }
 
                     }
-                    .background(added ? Color.birdyColor : Color.lightGreyColor)
+                    .foregroundColor(added ? Color.white : Color.black )
+                    .background(added ? Color.parColor : .clear)
                 }
                 
             }
@@ -48,6 +53,8 @@ struct AddPlayersView: View {
                 viewModel.playRoundPresentedViews.removeLast()
             } label: {
                 Text("Done")
+                    .foregroundColor(Color.parColor)
+                    .font(.title2)
             }
         }
         .toolbar(.hidden)

@@ -30,7 +30,7 @@ struct PostRoundView: View {
                     }
 
                     ZStack {
-                        Color(.systemGray)
+                        Color.darkGreyColor
                             .ignoresSafeArea()
                         HStack{
                             Text("Greens in Reg")
@@ -49,7 +49,7 @@ struct PostRoundView: View {
                     .cornerRadius(10)
 
                     ZStack {
-                        Color(.systemGray)
+                        Color.darkGreyColor
                             .ignoresSafeArea()
                         HStack{
                             Text("Score Distribution")
@@ -68,7 +68,7 @@ struct PostRoundView: View {
                     .cornerRadius(10)
 
                     ZStack {
-                        Color(.systemGray)
+                        Color.darkGreyColor
                             .ignoresSafeArea()
                         HStack{
                             Text("Average Putts")
@@ -99,6 +99,8 @@ struct PostRoundView: View {
 
 
                     GolfRoundView(golfRound: round)
+                        .padding()
+
 ////                    HStack {
 ////
 ////                        ForEach(0..<selectedImages.count, id: \.self) { i in
@@ -126,31 +128,39 @@ struct PostRoundView: View {
 ////                            }
 ////                        }
 ////                    }
-//
-//
-//
-                    Button {
-                        viewModel.playRoundPresentedViews.removeLast()
-                    } label: {
-                        Text("Previous Hole")
-                    }
+
                     
-                    ZStack{
-                        Color.parColor
-                            .ignoresSafeArea()
-                        VStack{
+                    HStack{
+                        ZStack {
+                            Color.darkGreyColor
+                                .ignoresSafeArea()
                             Button {
-                                viewModel.postRound(round)
+                                viewModel.playRoundPresentedViews.removeLast()
                             } label: {
-                                Text("Post Round")
-                                    .font(.title2)
-                                    .padding(10)
-                                    .foregroundColor(Color.white)
+                                Text("Previous")
+                                    .frame(width: 106.7, height:60)
                             }
                         }
+                        .frame(width: 106.7, height:60)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                        
+                        ZStack{
+                            Color.parColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Button {
+                                    viewModel.postRound(round)
+                                } label: {
+                                    Text("Post Round")
+                                        .frame(width: 213.3, height:60)
+                                }
+                            }
+                        }
+                        .frame(width: 213.3, height:60)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
                     }
-                    .frame(width: 320, height:60)
-                    .cornerRadius(10)
                 }
             }
             .toolbar(.hidden)

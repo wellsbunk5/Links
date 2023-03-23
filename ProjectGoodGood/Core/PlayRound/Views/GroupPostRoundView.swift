@@ -19,28 +19,49 @@ struct GroupPostRoundView: View {
                             .foregroundColor(Color.birdyColor)
                             .bold()
                             .font(.title)
-
                     }
-                    
                     ForEach(rounds, id: \.userId) { round in
                         GolfRoundView(golfRound: round)
+                            .padding()
                     }
-
                 }
             }
             
-            Button {
-                viewModel.playRoundPresentedViews.removeLast()
-            } label: {
-                Text("Previous Hole")
+            HStack{
+                ZStack {
+                    Color.darkGreyColor
+                        .ignoresSafeArea()
+                    Button {
+                        viewModel.playRoundPresentedViews.removeLast()
+                    } label: {
+                        Text("Previous")
+                            .frame(width: 106.7, height:60)
+                    }
+                }
+                .frame(width: 106.7, height:60)
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
+                
+                ZStack{
+                    Color.parColor
+                        .ignoresSafeArea()
+                    VStack{
+                        Button {
+                            viewModel.postGroupRounds(rounds)
+                        } label: {
+                            Text("Post Round")
+                                .foregroundColor(Color.white)
+                                .frame(width: 213.3, height:60)
+                        }
+                        //.frame(width: 213.3, height:60)
+                    }
+                }
+                .frame(width: 213.3, height:60)
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
             }
-            
-            Button("Post Rounds") {
-                viewModel.postGroupRounds(rounds)
-            }
-            .toolbar(.hidden)
         }
-
+        .toolbar(.hidden)
     }
 }
 

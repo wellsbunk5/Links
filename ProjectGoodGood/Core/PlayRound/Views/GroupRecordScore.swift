@@ -34,48 +34,23 @@ struct GroupRecordScore: View {
                             if let player = viewModel.players[index], let tempRound = viewModel.tempGroup.tempRounds[index] {
                                 HStack{
                                     Text("\(player.fullname)")
-                                    Spacer().frame(width:40)
+                                    Spacer().frame(width:50)
                                     Text("\(tempRound.totalScore)")
-                                }.frame(height:30)
+                                }
+                                .frame(height:30)
+                                .padding(2)
                             }
-                                
                         }
-                        //* make this dynamic to show the users in the group sorted by score ascending
-                        
-//                        HStack{
-//                            Text("#2")
-//                            Text("Dummy User 2")
-//                            Spacer().frame(width:40)
-//                            Text("Stat Here")
-//                        }.frame(height:30)
-//                        HStack{
-//                            Text("#3")
-//                            Text("Dummy User 3")
-//                            Spacer().frame(width:40)
-//                            Text("Stat Here")
-//                        }.frame(height:30)
-//                        HStack{
-//                            Text("#4")
-//                            Text("Dummy User 4")
-//                            Spacer().frame(width:40)
-//                            Text("Stat Here")
-//                        }.frame(height:30)
-//                        HStack{
-//                            Text("#5")
-//                            Text("Dummy User 5")
-//                            Spacer().frame(width:40)
-//                            Text("Stat Here")
-//                        }.frame(height:30)
                     }
                 }
             }
-            .frame(width: 320, height: 150)
+            .frame(width: 320, height: 140)
             //for rounded corners
             .cornerRadius(10)
             
-            Spacer().frame(height:50)
+            Spacer().frame(height:30)
+
             //Header with Hole number and Par stat
-            //*Make this dynamic
             ZStack{
                 Text("Hole \(holeNum) : Par \(viewModel.selectedCourse.pars[holeNum] ?? 0)")
                     .foregroundColor(Color.birdyColor)
@@ -84,7 +59,6 @@ struct GroupRecordScore: View {
             }
             
             // hole score tracking box
-            //*Make dynamic
             ScrollView {
                 ForEach(0..<holeScores.count, id: \.self) { index in
                     if let player = viewModel.players[index] {
@@ -117,41 +91,56 @@ struct GroupRecordScore: View {
 
 
             //Next hole button Link
-            //*Make dynamic
-            ZStack{
-                Color.parColor
-                    .ignoresSafeArea()
-                VStack{
-                    HStack {
-                        if viewModel.currentHole > viewModel.startingHole {
-                            Button("Prev Hole") {
+            HStack {
+                if viewModel.currentHole > viewModel.startingHole {
+                    ZStack{
+                        Color.darkGreyColor
+                            .ignoresSafeArea()
+                            Button {
                                 viewModel.prevHoleGroupRound(holeScores: holeScores)
                                 viewModel.playRoundPresentedViews.removeLast()
+                            } label: {
+                                Text("Previous")
+                                    .frame(width: 106.7, height:60)
                             }
-                        }
-
-                        if viewModel.currentHole < viewModel.endingHole {
-                            Button("Next Hole") {
-                                viewModel.nextHoleGroupRound(holeScores: holeScores)
-                                viewModel.playRoundPresentedViews.append("NextHole")
-                            }
-                        } else {
-                            Button("Finish Round") {
-                                viewModel.nextHoleGroupRound(holeScores: holeScores)
-                                viewModel.playRoundPresentedViews.append("FinishRound")
-                            }
-                        }
-
                     }
-//                    NavigationLink("Next Hole", value: "N")
-//                        .font(.title2)
-//                        .padding(10)
-//                        .foregroundColor(Color.white)
+                    .frame(width: 106.7, height:60)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                }
+                
+                if viewModel.currentHole < viewModel.endingHole {
+                    ZStack{
+                        Color.parColor
+                            .ignoresSafeArea()
+                        Button {
+                            viewModel.nextHoleGroupRound(holeScores: holeScores)
+                            viewModel.playRoundPresentedViews.append("NextHole")
+                        } label: {
+                            Text("Next Hole")
+                                .frame(width: 213.3, height:60)
+                        }
+                    }
+                    .frame(width: 213.3, height:60)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                } else {
+                    ZStack{
+                        Color.parColor
+                            .ignoresSafeArea()
+                        Button {
+                            viewModel.nextHoleGroupRound(holeScores: holeScores)
+                            viewModel.playRoundPresentedViews.append("FinishRound")
+                        } label: {
+                            Text("Finish Round")
+                                .frame(width: 213.3, height:60)
+                        }
+                    }
+                    .frame(width: 213.3, height:60)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
                 }
             }
-            .frame(width: 320, height:60)
-            .cornerRadius(10)
-                
             Spacer()
 
         }

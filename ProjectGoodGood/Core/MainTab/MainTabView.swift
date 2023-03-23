@@ -24,7 +24,7 @@ struct MainTabView: View {
 //                    }
                     .tabItem {
                         Label("Play",systemImage: "figure.golf")
-                    }.tag(MainTabs.play) //tag was 2changed position to put Play in the middle
+                    }.tag(MainTabs.play)
                 
                 ExploreView()
 //                    .onTapGesture {
@@ -32,7 +32,7 @@ struct MainTabView: View {
 //                    }
                     .tabItem {
                         Label("Explore",systemImage: "magnifyingglass")
-                    }.tag(MainTabs.explore) //tag was 1 changed position to put Play in the middle
+                    }.tag(MainTabs.explore)
         }.accentColor(Color.parColor)
     }
 }

@@ -11,9 +11,6 @@ struct StartRoundView: View {
     @ObservedObject var viewModel = StartRoundViewModel()
     @State var showPlayRoundSheet = false
     
-        //*To Be used to connect to the joinViewModel and JoinBar for searching
-    //@ObservedObject var joinViewModel: JoinViewModel
-    
     var body: some View {
 //        NavigationStack(path: $viewModel.playRoundPresentedViews) {
             VStack {
@@ -54,10 +51,11 @@ struct StartRoundView: View {
                                 viewModel.holesToPlay = .front
                             } label: {
                                 Text("Front 9")
+                                    .frame(width: 320,height:35)
+                                    .padding([.top],10)
                                     .font(.title2)
-                                    .padding(10)
-                                    .foregroundColor(Color.parColor)
-                                    .background( viewModel.holesToPlay == .front ? Color.bogeyColor : .clear)
+                                    .foregroundColor(viewModel.holesToPlay == .front ? Color.white : Color.parColor)
+                                    .background( viewModel.holesToPlay == .front ? Color.parColor : .clear)
                             }
                             Divider()
                                 .overlay(Color.darkGreyColor)
@@ -66,10 +64,10 @@ struct StartRoundView: View {
                                 viewModel.holesToPlay = .back
                             } label: {
                                 Text("Back 9")
+                                    .frame(width: 320,height:40)
                                     .font(.title2)
-                                    .padding(10)
-                                    .foregroundColor(Color.parColor)
-                                    .background( viewModel.holesToPlay == .back ? Color.bogeyColor : .clear)
+                                    .foregroundColor(viewModel.holesToPlay == .back ? Color.white : Color.parColor)
+                                    .background( viewModel.holesToPlay == .back ? Color.parColor : .clear)
 
                             }
                             Divider()
@@ -79,14 +77,13 @@ struct StartRoundView: View {
                                 viewModel.holesToPlay = .full
                             } label: {
                                 Text("Full 18")
+                                    .frame(width: 320,height:35)
+                                    .padding([.bottom],10)
                                     .font(.title2)
-                                    .padding(10)
-                                    .foregroundColor(Color.parColor)
-                                    .background( viewModel.holesToPlay == .full ? Color.bogeyColor : .clear)
+                                    .foregroundColor(viewModel.holesToPlay == .full ? Color.white : Color.parColor)
+                                    .background( viewModel.holesToPlay == .full ? Color.parColor : .clear)
 
                             }
-                            Divider()
-                                .overlay( Color.darkGreyColor)
                         }
                     }
                     .frame(width: 320, height: 180)
@@ -113,13 +110,21 @@ struct StartRoundView: View {
                             .ignoresSafeArea()
                         VStack{
                             ForEach(viewModel.golfCourses) { course in
-                                Button {
-                                    viewModel.selectedCourse = course
-                                } label: {
+                                HStack{
+                                    Button {
+                                        viewModel.selectedCourse = course
+                                    } label: {
                                         Text(course.nickname)
                                             .font(.title2)
                                             .foregroundColor(Color.parColor)
-                                            .frame(width: 320, height: 60)
+                                            .frame(width: 270, height: 60)
+                                    }
+                                    Button {
+                                        viewModel.selectedCourse = course
+                                    } label: {
+                                        Image(systemName: "arrow.forward")
+                                    }
+
                                 }
 
                             }
@@ -131,88 +136,8 @@ struct StartRoundView: View {
                 Spacer()
                 
                 if viewModel.selectedCourse != nil {
-                    Button ("Play Round") {
-                        viewModel.roundType = RoundType.solo
-                        showPlayRoundSheet = true
-                    }
-                    
                     HStack(spacing: 10){
-                        //Join group play round Popup
-                        ZStack{
-                            Color.parColor
-                                .ignoresSafeArea()
-                            VStack{
-                                Button("Join Round") {
-                                    viewModel.showJoinCodeAlert = true
-                                }
-                                .font(.title3)
-                                .padding(10)
-                                .foregroundColor(Color.white)
-                                .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
-                                    TextField("Join Code", text: $viewModel.joinCode)
-                                    HStack {
-                                        Button {
-                                            viewModel.showJoinCodeAlert = false
-                                        }label: {
-                                            Text("Cancel")
-                                        }
-                                        
-                                        Button {
-                                            viewModel.checkJoinCode()
-                                            if viewModel.tempGroup != nil {
-                                                showPlayRoundSheet = true
-                                            }
-                                        } label: {
-                                            Text("Submit")
-                                        }
-                                    }
-    //                            .popover(isPresented: $showingPopover) {
-    //                                Spacer()
-    //                                    .frame(height: 50)
-    //                                    //*connect this to the joinViewModel and JoinBar for searching
-    ////                                    JoinBar(text: $joinViewModel.searchText)
-    ////                                        .padding()
-    //                                Text("Need to connect this to the joinViewModel and JoinBar for searching/inputing the join code")
-    //                                    .font(.headline)
-    //                                    .padding()
-    //                                HStack(spacing: 10){
-    //                                        //Cancel Button
-    //                                    ZStack{
-    //                                        Color.doubleBogeyColor
-    //                                            .ignoresSafeArea()
-    //                                        Button("Cancel") {
-    //                                            showingPopover = false
-    //                                        }
-    //                                        .font(.title3)
-    //                                        .padding(10)
-    //                                        .foregroundColor(Color.white)
-    //                                    }
-    //                                    .frame(width: 150, height:40)
-    //                                    .cornerRadius(10)
-    //
-    //                                        //Join Buttom after they have entered the Join Code
-    //                                    //*connect this to the joinViewModel and JoinBar for searching
-    //                                    ZStack{
-    //                                        Color.parColor
-    //                                            .ignoresSafeArea()
-    //                                        VStack{
-    //                                            NavigationLink("Join", destination: GroupPlayWaitingView())
-    //                                                .font(.title3)
-    //                                                .padding(10)
-    //                                                .foregroundColor(Color.white)
-    //                                                .navigationBarHidden(true)
-    //                                        }
-    //                                    }
-    //                                    .frame(width: 150, height:40)
-    //                                    .cornerRadius(10)
-    //                                }
-                                }
-                            }
-                        }
-                        .frame(width: 150, height:40)
-                        .cornerRadius(10)
-
-                        //*Start group play round Button. They need to select a course, so maybe this is better after they have selected a course. This should be gray until the pick a course to play
+                        //Start Group Button
                         ZStack{
                             Color.doubleBogeyColor
                                 .ignoresSafeArea()
@@ -232,99 +157,65 @@ struct StartRoundView: View {
                             PlayRoundView(startRoundViewModel: viewModel, showPlayRoundModal: $showPlayRoundSheet)
                         }
                         
-                    }
-                    .padding(.bottom, 50)
-                } else {
-                    ZStack{
-                        Color.lightGreyColor
-                            .ignoresSafeArea()
-                        VStack{
-                            Text("Play Round")
-                                .font(.title3)
-                                .padding(10)
-                                .foregroundColor(Color.white)
-                        }
-                    }
-                    .frame(width: 150, height:40)
-                    .cornerRadius(10)
-                    
-                    HStack(spacing: 10){
-                        //Join group play round Popup
+                        //Play Round Button
                         ZStack{
                             Color.parColor
                                 .ignoresSafeArea()
                             VStack{
-                                Button("Join Round") {
-                                    viewModel.showJoinCodeAlert = true
-                                }
-                                .font(.title3)
-                                .padding(10)
-                                .foregroundColor(Color.white)
-                                .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
-                                    TextField("Join Code", text: $viewModel.joinCode)
-                                    HStack {
-                                        Button {
-                                            viewModel.showJoinCodeAlert = false
-                                        }label: {
-                                            Text("Cancel")
-                                        }
-                                        
-                                        Button {
-                                            viewModel.checkJoinCode()
-                                            if viewModel.tempGroup != nil {
-                                                showPlayRoundSheet = true
-                                            }
-                                        } label: {
-                                            Text("Submit")
-                                        }
-                                    }
-    //                            .popover(isPresented: $showingPopover) {
-    //                                Spacer()
-    //                                    .frame(height: 50)
-    //                                    //*connect this to the joinViewModel and JoinBar for searching
-    ////                                    JoinBar(text: $joinViewModel.searchText)
-    ////                                        .padding()
-    //                                Text("Need to connect this to the joinViewModel and JoinBar for searching/inputing the join code")
-    //                                    .font(.headline)
-    //                                    .padding()
-    //                                HStack(spacing: 10){
-    //                                        //Cancel Button
-    //                                    ZStack{
-    //                                        Color.doubleBogeyColor
-    //                                            .ignoresSafeArea()
-    //                                        Button("Cancel") {
-    //                                            showingPopover = false
-    //                                        }
-    //                                        .font(.title3)
-    //                                        .padding(10)
-    //                                        .foregroundColor(Color.white)
-    //                                    }
-    //                                    .frame(width: 150, height:40)
-    //                                    .cornerRadius(10)
-    //
-    //                                        //Join Buttom after they have entered the Join Code
-    //                                    //*connect this to the joinViewModel and JoinBar for searching
-    //                                    ZStack{
-    //                                        Color.parColor
-    //                                            .ignoresSafeArea()
-    //                                        VStack{
-    //                                            NavigationLink("Join", destination: GroupPlayWaitingView())
-    //                                                .font(.title3)
-    //                                                .padding(10)
-    //                                                .foregroundColor(Color.white)
-    //                                                .navigationBarHidden(true)
-    //                                        }
-    //                                    }
-    //                                    .frame(width: 150, height:40)
-    //                                    .cornerRadius(10)
-    //                                }
+                                Button{
+                                    viewModel.roundType = RoundType.solo
+                                    showPlayRoundSheet = true
+                                } label:{
+                                    Text("Play Round")
+                                        .font(.title3)
+                                        .padding(10)
+                                        .foregroundColor(Color.white)
                                 }
                             }
                         }
                         .frame(width: 150, height:40)
                         .cornerRadius(10)
+                        
+                    }
+                    .padding(.bottom, 50)
+                } else {
+                    //Join group play round Popup
+                    ZStack{
+                        Color.parColor
+                            .ignoresSafeArea()
+                        VStack{
+                            Button("Join Round") {
+                                viewModel.showJoinCodeAlert = true
+                            }
+                            .font(.title3)
+                            .padding(10)
+                            .foregroundColor(Color.white)
+                            .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
+                                TextField("Join Code", text: $viewModel.joinCode)
+                                HStack {
+                                    Button {
+                                        viewModel.showJoinCodeAlert = false
+                                    }label: {
+                                        Text("Cancel")
+                                    }
 
-                        //*Start group play round Button. They need to select a course, so maybe this is better after they have selected a course. This should be gray until the pick a course to play
+                                    Button {
+                                        viewModel.checkJoinCode()
+                                        if viewModel.tempGroup != nil {
+                                            showPlayRoundSheet = true
+                                        }
+                                    } label: {
+                                        Text("Submit")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .frame(width: 150, height:40)
+                    .cornerRadius(10)
+
+                    HStack(spacing: 10){
+                        
                         ZStack{
                             Color.lightGreyColor
                                 .ignoresSafeArea()
@@ -337,6 +228,20 @@ struct StartRoundView: View {
                         }
                         .frame(width: 150, height:40)
                         .cornerRadius(10)
+                        
+                        ZStack{
+                            Color.lightGreyColor
+                                .ignoresSafeArea()
+                            VStack{
+                                Text("Play Round")
+                                    .font(.title3)
+                                    .padding(10)
+                                    .foregroundColor(Color.white)
+                            }
+                        }
+                        .frame(width: 150, height:40)
+                        .cornerRadius(10)
+
                         
                     }
                     .padding(.bottom, 50)
