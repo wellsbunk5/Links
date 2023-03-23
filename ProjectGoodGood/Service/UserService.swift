@@ -140,4 +140,13 @@ struct UserService {
         }
 
     }
+    func updateUserQuestions(_ userQuestions: UserQuestions) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users")
+            .document(uid).updateData(["age": userQuestions.age,
+                                       "gender": userQuestions.gender,
+                                       "frequency": userQuestions.frequency,
+                                       "handicap": userQuestions.handicap,
+                                      ])
+    }
 }

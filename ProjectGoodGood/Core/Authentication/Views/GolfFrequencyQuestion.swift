@@ -32,7 +32,7 @@ struct GolfFrequencyQuestion: View {
                     .multilineTextAlignment(.leading)
                 
                     RadioButtonGroup(items: ["At least once a week", "Few times a month", "Every few months", "Few times a year"], selectedId: "") { selected in
-                        print("Selected is: \(selected)")}
+                        frequency = selected}
                 
                 
                 Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
@@ -76,6 +76,7 @@ struct GolfFrequencyQuestion: View {
                     Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
 
                     Button {
+                        viewModel.newUserQuestions.frequency = frequency
                         viewModel.loginPresentedViews.append("handicapQuestion")
                     } label: {
                         Image(systemName: "chevron.right")
@@ -104,6 +105,7 @@ struct GolfFrequencyQuestion: View {
             }
 
         }
+        .toolbar(.hidden)
     }
 }
 

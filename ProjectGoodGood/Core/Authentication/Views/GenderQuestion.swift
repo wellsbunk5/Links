@@ -36,7 +36,7 @@ struct GenderQuestion: View {
                 VStack(alignment: .center, spacing: 6.0) {
                     
                     RadioButtonGroup(items: ["Male", "Female", "Other", "Prefer Not to Say"], selectedId: "") { selected in
-                                    print("Selected is: \(selected)")
+                                    gender = selected
                                 }
                     
 
@@ -84,6 +84,7 @@ struct GenderQuestion: View {
                     Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
                     
                     Button {
+                        viewModel.newUserQuestions.gender = gender
                         viewModel.loginPresentedViews.append("freqQuestion")
                     } label: {
                         Image(systemName: "chevron.right")
@@ -111,6 +112,7 @@ struct GenderQuestion: View {
             }
 
         }
+        .toolbar(.hidden)
     }
 }
 

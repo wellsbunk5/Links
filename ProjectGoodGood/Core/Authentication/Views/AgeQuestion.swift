@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct AgeQuestion: View {
-    @State private var age = ""
+    @State private var age = 0
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode
     
     let formatter: NumberFormatter = {
             let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
+            formatter.numberStyle = .none
+            formatter.zeroSymbol = ""
             return formatter
         }()
     
@@ -39,6 +40,7 @@ struct AgeQuestion: View {
 
                 ZStack {
                     TextField("", value: $age, formatter: formatter)
+                        .keyboardType(.numberPad)
                         .padding(20)
                         .background(Color(.white))
                         .cornerRadius(8)
@@ -87,6 +89,7 @@ struct AgeQuestion: View {
                     Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
 
                     Button {
+                        viewModel.newUserQuestions.age = age
                         viewModel.loginPresentedViews.append("genderQuestion")
                     } label: {
                         Image(systemName: "chevron.right")
@@ -115,6 +118,7 @@ struct AgeQuestion: View {
             }
 
         }
+        .toolbar(.hidden)
     }
 }
 

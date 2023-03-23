@@ -43,9 +43,7 @@ struct SideMenuView: View {
                         }
                     } else if option == .stats {
                         NavigationLink {
-                            StatsView2(
-                                //user: user
-                            )
+                            StatsView2(user: user)
                         }label: {
                             SideMenuOptionRowView(option: option)
                         }

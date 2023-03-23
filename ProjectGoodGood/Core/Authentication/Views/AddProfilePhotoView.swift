@@ -82,6 +82,7 @@ struct AddProfilePhotoView: View {
             }
         }
         .ignoresSafeArea()
+        .toolbar(.hidden)
     }
     
     func loadImage() {

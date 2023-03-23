@@ -13,6 +13,8 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var loginPresentedViews = [String]()
     
+    var newUserQuestions = initialValueQuestions.initial
+    
     private var tempUserSession: FirebaseAuth.User?
     
     private let service = UserService()
@@ -53,6 +55,9 @@ class AuthViewModel: ObservableObject {
                 "uid": user.uid,
                 "numFollowing": 0,
                 "numFollowers": 0,
+                "age": 0,
+                "gender": "",
+                "frequency": "",
                 "greensInRegulation": 0,
                 "totalPutts": 0,
                 "totalHolesPlayed": 0,
@@ -64,6 +69,7 @@ class AuthViewModel: ObservableObject {
                 "totalBogey": 0,
                 "totalDouble": 0,
                 "totalTriple": 0
+                
             ]
             
             Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
@@ -92,7 +98,9 @@ class AuthViewModel: ObservableObject {
     }
     
     func completeSetup() {
+        service.updateUserQuestions(newUserQuestions)
                 self.userSession = self.tempUserSession
+                self.loginPresentedViews = []
                 self.fetchUser()
         }
     
@@ -134,4 +142,8 @@ class AuthViewModel: ObservableObject {
                 )
         }
     }
+}
+
+struct initialValueQuestions {
+    static let initial = UserQuestions(age: 0, gender: "Male", frequency: "At least once a week", handicap: 0)
 }

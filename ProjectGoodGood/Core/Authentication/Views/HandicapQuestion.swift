@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct HandicapQuestion: View {
-    @State private var handicap = ""
+    @State private var handicap = 0
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode
     
     let formatter: NumberFormatter = {
             let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
+            formatter.numberStyle = .none
+            formatter.zeroSymbol = ""
             return formatter
         }()
     
@@ -39,6 +40,7 @@ struct HandicapQuestion: View {
 
                 ZStack{
                     TextField("", value: $handicap, formatter: formatter)
+                        .keyboardType(.numberPad)
                         .padding(20)
                         .background(Color(.white))
                         .cornerRadius(8)
@@ -100,6 +102,7 @@ struct HandicapQuestion: View {
                     Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
 
                     Button {
+                        viewModel.newUserQuestions.handicap = handicap
                         viewModel.completeSetup()
                     } label: {
                         Image(systemName: "chevron.right")
@@ -127,6 +130,7 @@ struct HandicapQuestion: View {
             }
 
         }
+        .toolbar(.hidden)
     }
 }
 
