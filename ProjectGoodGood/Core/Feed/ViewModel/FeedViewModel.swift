@@ -13,11 +13,25 @@ class FeedViewModel: ObservableObject {
     let userService = UserService()
     
     init() {
-        fetchRounds()
+        fetchRoundListener()
     }
     
     func fetchRounds() {
         service.fetchRounds { rounds in
+            self.rounds = rounds
+            
+            for i in 0..<rounds.count {
+                let uid = rounds[i].userId
+                
+                self.userService.fetchUser(withUid: uid) { user in
+                    self.rounds[i].user = user
+                }
+            }
+        }
+    }
+    
+    func fetchRoundListener() {
+        service.fetchRoundListener { rounds in
             self.rounds = rounds
             
             for i in 0..<rounds.count {
