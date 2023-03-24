@@ -95,6 +95,9 @@ struct GolfRoundService {
                 "profileImageUrl": player.profileImageUrl,
                 "numFollowers": player.numFollowers,
                 "numFollowing": player.numFollowing,
+                "age": player.age,
+                "gender": player.gender,
+                "frequency": player.frequency,
                 
                 "greensInRegulation": player.greensInRegulation,
                 "totalPutts": player.totalPutts,
