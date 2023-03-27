@@ -190,29 +190,32 @@ struct StartRoundView: View {
                             .font(.title3)
                             .padding(10)
                             .foregroundColor(Color.white)
-                            .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
-                                TextField("Join Code", text: $viewModel.joinCode)
-                                HStack {
-                                    Button {
-                                        viewModel.showJoinCodeAlert = false
-                                    }label: {
-                                        Text("Cancel")
-                                    }
-
-                                    Button {
-                                        viewModel.checkJoinCode()
-                                        if viewModel.tempGroup != nil {
-                                            showPlayRoundSheet = true
-                                        }
-                                    } label: {
-                                        Text("Submit")
-                                    }
-                                }
-                            }
+                        }
+                        .fullScreenCover(isPresented: $showPlayRoundSheet, onDismiss: clearTempRound) {
+                            PlayRoundView(startRoundViewModel: viewModel, showPlayRoundModal: $showPlayRoundSheet)
                         }
                     }
                     .frame(width: 150, height:40)
                     .cornerRadius(10)
+                    .alert("Enter Join Code", isPresented: $viewModel.showJoinCodeAlert) {
+                        TextField("Join Code", text: $viewModel.joinCode)
+                        HStack {
+                            Button {
+                                viewModel.showJoinCodeAlert = false
+                            }label: {
+                                Text("Cancel")
+                            }
+
+                            Button {
+                                viewModel.checkJoinCode()
+                                if viewModel.tempGroup != nil {
+                                    showPlayRoundSheet = true
+                                }
+                            } label: {
+                                Text("Submit")
+                            }
+                        }
+                    }
 
                     HStack(spacing: 10){
                         

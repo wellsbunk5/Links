@@ -95,6 +95,9 @@ struct GolfRoundService {
                 "profileImageUrl": player.profileImageUrl,
                 "numFollowers": player.numFollowers,
                 "numFollowing": player.numFollowing,
+                "age": player.age,
+                "gender": player.gender,
+                "frequency": player.frequency,
                 
                 "greensInRegulation": player.greensInRegulation,
                 "totalPutts": player.totalPutts,
@@ -167,6 +170,32 @@ struct GolfRoundService {
                 
                 documents.forEach { doc in
                     followedUsers.append(doc.documentID)
+                }
+                
+                Firestore.firestore().collection("rounds")
+                      .whereField("userId", in: followedUsers)
+                      .order(by: "timestamp", descending: true).limit(to: 15)
+                      .getDocuments { snapshot , _ in
+                          guard let documents = snapshot?.documents else { return }
+                          let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
+                          completion(rounds)
+                             
+                    }
+            }
+    }
+    
+    func fetchRoundListener(completion: @escaping([GolfRound]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        var followedUsers = [uid]
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .collection("following")
+            .getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+                
+                documents.forEach { doc in
+                    followedUsers.append(doc.documentID)
                     //                    let userId = doc.documentID
                     //
                     //                    Firestore.firestore().collection("user-rounds").document(userId).collection("rounds")
@@ -191,14 +220,22 @@ struct GolfRoundService {
                       .whereField("userId", in: followedUsers)
                       .order(by: "timestamp", descending: true).limit(to: 15)
                       .addSnapshotListener { querySnapshot, _ in
-                             guard let documents = querySnapshot?.documents else { return }
-                          
-                          let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
-                          completion(rounds)
+                          guard let snapshot = querySnapshot else { return }
+                          snapshot.documentChanges.forEach { diff in
+                              if (diff.type == .added || diff.type == .removed) {
+                                  guard let documents = querySnapshot?.documents else { return }
+
+                                  let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
+                                  completion(rounds)
+                              }
+                          }
+//                          guard let documents = querySnapshot?.documents else { return }
+//
+//                          let rounds = documents.compactMap({ try? $0.data(as: GolfRound.self) })
+//                          completion(rounds)
+//
                     }
             }
-        
-//        listener.remove()
     }
     
     func fetchRounds(forUid uid: String, completion: @escaping([GolfRound]) -> Void) {
