@@ -173,30 +173,30 @@ struct GolfRoundView: View {
                                     .frame(height: 70)
                                     .overlay(.black)
                                 
-                                ForEach(viewModel.golfRound.scores.sorted(by: <), id: \.key) { key, value in
+                                ForEach (1...18, id:\.self) {
                                         VStack {
-                                            Text("\(key)")
+                                            Text("\(id)")
                                                 .frame(width: 20)
                                                 .font(.caption)
                                             
-                                            Text("\(course.pars[key] ?? 3)")
+                                            Text("\(course.pars[id] ?? 3)")
                                                 .frame(width: 20, height: 10)
                                                 .font(.caption)
                                             
-                                            if course.pars[key] == value {
-                                                Text("\(value)")
+                                            if course.pars[id] == viewModel.golfRound.scores[String(id)] {
+                                                Text("\(viewModel.golfRound.scores[String(id)])")
                                                     .frame(width: 20, height: 20)
                                                     .fontWeight(.bold)
                                                     .font(.title3)
                                                     .foregroundColor(Color.parColor)
                                             }
-                                            else if course.pars[key] ?? 4 <= (value - 1) {
+                                            else if course.pars[id] ?? 4 <= ((viewModel.golfRound.scores[String(id)]) - 1) {
                                                 ZStack {
                                                     Rectangle()
                                                         .stroke(Color.bogeyColor, lineWidth: 2)
                                                         .frame(width: 22, height: 22)
                                                     
-                                                    Text("\(value)")
+                                                    Text("\(viewModel.golfRound.scores[String(id)])")
                                                         .frame(width: 20, height: 20)
                                                         .fontWeight(.bold)
                                                         .font(.title3)
@@ -204,20 +204,19 @@ struct GolfRoundView: View {
                                                 }
 
                                             }
-                                            else if course.pars[key] ?? 4 >= (value + 1) {
+                                            else if course.pars[id] ?? 4 >= ((viewModel.golfRound.scores[String(id)]) + 1) {
                                                 ZStack {
                                                     Circle()
                                                         .stroke(Color.birdyColor, lineWidth: 2)
                                                         .frame(width: 22, height: 22)
                                                     
-                                                    Text("\(value)")
+                                                    Text("\(viewModel.golfRound.scores[String(id)])")
                                                         .frame(width: 20, height: 20)
                                                         .fontWeight(.bold)
                                                         .font(.title3)
                                                         .foregroundColor(Color.birdyColor)
                                                 }
                                             }
-            
                                         }
                                 }
                                 
@@ -267,18 +266,3 @@ struct GolfRoundView: View {
     }
     
 }
-
-//struct GolfRoundView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GolfRoundView(golfRound: GolfRound(id: "123", userId: "123", courseId: "143", likes: 270, numHoles: 9, totalScore: 41, scores: [
-//            "1": 3,
-//            "2": 5,
-//            "3": 3,
-//            "4": 3,
-//            "5": 3,
-//            "6": 3,
-//            "7": 4,
-//            "8": 5,
-//            "9": 3], putts: ["1": 1], roundPictureUrls: ["urlHere"]))
-//    }
-//}
