@@ -21,7 +21,7 @@ struct FeedView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach ( feedViewModel.rounds) { golfRound in
-                            GolfRoundView(golfRound: golfRound)
+                            GolfRoundView(golfRound: golfRound, showLikeButton: true)
                                 .padding()
                             
                         }
@@ -72,6 +72,7 @@ struct FeedView: View {
         }
         .refreshable {
             feedViewModel.fetchRounds()
+            viewModel.fetchUser()
         }
     }
 }

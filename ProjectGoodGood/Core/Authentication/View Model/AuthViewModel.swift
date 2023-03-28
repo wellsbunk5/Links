@@ -104,8 +104,15 @@ class AuthViewModel: ObservableObject {
                 self.fetchUser()
         }
     
-    func fetchUser() {
+    func fetchActiveUser() {
         service.fetchActiveUser() { user in
+            self.currentUser = user
+        }
+    }
+    func fetchUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        service.fetchUser(withUid: uid) { user in
             self.currentUser = user
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StatsView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    private let user: User
+    @State var user: User
 
     init(user: User) {
         self.user = user

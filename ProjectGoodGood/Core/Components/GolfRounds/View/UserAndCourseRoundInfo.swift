@@ -7,11 +7,13 @@
 
 import SwiftUI
 import Kingfisher
+import Firebase
 
 struct UserAndCourseRoundInfo: View {
     let user: User
     let course: Course
-    let numHoles: Int
+    let viewModel: GolfRoundViewModel
+    var dateFormatter = DateFormatter()
     
     var body: some View {
         VStack {
@@ -27,14 +29,20 @@ struct UserAndCourseRoundInfo: View {
                     .padding()
                     .font(.title2).bold()
                     .frame(width: 250, height: 50, alignment: .leading)
+                
             }
+            
+            Text(viewModel.golfRound.timestamp.dateValue(), style: .date)
+                .font(.caption)
+                .padding(0)
+                .frame(alignment: .leading)
             
             HStack {
                 Text(course.nickname)
                     .font(.title2)
                     .frame(width: 170, height: 25, alignment: .leading)
                 
-                Text("\(numHoles) Holes")
+                Text("\(viewModel.golfRound.numHoles) Holes")
                     .font(.title2)
                     .frame(width: 150, height: 25, alignment: .leading)
             }

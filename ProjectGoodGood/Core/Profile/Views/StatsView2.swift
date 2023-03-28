@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import Firebase
 
 struct Strokes: Identifiable {
     let score: String
@@ -17,7 +18,8 @@ struct Strokes: Identifiable {
 
 struct StatsView2: View {
     var data: [Strokes]
-    var user: User
+    @State var user: User
+    let userService = UserService()
     
     init (user: User) {
         self.user = user
@@ -57,6 +59,11 @@ struct StatsView2: View {
                                 .font(.title2.bold())
                                 .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
                                 .multilineTextAlignment(.leading)
+                            
+                            Text("Green in Reg %:")
+                                .font(.title2.bold())
+                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                .multilineTextAlignment(.leading)
 
                             Text("Handicap:")
                                 .font(.title2.bold())
@@ -72,7 +79,12 @@ struct StatsView2: View {
                                 .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
                                 .multilineTextAlignment(.leading)
 
-                            Text("\(user.roundsPlayed > 0 ? user.totalPutts / user.totalHolesPlayed : 0 )")
+                            Text("\(user.roundsPlayed > 0 ? Double(user.totalPutts) / Double(user.totalHolesPlayed) : 0.0, specifier: "%.2f" )")
+                                .font(.title2.bold())
+                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                .multilineTextAlignment(.leading)
+                            
+                            Text("\(user.roundsPlayed > 0 ? (Double(user.greensInRegulation) / Double(user.totalHolesPlayed)) * 100 : 0, specifier: "%.0f" )%")
                                 .font(.title2.bold())
                                 .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
                                 .multilineTextAlignment(.leading)
@@ -85,65 +97,9 @@ struct StatsView2: View {
                     }
                     .frame(width: 290.0, alignment: .center)
                 }
-                .frame(width: 320, height: 120)
+                .frame(width: 320, height: 130)
                 //for rounded corners
                 .cornerRadius(10)
-                
-//                ZStack(alignment: .center) {
-//                    HStack(alignment: .center, spacing: 8.0) {
-//                        VStack(alignment: .leading, spacing: 8.0) {
-//                            Text("Total Rounds:")
-//                                .font(.title2.bold())
-//                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
-//                                .multilineTextAlignment(.leading)
-//
-//                            Text("Average Putts:")
-//                                .font(.title2.bold())
-//                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
-//                                .multilineTextAlignment(.leading)
-//
-//                            Text("Handicap:")
-//                                .font(.title2.bold())
-//                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
-//                                .multilineTextAlignment(.leading)
-//                        }
-//
-//                        Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
-//
-//                        VStack(alignment: .leading, spacing: 8.0) {
-//                            Text("\(user.roundsPlayed)")
-//                                .font(.title2.bold())
-//                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
-//                                .multilineTextAlignment(.leading)
-//
-//                            Text("\(user.roundsPlayed > 0 ? user.totalPutts / user.totalHolesPlayed : 0 )")
-//                                .font(.title2.bold())
-//                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
-//                                .multilineTextAlignment(.leading)
-//
-//                            Text("\(user.handicap)")
-//                                .font(.title2.bold())
-//                                .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
-//                                .multilineTextAlignment(.leading)
-//                        }
-//                    }
-//                    .frame(width: 290.0, alignment: .center)
-//                }
-//                .background(
-//                    ZStack {
-//                        RoundedRectangle(
-//                            cornerRadius: 10,
-//                            style: .circular
-//                        )
-//                        .fill(
-//                            Color(uiColor: .systemGray)
-//                        )
-//                        .ignoresSafeArea()
-//                        .opacity(1.0)
-//                    }
-//                    .compositingGroup()
-//                    .frame(width: 320.0, height: 120.0)
-//                )
 
                 
                 ZStack{
@@ -165,6 +121,7 @@ struct StatsView2: View {
                     
                 }
                 .frame(width:320)
+                .padding(.top)
 
 
                 //Scoring

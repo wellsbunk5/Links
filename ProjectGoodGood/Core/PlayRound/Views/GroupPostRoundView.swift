@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct GroupPostRoundView: View {
+    @State private var selectedItems = [PhotosPickerItem]()
+    @State private var selectedImages = [Image]()
     var viewModel: PlayRoundViewModel
     var rounds: [GolfRound]
     var body: some View {
@@ -21,9 +24,43 @@ struct GroupPostRoundView: View {
                             .font(.title)
                     }
                     ForEach(rounds, id: \.userId) { round in
-                        GolfRoundView(golfRound: round)
+                        GolfRoundView(golfRound: round, showLikeButton: false)
                             .padding()
                     }
+                }
+            }
+            
+            HStack {
+
+                ForEach(0..<selectedImages.count, id: \.self) { i in
+                      selectedImages[i]
+                          .resizable()
+                          .scaledToFit()
+                          .frame(width: 100, height: 100)
+                  }
+            }
+            
+            PhotosPicker( selection: $selectedItems, maxSelectionCount: 3, matching: .images) {
+                HStack {
+                    Text("Add Photos")
+                    Image(systemName: "photo.on.rectangle.angled")
+                }
+            }
+            .onChange(of: selectedItems) { _ in
+                Task {
+                    selectedImages.removeAll()
+                    var imageDataArr = [Data]()
+
+                    for item in selectedItems {
+                        if let data = try? await item.loadTransferable(type: Data.self) {
+                            if let uiImage = UIImage(data: data) {
+                                imageDataArr.append(data)
+                                let image = Image(uiImage: uiImage)
+                                selectedImages.append(image)
+                            }
+                        }
+                    }
+                    viewModel.uploadImages(imagesData: imageDataArr)
                 }
             }
             

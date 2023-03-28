@@ -18,6 +18,7 @@ struct ProjectGoodGoodApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(viewModel)
+                .preferredColorScheme(.light)
         }
     }
 }

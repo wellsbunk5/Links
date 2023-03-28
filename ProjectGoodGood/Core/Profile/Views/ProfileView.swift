@@ -76,7 +76,7 @@ struct ProfileView: View {
                 //User rounds: *need to add Nate's scorecard component
             ScrollView {
                 ForEach (profileViewModel.roundsPlayed) { golfRound in
-                    GolfRoundView(golfRound: golfRound)
+                    GolfRoundView(golfRound: golfRound, showLikeButton: true)
                         .padding()
                     
                 }

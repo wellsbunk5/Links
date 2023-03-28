@@ -32,4 +32,30 @@ struct ImageUploader {
             }
         }
     }
+    
+    static func uploadImages(imagesData: [Data], completion: @escaping([String]) -> Void) {
+        var imageUrls = [String]()
+        for imageData in imagesData {
+            let filename = NSUUID().uuidString
+            let ref = Storage.storage().reference(withPath: "/golf_round_images/\(filename)")
+            
+            ref.putData(imageData, metadata: nil) { _, error in
+                if let error = error {
+                    print("DEBUG: Failed to upload image with error: \(error.localizedDescription)")
+                    return
+                }
+                
+                ref.downloadURL { imageUrl, error in
+                    if let error = error {
+                        print("DEBUG: Failed to download image with error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let imageUrl = imageUrl?.absoluteString else { return }
+                    imageUrls.append(imageUrl)
+                    completion(imageUrls)
+                }
+            }
+        }
+    }
 }

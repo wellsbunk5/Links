@@ -9,26 +9,27 @@ import SwiftUI
 import Kingfisher
 
 struct GolfRoundView: View {
-    @State private var showLikeComment = true
+    let showLikeButton: Bool
+    
     @ObservedObject var viewModel: GolfRoundViewModel
     
-    init(golfRound: GolfRound) {
+    init(golfRound: GolfRound, showLikeButton: Bool) {
         self.viewModel = GolfRoundViewModel(golfRound: golfRound)
+        self.showLikeButton = showLikeButton
         
         self.viewModel.setCourse(courseId: self.viewModel.golfRound.courseId)
-    }
+        
+        }
     
     var body: some View {
         VStack(alignment: .leading) {
             
             if let user = viewModel.golfRound.user, let course = viewModel.golfRound.course {
-                UserAndCourseRoundInfo(user: user, course: course, numHoles: viewModel.golfRound.numHoles)
+                UserAndCourseRoundInfo(user: user, course: course, viewModel: viewModel)
             }
 
 
-//            Text(DateFormatter().string(from: viewModel.golfRound.timestamp.dateValue()))
-//                .font(.headline)
-//                .frame(width: 325, height: 25, alignment: .leading)
+
             
             
             if let course = viewModel.golfRound.course {
@@ -200,8 +201,26 @@ struct GolfRoundView: View {
                 }
             }
             
-            if showLikeComment == true{
+            if viewModel.golfRound.roundPictureUrls.count > 0 {
                 HStack {
+                    ForEach(viewModel.golfRound.roundPictureUrls, id:\.self) {imageUrl in
+                        KFImage(URL(string: imageUrl))
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Rectangle())
+                            .frame(width: 75, height: 75)
+                            .padding(.horizontal, 5)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 2)
+            }
+            
+
+            
+            if showLikeButton == true{
+                HStack {
+                    Spacer()
                     //Like Button
                     Button {
                         viewModel.golfRound.didLike ?? false ?
@@ -213,12 +232,12 @@ struct GolfRoundView: View {
                             .foregroundColor(viewModel.golfRound.didLike ?? false ? .red : .gray)
                     }
                     //Comment Button
-                    Button {
-                        // action
-                    } label: {
-                        Image(systemName: "bubble.left")
-                            .font(.subheadline)
-                    }
+//                    Button {
+//                        // action
+//                    } label: {
+//                        Image(systemName: "bubble.left")
+//                            .font(.subheadline)
+//                    }
                     
                 }
                 .padding(1)

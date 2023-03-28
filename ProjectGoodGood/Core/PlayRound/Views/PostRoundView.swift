@@ -9,8 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct PostRoundView: View {
-//    @State private var selectedItems = [PhotosPickerItem]()
-//    @State private var selectedImages = [Image]()
+    @State private var selectedItems = [PhotosPickerItem]()
+    @State private var selectedImages = [Image]()
     var viewModel: PlayRoundViewModel
     var round: GolfRound
 
@@ -28,64 +28,52 @@ struct PostRoundView: View {
                             .bold()
                             .font(.title)
                     }
-
-                    ZStack {
-                        Color.darkGreyColor
+                    
+                    ZStack(){
+                        Color(.systemGray)
                             .ignoresSafeArea()
-                        HStack{
-                            Text("Greens in Reg")
-                                .colorInvert()
-                                .bold()
-                                .font(.title2)
-                            Text("   ")
-                            HStack{
-                                Text("\(round.greensInRegulation)")
-                                    .foregroundColor(Color(.systemOrange))
-                                    .bold()
-                            }
-                       }
-                    }
-                    .frame(width: 320, height: 80)
-                    .cornerRadius(10)
+                        HStack(alignment: .center, spacing: 8.0) {
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                Text("Holes Played:")
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                    .multilineTextAlignment(.leading)
 
-                    ZStack {
-                        Color.darkGreyColor
-                            .ignoresSafeArea()
-                        HStack{
-                            Text("Score Distribution")
-                                .colorInvert()
-                                .bold()
-                                .font(.title2)
-                            Text("   ")
-                            HStack{
-                                Text("Score goes here")
-                                    .foregroundColor(Color(.systemOrange))
-                                    .bold()
+                                Text("Average Putts:")
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Text("Greens in Reg")
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                    .multilineTextAlignment(.leading)
                             }
-                       }
-                    }
-                    .frame(width: 320, height: 80) //was 120
-                    .cornerRadius(10)
 
-                    ZStack {
-                        Color.darkGreyColor
-                            .ignoresSafeArea()
-                        HStack{
-                            Text("Average Putts")
-                                .colorInvert()
-                                .bold()
-                                .font(.title2)
-                            Text("   ")
-                            HStack{
-                                Text("\(round.totalPutts / round.numHoles)")
-                                    .foregroundColor(Color(.systemOrange))
-                                    .bold()
+                            Spacer().frame(minWidth: 0, minHeight: 0).layoutPriority(-1)
+
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                Text("\(round.numHoles)")
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                    .multilineTextAlignment(.leading)
+
+                                Text("\(Double(round.totalPutts) / Double(round.numHoles), specifier: "%.2f" )")
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Text("\(round.greensInRegulation) / \(round.numHoles)")
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color(hue: 0.0, saturation: 0.0, brightness: 1.0, opacity: 1.0))
+                                    .multilineTextAlignment(.leading)
                             }
-                       }
+                        }
+                        .frame(width: 290.0, alignment: .center)
                     }
-                    .frame(width: 320, height: 80)
+                    .frame(width: 320, height: 120)
+                    //for rounded corners
                     .cornerRadius(10)
-                    .padding(.bottom, 20)
 
 
                     Divider()
@@ -98,36 +86,42 @@ struct PostRoundView: View {
                     }
 
 
-                    GolfRoundView(golfRound: round)
+                    GolfRoundView(golfRound: round, showLikeButton: false)
                         .padding()
 
-////                    HStack {
-////
-////                        ForEach(0..<selectedImages.count, id: \.self) { i in
-////                              selectedImages[i]
-////                                  .resizable()
-////                                  .scaledToFit()
-////                                  .frame(width: 100, height: 100)
-////                          }
-////
-////
-////                        PhotosPicker("Select images", selection: $selectedItems, matching: .images)
-////
-////                    }
-////                    .onChange(of: selectedItems) { _ in
-////                        Task {
-////                            selectedImages.removeAll()
-////
-////                            for item in selectedItems {
-////                                if let data = try? await item.loadTransferable(type: Data.self) {
-////                                    if let uiImage = UIImage(data: data) {
-////                                        let image = Image(uiImage: uiImage)
-////                                        selectedImages.append(image)
-////                                    }
-////                                }
-////                            }
-////                        }
-////                    }
+                    HStack {
+
+                        ForEach(0..<selectedImages.count, id: \.self) { i in
+                              selectedImages[i]
+                                  .resizable()
+                                  .scaledToFit()
+                                  .frame(width: 100, height: 100)
+                          }
+                    }
+                    
+                    PhotosPicker( selection: $selectedItems, maxSelectionCount: 3, matching: .images) {
+                        HStack {
+                            Text("Add Photos")
+                            Image(systemName: "photo.on.rectangle.angled")
+                        }
+                    }
+                    .onChange(of: selectedItems) { _ in
+                        Task {
+                            selectedImages.removeAll()
+                            var imageDataArr = [Data]()
+
+                            for item in selectedItems {
+                                if let data = try? await item.loadTransferable(type: Data.self) {
+                                    if let uiImage = UIImage(data: data) {
+                                        imageDataArr.append(data)
+                                        let image = Image(uiImage: uiImage)
+                                        selectedImages.append(image)
+                                    }
+                                }
+                            }
+                            viewModel.uploadImages(imagesData: imageDataArr)
+                        }
+                    }
 
                     
                     HStack{
@@ -165,16 +159,6 @@ struct PostRoundView: View {
             }
             .toolbar(.hidden)
     }
-
-//    func loadImage() async {
-//        guard let selectedImage = selectedImage else { return }
-//        if let data = try? await selectedImage.loadTransferable(type: Data.self) {
-//            let image = UIImage(data: data)
-//            guard let image = image else { return }
-//            images.append(image)
-//        }
-//
-//    }
 }
 
 //struct PostRoundView_Previews: PreviewProvider {

@@ -175,11 +175,17 @@ class PlayRoundViewModel: ObservableObject {
             tempGroup.tempRounds.append(round)
         }
     }
+    
+    func uploadImages(imagesData: [Data]) {
+        ImageUploader.uploadImages(imagesData: imagesData) { imageUrls in
+            self.tempGroup.roundPictureUrls = imageUrls
+        }
+    }
 
     
     
     func postRound(_ round: GolfRound) {
-        service.postRound(round)
+        service.postRound(round, pictureUrls: tempGroup.roundPictureUrls)
         userService.updateUserStats(with: round)
         
         showPlayRoundModal = false
@@ -188,7 +194,7 @@ class PlayRoundViewModel: ObservableObject {
     
     func postGroupRounds(_ rounds: [GolfRound]) {
         rounds.forEach { round in
-            service.postRound(round)
+            service.postRound(round, pictureUrls: tempGroup.roundPictureUrls)
             userService.updateUserStats(with: round)
         }
         
