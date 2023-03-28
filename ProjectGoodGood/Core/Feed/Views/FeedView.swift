@@ -70,9 +70,9 @@ struct FeedView: View {
                 showMenu = false
             }
         }
-//        .refreshable {
-//            feedViewModel.fetchRounds()
-//        }
+        .refreshable {
+            feedViewModel.fetchRounds()
+        }
     }
 }
 

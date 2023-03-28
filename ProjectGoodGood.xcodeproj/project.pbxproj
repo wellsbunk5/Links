@@ -36,6 +36,8 @@
 		BF7F9E482979FE230068F38C /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E472979FE230068F38C /* ImageUploader.swift */; };
 		BF7F9E4A297A1AD70068F38C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E49297A1AD60068F38C /* UserService.swift */; };
 		BF7F9E4C297A1D4E0068F38C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E4B297A1D4E0068F38C /* User.swift */; };
+		BF80E85E29D24DCE0013883B /* UserAndCourseRoundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF80E85D29D24DCE0013883B /* UserAndCourseRoundInfo.swift */; };
+		BF80E86029D250720013883B /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF80E85F29D250720013883B /* ScoreCardView.swift */; };
 		BF95120A298C52E600230A4B /* RecordScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF951209298C52E600230A4B /* RecordScore.swift */; };
 		BF95120C298C8B4A00230A4B /* PostRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF95120B298C8B4A00230A4B /* PostRoundView.swift */; };
 		BFBA5A952980A5F900D57D5E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA5A942980A5F900D57D5E /* ProfileViewModel.swift */; };
@@ -103,6 +105,8 @@
 		BF7F9E472979FE230068F38C /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		BF7F9E49297A1AD60068F38C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF7F9E4B297A1D4E0068F38C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BF80E85D29D24DCE0013883B /* UserAndCourseRoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndCourseRoundInfo.swift; sourceTree = "<group>"; };
+		BF80E85F29D250720013883B /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
 		BF951209298C52E600230A4B /* RecordScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordScore.swift; sourceTree = "<group>"; };
 		BF95120B298C8B4A00230A4B /* PostRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRoundView.swift; sourceTree = "<group>"; };
 		BFBA5A942980A5F900D57D5E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				BFF221B0297748760074E6DE /* GolfRoundView.swift */,
+				BF80E85D29D24DCE0013883B /* UserAndCourseRoundInfo.swift */,
+				BF80E85F29D250720013883B /* ScoreCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				BF7F9E432979F5660068F38C /* AddProfilePhotoView.swift in Sources */,
 				BFF2219A297746E70074E6DE /* ContentView.swift in Sources */,
 				BF7F9E4A297A1AD70068F38C /* UserService.swift in Sources */,
+				BF80E86029D250720013883B /* ScoreCardView.swift in Sources */,
 				BF7F9E3F2979DF7E0068F38C /* SideMenuViewModel.swift in Sources */,
 				BFF221B1297748760074E6DE /* GolfRoundView.swift in Sources */,
 				BFF221AE297747AE0074E6DE /* FeedView.swift in Sources */,
@@ -619,6 +626,7 @@
 				BFE23E87297A2BFB00730601 /* ExploreViewModel.swift in Sources */,
 				BF0E1E9929C18C3600781177 /* WaitingRoomView.swift in Sources */,
 				BF0E1E9B29C18D3E00781177 /* AddPlayersView.swift in Sources */,
+				BF80E85E29D24DCE0013883B /* UserAndCourseRoundInfo.swift in Sources */,
 				AE4BFD5E29916B8C00E54C66 /* StatsView.swift in Sources */,
 				BFF221BD297750160074E6DE /* StartRoundView.swift in Sources */,
 				BFF221C6297756910074E6DE /* RoundedShape.swift in Sources */,

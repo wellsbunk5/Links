@@ -130,7 +130,7 @@ struct StartRoundView: View {
                             }
                         }
                     }
-                    .frame(width: 320, height: 60)
+                    .frame(width: 320, height: CGFloat(viewModel.golfCourses.count) * 60)
                     .cornerRadius(10)
                 }
                 Spacer()

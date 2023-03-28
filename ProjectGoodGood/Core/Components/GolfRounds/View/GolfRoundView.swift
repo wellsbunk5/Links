@@ -20,58 +20,24 @@ struct GolfRoundView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let user = viewModel.golfRound.user {
-                HStack(alignment: .top, spacing: 12) {
-                    KFImage(URL(string: user.profileImageUrl))
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
-                        .shadow(radius: 3)
-                    
-                    Text(user.fullname)
-                        .padding()
-                        .font(.title2).bold()
-                        .frame(width: 250, height: 50, alignment: .leading)
-                }
+            
+            if let user = viewModel.golfRound.user, let course = viewModel.golfRound.course {
+                UserAndCourseRoundInfo(user: user, course: course, numHoles: viewModel.golfRound.numHoles)
             }
 
-            //Text for date not appearing
-            Text(DateFormatter().string(from: viewModel.golfRound.timestamp.dateValue()))
-                .font(.headline)
-                .frame(width: 325, height: 25, alignment: .leading)
+
+//            Text(DateFormatter().string(from: viewModel.golfRound.timestamp.dateValue()))
+//                .font(.headline)
+//                .frame(width: 325, height: 25, alignment: .leading)
             
-             //* Caption for Post, need to make this dynamic and optional for the post round
-            VStack{
-                if showLikeComment == true{
-                    Text("Placeholder for caption. Realistically this will be a couple lines pulling from the database that someone will add when the are on the 'Post Round' view.")
-                      .font(.system(size:12))
-                }
-                    //show input box *Need to connect this to the backend
-                else{
-                    Text("Replace with input field")
-                        .font(.system(size:12))
-//                    CustomInputField(imageName: "bubble.left", placeholderText: "Comment", isSecureField: false, text:$comment)
-                }
-            }
             
             if let course = viewModel.golfRound.course {
-                HStack {
-                    Text(course.nickname)
-                        .font(.title2)
-                        .frame(width: 170, height: 25, alignment: .leading)
-                    
-                    Text("\(viewModel.golfRound.numHoles) Holes")
-                        .font(.title2)
-                        .frame(width: 150, height: 25, alignment: .leading)
-                }
-                
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.roundColor)
                         .frame(width: 350, height: 200)
                     
-                    if viewModel.golfRound.scores.count == 9 {
+                    if viewModel.golfRound.numHoles == 9 {
                         VStack {
                             HStack {
                                 VStack {
@@ -173,30 +139,30 @@ struct GolfRoundView: View {
                                     .frame(height: 70)
                                     .overlay(.black)
                                 
-                                ForEach (1...18, id:\.self) {
+                                ForEach (1...18, id:\.self) { hole in
                                         VStack {
-                                            Text("\(id)")
+                                            Text("\(hole)")
                                                 .frame(width: 20)
                                                 .font(.caption)
                                             
-                                            Text("\(course.pars[id] ?? 3)")
+                                            Text("\(course.pars["\(hole)"] ?? 3)")
                                                 .frame(width: 20, height: 10)
                                                 .font(.caption)
                                             
-                                            if course.pars[id] == viewModel.golfRound.scores[String(id)] {
-                                                Text("\(viewModel.golfRound.scores[String(id)])")
+                                            if course.pars["\(hole)"] ?? 4 == viewModel.golfRound.scores["\(hole)"] ?? 4{
+                                                Text("\(viewModel.golfRound.scores["\(hole)"] ?? 4)")
                                                     .frame(width: 20, height: 20)
                                                     .fontWeight(.bold)
                                                     .font(.title3)
                                                     .foregroundColor(Color.parColor)
                                             }
-                                            else if course.pars[id] ?? 4 <= ((viewModel.golfRound.scores[String(id)]) - 1) {
+                                            else if course.pars["\(hole)"] ?? 4 < viewModel.golfRound.scores["\(hole)"] ?? 4 {
                                                 ZStack {
                                                     Rectangle()
                                                         .stroke(Color.bogeyColor, lineWidth: 2)
                                                         .frame(width: 22, height: 22)
                                                     
-                                                    Text("\(viewModel.golfRound.scores[String(id)])")
+                                                    Text("\(viewModel.golfRound.scores["\(hole)"] ?? 4)")
                                                         .frame(width: 20, height: 20)
                                                         .fontWeight(.bold)
                                                         .font(.title3)
@@ -204,13 +170,13 @@ struct GolfRoundView: View {
                                                 }
 
                                             }
-                                            else if course.pars[id] ?? 4 >= ((viewModel.golfRound.scores[String(id)]) + 1) {
+                                            else {
                                                 ZStack {
                                                     Circle()
                                                         .stroke(Color.birdyColor, lineWidth: 2)
                                                         .frame(width: 22, height: 22)
                                                     
-                                                    Text("\(viewModel.golfRound.scores[String(id)])")
+                                                    Text("\(viewModel.golfRound.scores["\(hole)"] ?? 4)")
                                                         .frame(width: 20, height: 20)
                                                         .fontWeight(.bold)
                                                         .font(.title3)
