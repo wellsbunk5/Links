@@ -145,6 +145,7 @@ struct PostRoundView: View {
                             VStack{
                                 Button {
                                     viewModel.postRound(round)
+                                    viewModel.deleteTempGroup()
                                 } label: {
                                     Text("Post Round")
                                         .frame(width: 213.3, height:60)

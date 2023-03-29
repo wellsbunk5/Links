@@ -115,7 +115,7 @@ struct GroupRecordScore: View {
                             .ignoresSafeArea()
                         Button {
                             viewModel.nextHoleGroupRound(holeScores: holeScores)
-                            viewModel.playRoundPresentedViews.append("NextHole")
+                            viewModel.playRoundPresentedViews.append("NextHole \((Int(holeNum) ?? 99) + 1)")
                         } label: {
                             Text("Next Hole")
                                 .frame(width: 213.3, height:60)

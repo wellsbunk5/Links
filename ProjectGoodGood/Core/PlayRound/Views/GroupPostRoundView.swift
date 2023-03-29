@@ -85,6 +85,7 @@ struct GroupPostRoundView: View {
                     VStack{
                         Button {
                             viewModel.postGroupRounds(rounds)
+                            viewModel.deleteTempGroup()
                         } label: {
                             Text("Post Round")
                                 .foregroundColor(Color.white)

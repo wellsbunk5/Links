@@ -36,6 +36,7 @@
 		BF7F9E482979FE230068F38C /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E472979FE230068F38C /* ImageUploader.swift */; };
 		BF7F9E4A297A1AD70068F38C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E49297A1AD60068F38C /* UserService.swift */; };
 		BF7F9E4C297A1D4E0068F38C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F9E4B297A1D4E0068F38C /* User.swift */; };
+		BF80715629D3AEF8009CF0AF /* RoundRecordedNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF80715529D3AEF8009CF0AF /* RoundRecordedNotice.swift */; };
 		BF80E85E29D24DCE0013883B /* UserAndCourseRoundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF80E85D29D24DCE0013883B /* UserAndCourseRoundInfo.swift */; };
 		BF80E86029D250720013883B /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF80E85F29D250720013883B /* ScoreCardView.swift */; };
 		BF95120A298C52E600230A4B /* RecordScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF951209298C52E600230A4B /* RecordScore.swift */; };
@@ -105,6 +106,7 @@
 		BF7F9E472979FE230068F38C /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		BF7F9E49297A1AD60068F38C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF7F9E4B297A1D4E0068F38C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BF80715529D3AEF8009CF0AF /* RoundRecordedNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRecordedNotice.swift; sourceTree = "<group>"; };
 		BF80E85D29D24DCE0013883B /* UserAndCourseRoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndCourseRoundInfo.swift; sourceTree = "<group>"; };
 		BF80E85F29D250720013883B /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
 		BF951209298C52E600230A4B /* RecordScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordScore.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				BF0E1E9429C1382300781177 /* PlayRoundView.swift */,
 				BF0E1E9829C18C3600781177 /* WaitingRoomView.swift */,
 				BF0E1E9A29C18D3E00781177 /* AddPlayersView.swift */,
+				BF80715529D3AEF8009CF0AF /* RoundRecordedNotice.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				BF7F9E3F2979DF7E0068F38C /* SideMenuViewModel.swift in Sources */,
 				BFF221B1297748760074E6DE /* GolfRoundView.swift in Sources */,
 				BFF221AE297747AE0074E6DE /* FeedView.swift in Sources */,
+				BF80715629D3AEF8009CF0AF /* RoundRecordedNotice.swift in Sources */,
 				BFF221C2297755130074E6DE /* LoginView.swift in Sources */,
 				6B5D5A0929A196C7004E0800 /* LoginView2.swift in Sources */,
 				BFBA5A952980A5F900D57D5E /* ProfileViewModel.swift in Sources */,

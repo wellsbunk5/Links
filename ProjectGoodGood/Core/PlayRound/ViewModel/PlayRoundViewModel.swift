@@ -209,11 +209,22 @@ class PlayRoundViewModel: ObservableObject {
         }
     }
     
+    func deleteTempGroup() {
+        if let docId = tempGroup.id {
+            service.deleteTempGroup(withId: docId)
+        }
+    }
+    
     func followTempGroupUpdates() {
         if let groupId = tempGroup.id {
             service.followTempGroup(groupId) { updatedGroup in
-                self.tempGroup = updatedGroup
-                self.objectWillChange.send()
+                if let updatedGroup {
+                    self.tempGroup = updatedGroup
+                    self.objectWillChange.send()
+                } else {
+                    self.playRoundPresentedViews.append("RoundPostedNotice")
+                }
+                
             }
         }
     }
@@ -325,8 +336,15 @@ class PlayRoundViewModel: ObservableObject {
     
 
     func navigationDestination(for path: String) -> AnyView {
+        let pathArr = path.split(separator: " ")
+        var holeNum = currentHole
         
-        switch path {
+        if pathArr.count > 1 {
+            holeNum = Int(pathArr[1]) ?? currentHole
+        }
+        
+        
+        switch pathArr[0] {
         case "SelectPlayers":
             return AnyView ( AddPlayersView(viewModel: self, players: players))
         
@@ -337,10 +355,10 @@ class PlayRoundViewModel: ObservableObject {
             
             var holeScores = [HoleScore]()
             
-            for _ in tempGroup.tempRounds {
+            for tempRound in tempGroup.tempRounds {
                 let scores = HoleScore(
-                    score: 1,
-                    putts: 0
+                    score: tempRound.scores["\(startingHole)"] ?? 1,
+                    putts: tempRound.putts["\(startingHole)"] ?? 0
                 )
                 
                 holeScores.append(scores)
@@ -353,10 +371,10 @@ class PlayRoundViewModel: ObservableObject {
         case "NextHole" :
             if roundType == RoundType.solo {
                 let holeScore = HoleScore(
-                    score: tempGroup.tempRounds[0].scores["\(currentHole)"] ?? 1,
-                    putts: tempGroup.tempRounds[0].putts["\(currentHole)"] ?? 0
+                    score: tempGroup.tempRounds[0].scores["\(holeNum)"] ?? 1,
+                    putts: tempGroup.tempRounds[0].putts["\(holeNum)"] ?? 0
                 )
-                return AnyView ( RecordScore(holeNum: "\(currentHole)", holeScores: holeScore, viewModel: self))
+                return AnyView ( RecordScore(holeNum: "\(holeNum)", holeScores: holeScore, viewModel: self))
 
             }
             
@@ -382,6 +400,9 @@ class PlayRoundViewModel: ObservableObject {
             let rounds = generateGroupRounds()
             
             return AnyView( GroupPostRoundView(viewModel: self, rounds: rounds))
+            
+        case "RoundPostedNotice" :
+            return AnyView ( RoundRecordedNotice(viewModel: self) )
             
         default :
             return AnyView (WaitingRoomView(viewModel: self))

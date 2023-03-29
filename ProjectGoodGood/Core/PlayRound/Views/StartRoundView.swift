@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct StartRoundView: View {
-    @ObservedObject var viewModel = StartRoundViewModel()
     @State var showPlayRoundSheet = false
+    @ObservedObject var viewModel = StartRoundViewModel()
     
     var body: some View {
-//        NavigationStack(path: $viewModel.playRoundPresentedViews) {
             VStack {
                 //Course Already Selected
                 if viewModel.selectedCourse != nil {

@@ -34,9 +34,10 @@ class StartRoundViewModel: ObservableObject {
     }
     
     func checkJoinCode(){
-        let lowercasedCode = joinCode.uppercased()
-        roundService.getTempGroup(by: lowercasedCode) { groupToJoin in
+        let upperCasedCode = joinCode.uppercased()
+        roundService.getTempGroup(by: upperCasedCode) { groupToJoin in
             self.tempGroup = groupToJoin
+            self.showPlayRoundSheet = true
         }
     }
 }

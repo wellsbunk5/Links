@@ -62,6 +62,10 @@ struct GolfRoundService {
         
     }
     
+    func deleteTempGroup(withId docId: String) {
+        Firestore.firestore().collection("temp-groups").document(docId).delete()
+    }
+    
     func postTempGroup(_ tempGroup: TempGroup, completion: @escaping(String)-> Void) {
         
         var tempRounds = [[String:Any]]()
@@ -133,10 +137,15 @@ struct GolfRoundService {
         completion(newDocRef.documentID)
     }
     
-    func followTempGroup(_ tempGroupId: String, completion: @escaping(TempGroup) -> Void){
+    func followTempGroup(_ tempGroupId: String, completion: @escaping(TempGroup?) -> Void){
         Firestore.firestore().collection("temp-groups").document(tempGroupId)
             .addSnapshotListener { listenerSnapshot, _ in
                 guard let document = listenerSnapshot else { return }
+                if !document.exists {
+                    completion(nil)
+                    return
+                }
+                
                 guard let tempGroup = try? document.data(as: TempGroup.self) else {return}
                 
                 completion(tempGroup)
