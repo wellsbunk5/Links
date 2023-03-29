@@ -30,7 +30,7 @@ struct PostRoundView: View {
                     }
                     
                     ZStack(){
-                        Color(.systemGray)
+                        Color.darkGreyColor
                             .ignoresSafeArea()
                         HStack(alignment: .center, spacing: 8.0) {
                             VStack(alignment: .leading, spacing: 8.0) {
@@ -100,10 +100,17 @@ struct PostRoundView: View {
                     }
                     
                     PhotosPicker( selection: $selectedItems, maxSelectionCount: 3, matching: .images) {
-                        HStack {
-                            Text("Add Photos")
-                            Image(systemName: "photo.on.rectangle.angled")
+                        ZStack{
+                            Color.doubleBogeyColor
+                                .ignoresSafeArea()
+                            HStack {
+                                    Text("Add Photos")
+                                    Image(systemName: "photo.on.rectangle.angled")
+                                }
                         }
+                        .frame(width: 250, height:40)
+                        .cornerRadius(10)
+                        .foregroundColor(Color.white)
                     }
                     .onChange(of: selectedItems) { _ in
                         Task {

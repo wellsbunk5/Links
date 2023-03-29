@@ -23,7 +23,6 @@ struct FeedView: View {
                         ForEach ( feedViewModel.rounds) { golfRound in
                             GolfRoundView(golfRound: golfRound, showLikeButton: true)
                                 .padding()
-                            
                         }
                     }
                 }
@@ -51,16 +50,22 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if let user = viewModel.currentUser {
-                        Button {
-                            withAnimation(.easeInOut) {
-                                showMenu.toggle()
-                            }
-                        } label: {
-                            KFImage(URL(string: user.profileImageUrl))
+                        HStack{
+                            Image("Links_Transparent")
                                 .resizable()
-                                .scaledToFill()
-                                .clipShape(Circle())
-                                .frame(width: 32, height: 32)
+                                .frame(width: 50, height: 30)
+                                .offset(x:-250)
+                            Button {
+                                withAnimation(.easeInOut) {
+                                    showMenu.toggle()
+                                }
+                            } label: {
+                                KFImage(URL(string: user.profileImageUrl))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 32, height: 32)
+                            }
                         }
                     }
                     
