@@ -108,28 +108,37 @@ struct StartRoundView: View {
                         Color.lightGreyColor
                             .ignoresSafeArea()
                         VStack{
-                            ForEach(viewModel.golfCourses) { course in
-                                HStack{
-                                    Button {
-                                        viewModel.selectedCourse = course
-                                    } label: {
-                                        Text(course.nickname)
-                                            .font(.title2)
-                                            .foregroundColor(Color.parColor)
-                                            .frame(width: 270, height: 60)
-                                    }
-                                    Button {
-                                        viewModel.selectedCourse = course
-                                    } label: {
-                                        Image(systemName: "arrow.forward")
+                            if viewModel.golfCourses.count >= 1 {
+                                ForEach(viewModel.golfCourses) { course in
+                                    HStack{
+                                        Button {
+                                            viewModel.selectedCourse = course
+                                        } label: {
+                                            Text(course.nickname)
+                                                .font(.title2)
+                                                .foregroundColor(Color.parColor)
+                                                .frame(width: 270, height: 60)
+                                        }
+                                        Button {
+                                            viewModel.selectedCourse = course
+                                        } label: {
+                                            Image(systemName: "arrow.forward")
+                                        }
+
                                     }
 
                                 }
-
+                            } else {
+                                Button {
+                                    viewModel.fetchCourses()
+                                } label: {
+                                    Text("Load More Courses")
+                                }
                             }
+
                         }
                     }
-                    .frame(width: 320, height: CGFloat(viewModel.golfCourses.count) * 60)
+                    .frame(width: 320, height: max(CGFloat(viewModel.golfCourses.count) * 60, 60))
                     .cornerRadius(10)
                 }
                 Spacer()

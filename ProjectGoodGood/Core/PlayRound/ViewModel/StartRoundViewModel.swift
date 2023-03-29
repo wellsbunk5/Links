@@ -18,7 +18,7 @@ class StartRoundViewModel: ObservableObject {
     
     var roundType: RoundType = .solo
     
-    var golfCourses = [Course]()
+    @Published var golfCourses = [Course]()
     let courseService = GolfCourseService()
     let roundService = GolfRoundService()
 
