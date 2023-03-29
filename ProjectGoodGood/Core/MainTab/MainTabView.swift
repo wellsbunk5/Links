@@ -10,8 +10,7 @@ struct MainTabView: View {
     @State private var selectedTab: MainTabs = .home
     @EnvironmentObject var authViewModel: AuthViewModel
         var body: some View {
-           //if let user = authViewModel.currentUser {
-
+            //if let user = authViewModel.currentUser {
             TabView(selection: $selectedTab) {
                 FeedView()
                     .tabItem {

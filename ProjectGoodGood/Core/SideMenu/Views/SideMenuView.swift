@@ -14,12 +14,13 @@ struct SideMenuView: View {
         if let user = authViewModel.currentUser {
             VStack(spacing: 32) {
                 VStack() {
-                    KFImage(URL(string: user.profileImageUrl))
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width:48, height: 48)
-                    
+                    HStack{
+                        KFImage(URL(string: user.profileImageUrl))
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                            .frame(width:48, height: 48)
+                        }
                     VStack(spacing: 4) {
                         Text(user.fullname)
                             .font(.headline)
@@ -65,6 +66,14 @@ struct SideMenuView: View {
                 }
                 
                 Spacer()
+                HStack{
+                    Text("Powered By")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    Image("Links_Transparent")
+                        .resizable()
+                        .frame(width: 50, height: 30)
+                }
             }
         }
     }

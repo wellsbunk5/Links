@@ -81,6 +81,8 @@ struct ProfileView: View {
                     
                 }
             }
+            Spacer().frame(height: 2)
+
         }
     }
 }
