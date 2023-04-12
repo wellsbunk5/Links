@@ -24,7 +24,10 @@ class FeedViewModel: ObservableObject {
                 let uid = rounds[i].userId
                 
                 self.userService.fetchUser(withUid: uid) { user in
-                    self.rounds[i].user = user
+                    if rounds.indices.contains(i) {
+                        self.rounds[i].user = user
+                    }
+                    
                 }
             }
         }
@@ -38,7 +41,9 @@ class FeedViewModel: ObservableObject {
                 let uid = rounds[i].userId
                 
                 self.userService.fetchUser(withUid: uid) { user in
-                    self.rounds[i].user = user
+                    if rounds.indices.contains(i) {
+                        self.rounds[i].user = user
+                    }
                 }
             }
         }

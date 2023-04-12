@@ -180,9 +180,12 @@ struct GolfRoundService {
                 documents.forEach { doc in
                     followedUsers.append(doc.documentID)
                 }
+                let usersToFilter = Array(followedUsers.prefix(10))
+                
+                
                 
                 Firestore.firestore().collection("rounds")
-                      .whereField("userId", in: followedUsers)
+                      .whereField("userId", in: usersToFilter)
                       .order(by: "timestamp", descending: true).limit(to: 15)
                       .getDocuments { snapshot , _ in
                           guard let documents = snapshot?.documents else { return }
@@ -225,8 +228,9 @@ struct GolfRoundService {
                     //
                     //                    }
                 }
+                let usersToFilter = Array(followedUsers.prefix(10))
                 Firestore.firestore().collection("rounds")
-                      .whereField("userId", in: followedUsers)
+                      .whereField("userId", in: usersToFilter)
                       .order(by: "timestamp", descending: true).limit(to: 15)
                       .addSnapshotListener { querySnapshot, _ in
                           guard let snapshot = querySnapshot else { return }
